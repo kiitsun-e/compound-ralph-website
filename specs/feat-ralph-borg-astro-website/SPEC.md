@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 3
+iteration_count: 4
 project_type: astro
 ---
 
@@ -35,14 +35,6 @@ TASK ORDERING RULES (ENFORCED):
 -->
 
 ### Pending
-
-#### Phase 2: Implementation - Landing Page
-
-- [ ] Task 4: Create custom landing page
-  - File: `src/pages/index.astro`
-  - Content: Hero with tagline, 3 feature bullets, Get Started and GitHub buttons
-  - Test: `tests/landing-page.test.ts` (verify page renders, links exist)
-  - Visual: `agent-browser screenshot localhost:4321` (REQUIRED)
 
 #### Phase 3: Implementation - Documentation Pages
 
@@ -155,6 +147,13 @@ TASK ORDERING RULES (ENFORCED):
   - File: `src/styles/custom.css`
   - Added: Starlight theme variables (--sl-color-accent, --sl-color-accent-low, --sl-color-accent-high)
   - Added: Landing page color variables for Task 4
+  - Verified: `bun run build` succeeds
+
+- [x] Task 4: Create custom landing page - Iteration 4
+  - File: `src/pages/index.astro`
+  - Test: `tests/landing-page.test.ts` (8 tests passing)
+  - Content: Hero with gradient title, tagline, Get Started/GitHub buttons, 3 feature cards
+  - Visual: Screenshot captured - dark theme with cyan/green accents renders correctly
   - Verified: `bun run build` succeeds
 
 ### Blocked
@@ -308,3 +307,12 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds
 **Result:** success
 **Learnings:** Starlight uses --sl-color-accent, --sl-color-accent-low, --sl-color-accent-high for theming; also added landing page CSS variables for the custom landing page (Task 4)
+
+### Iteration 4 (2026-01-21 22:16)
+**Task:** Task 4 - Create custom landing page
+**Files Created:** src/pages/index.astro, tests/landing-page.test.ts
+**Tests:** 8 tests passing (file exists, hero title, tagline, Get Started link, GitHub link, 3 features, CSS variables, meta tags)
+**Integration:** `bun run build` succeeds (7 pages built)
+**Visual:** Screenshot captured - landing page renders with dark theme, cyan/green gradient title, feature cards
+**Result:** success
+**Learnings:** Custom Astro pages outside Starlight's content system need to import CSS manually; scoped styles in .astro files work well with CSS custom properties
