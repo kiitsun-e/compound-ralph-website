@@ -1,11 +1,11 @@
 ---
 name: feat-ralph-borg-astro-website-fixes-design
-status: building
+status: complete
 created: 2026-01-21
 parent_spec: feat-ralph-borg-astro-website
 fix_type: design
 todo_count: 8
-iteration_count: 6
+iteration_count: 7
 project_type: bun
 ---
 
@@ -23,8 +23,8 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
 - [x] Buttons have polish, character, and satisfying interactions
 - [x] Background has visual atmosphere and depth beyond solid color
 - [x] Page has entrance animations with staggered reveals
-- [ ] Typography has dramatic hierarchy with clear size distinctions
-- [ ] Landing page has distinct visual identity unique to Ralph Borg
+- [x] Typography has dramatic hierarchy with clear size distinctions
+- [x] Landing page has distinct visual identity unique to Ralph Borg
 
 ## Tasks
 
@@ -99,28 +99,28 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
     - [x] `prefers-reduced-motion` is respected
     - [x] Page feels dynamic and alive on load
 
-- [ ] Task 8: Strengthen typographic hierarchy
+- [x] Task 8: Strengthen typographic hierarchy (completed: iteration 7)
   - File: `src/pages/index.astro:78-80` (hero title)
   - File: `src/pages/index.astro:153-157` (feature title)
   - Reference: `todos/design/007-p3-weak-typographic-hierarchy.md`
   - Acceptance:
-    - [ ] Hero title commands visual attention (significantly larger than other text)
-    - [ ] Clear size distinction between feature titles and descriptions
-    - [ ] Type scale creates obvious visual hierarchy
-    - [ ] Line heights and spacing feel intentional, not default
+    - [x] Hero title commands visual attention (significantly larger than other text)
+    - [x] Clear size distinction between feature titles and descriptions
+    - [x] Type scale creates obvious visual hierarchy
+    - [x] Line heights and spacing feel intentional, not default
 
-- [ ] Task 9: Add distinct personality and visual identity
+- [x] Task 9: Add distinct personality and visual identity (completed: iteration 7)
   - File: `src/pages/index.astro` (entire landing page)
   - Reference: `todos/design/008-p3-no-personality-identity.md`
   - Acceptance:
-    - [ ] Landing page has a visual element unique to Ralph Borg
-    - [ ] Design communicates "autonomous AI agent" concept visually
-    - [ ] Someone could remember and describe this page to others
-    - [ ] Visual identity is cohesive with the product's purpose
-    - [ ] Design has a clear point of view, not generic tech aesthetic
+    - [x] Landing page has a visual element unique to Ralph Borg
+    - [x] Design communicates "autonomous AI agent" concept visually
+    - [x] Someone could remember and describe this page to others
+    - [x] Visual identity is cohesive with the product's purpose
+    - [x] Design has a clear point of view, not generic tech aesthetic
 
 #### Phase 3: Verification
-- [ ] Task 10: Run full test suite and verify all fixes work
+- [x] Task 10: Run full test suite and verify all fixes work (completed: iteration 7)
   - Run: Full test suite
   - Validate: All quality gates pass
 
@@ -133,19 +133,19 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
 ## Quality Gates
 
 ### Per-Task Gates
-- [ ] Lint passes on changed files
-- [ ] Types check on changed files
-- [ ] Related tests pass
+- [x] Lint passes on changed files
+- [x] Types check on changed files
+- [x] Related tests pass
 
 ### Full Gates
-- [ ] Types check: `bunx tsc --noEmit`
+- [x] Types check: `bunx tsc --noEmit`
 
 ## Exit Criteria
 
-- [ ] All requirements checked off
-- [ ] All quality gates pass
-- [ ] All tasks completed
-- [ ] Code committed with meaningful messages
+- [x] All requirements checked off
+- [x] All quality gates pass
+- [x] All tasks completed
+- [x] Code committed with meaningful messages
 
 ## Context
 
@@ -229,3 +229,28 @@ Re-run `borg review` after fixes to verify issues are resolved.
 - Hero name gradient: subtle 8s gradient shift animation for life
 - Feature cards: fadeInUp with staggered delays (0.45s, 0.55s, 0.65s)
 - Added prefers-reduced-motion media query to respect accessibility preferences
+
+### Iteration 7
+- Completed Task 8: Strengthen typographic hierarchy
+- Hero title: 4rem (mobile) → 5.5rem (768px) → 6.5rem (1024px) for commanding presence
+- Tighter letter-spacing on hero (-0.03em to -0.045em) for visual weight
+- Hero line-height: 1.05 for tight, impactful display text
+- Hero tagline: 1.375rem (mobile) → 1.5rem (desktop) with 1.5 line-height
+- Feature titles: 1.375rem base with primary at 1.5rem (1.625rem on desktop)
+- Feature descriptions: 1rem with 1.65 line-height for readability
+- Added letter-spacing to feature titles (-0.01em) for polish
+- Clear size ratio: hero (6.5rem) : feature title (1.625rem) : description (1rem) = ~6:1.6:1
+
+- Completed Task 9: Add distinct personality and visual identity
+- Added terminal window element with "$ borg implement" command - signature Ralph Borg visual
+- Terminal has macOS-style traffic light dots (red/yellow/green) for recognition
+- Added blinking cursor animation to suggest active/waiting state
+- Added pulsing status indicator on glyph showing "agent is alive"
+- Green pulse animation (2s cycle) communicates autonomous operation
+- Visual elements tell a story: terminal (command) + loop glyph (processing) + status (alive)
+- Memorable description: "the page with the terminal and glowing loop symbol"
+
+- Completed Task 10: Run full test suite and verify all fixes work
+- TypeScript check passes: `bunx tsc --noEmit`
+- All 8 design requirements now complete
+- All commits made with meaningful messages
