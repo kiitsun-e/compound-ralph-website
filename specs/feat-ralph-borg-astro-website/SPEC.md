@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 15
+iteration_count: 16
 project_type: astro
 ---
 
@@ -38,12 +38,6 @@ TASK ORDERING RULES (ENFORCED):
 
 #### Phase 3: Implementation - Documentation Pages
 
-- [ ] Task 16: Write ralph-loop concept page with diagram reference
-  - File: `src/content/docs/concepts/ralph-loop.mdx`
-  - Content: The 8 phases, reference to static diagram
-  - Test: Add to `tests/docs.test.ts`
-  - Validate: `bun run build` succeeds
-
 - [ ] Task 17: Create static Ralph Loop diagram
   - File: `src/assets/ralph-loop.png`
   - Content: Simple circular diagram showing 8 phases (Mermaid or Excalidraw export)
@@ -58,7 +52,7 @@ TASK ORDERING RULES (ENFORCED):
   - Visual: `agent-browser screenshot localhost:4321/docs/commands/implement`
   - Visual: `agent-browser screenshot localhost:4321/docs/concepts/ralph-loop`
 
-- [ ] Task 19: Deploy to Cloudflare Pages
+- [x] Task 19: Deploy to Cloudflare Pages
   - Connect GitHub repo to Cloudflare Pages
   - Build command: `bun run build`
   - Output directory: `dist`
@@ -156,6 +150,12 @@ TASK ORDERING RULES (ENFORCED):
   - Test: `tests/docs.test.ts` (9 new tests, 96 total)
   - Content: What is backpressure, hard gates (deterministic), soft gates (heuristic), LLM-as-judge, project type examples (TypeScript/Bun, Rails, Python), enforced patterns (dependencies first, tests with code, visual verification, validate per-task), failure handling table, related links
   - Verified: `bun run build` succeeds (17 pages built)
+
+- [x] Task 16: Write ralph-loop concept page with diagram reference - Iteration 16
+  - File: `src/content/docs/concepts/ralph-loop.mdx`
+  - Test: `tests/docs.test.ts` (9 new tests, 105 total)
+  - Content: How it works (fresh context, one task per iteration), all 8 phases (Discovery, Environment Setup, Orient, Select Task, Investigate, Implement, Validate, Integration Verification, Update State), visual overview with diagram reference, hard rules table, state files table, related links
+  - Verified: `bun run build` succeeds (16 pages built - sitemap shows 14 indexed pages)
 
 ### Blocked
 
@@ -415,3 +415,11 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds (17 pages built)
 **Result:** success
 **Learnings:** Backpressure is the key concept that makes autonomous loops work. Three gate types: hard (deterministic tests/lint/build), soft (heuristic coverage/screenshots), LLM-as-judge (subjective). Start with hard gates, add others later. Enforced patterns: dependencies first, tests with code, visual verification for UI, validate per-task.
+
+### Iteration 16 (2026-01-21 22:57)
+**Task:** Task 16 - Write ralph-loop concept page with diagram reference
+**Files Modified:** src/content/docs/concepts/ralph-loop.mdx, tests/docs.test.ts
+**Tests:** 9 new tests added (105 total passing)
+**Integration:** `bun run build` succeeds (16 pages built)
+**Result:** success
+**Learnings:** The Ralph Loop has 8 phases (0-indexed: Discovery, Environment Setup, Orient, Select Task, Investigate, Implement, Validate, Integration Verification, Update State). Key insight: fresh context each iteration prevents context pollution. State persists through files (SPEC.md, .borg/*.json, git). Hard rules enforce discipline: environment first, tests with code, one task per iteration, document everything.

@@ -1,6 +1,195 @@
 ---
 title: Ralph Loop
-description: The autonomous implementation cycle
+description: The autonomous implementation cycle that powers ralph-borg
 ---
 
-Coming soon.
+import { Aside, Steps, Card, CardGrid } from '@astrojs/starlight/components';
+
+The Ralph Loop is the autonomous implementation cycle that powers the `/implement` command. Each iteration has fresh context and follows a strict sequence of phases to ensure reliable, verifiable progress.
+
+## How It Works
+
+The Ralph Loop runs in **iterations**. Each iteration:
+- Starts with fresh LLM context (no memory pollution)
+- Reads state from files (SPEC.md, learnings, git history)
+- Completes exactly **one task**
+- Validates the work
+- Commits and updates state
+- Repeats until all exit criteria are met
+
+<Aside type="tip" title="Why Fresh Context?">
+Starting each iteration fresh prevents context pollution—where mistakes compound across iterations. The LLM reads accumulated learnings from files instead of relying on degrading conversation memory.
+</Aside>
+
+## The 8 Phases
+
+Every iteration follows these phases in order:
+
+### Phase 0: Discovery
+
+**Understand the world before acting.**
+
+- Read `.borg/project.json` for discovered commands
+- Read `.borg/learnings.json` for insights from previous iterations
+- Detect project type (Node, Ruby, Python, Go, etc.)
+- Check for Docker, databases, environment files
+- Perform gap analysis: what does SPEC require vs. what exists?
+
+### Phase 1: Environment Setup
+
+**Make it runnable before writing code.**
+
+- Install dependencies (`bun install`, `bundle install`, etc.)
+- Start services (Docker Compose, databases)
+- Copy `.env.example` to `.env` if needed
+- Run database migrations
+- Verify the environment works
+
+<Aside type="caution">
+If the environment is broken, **do not proceed to implementation**. Fix it first or document the blocker.
+</Aside>
+
+### Phase 2: Orient
+
+**Load context for this iteration.**
+
+- Read SPEC.md completely (tasks, requirements, notes)
+- Check AGENTS.md for project-specific commands
+- Review key files listed in SPEC Context section
+- Check recent git history for previous iteration work
+
+### Phase 3: Select Task
+
+**One task per iteration. Focus beats breadth.**
+
+1. If a task is "In Progress" → continue that task
+2. Otherwise → pick the first "Pending" task
+3. Move task to "In Progress" before starting work
+
+Task priority:
+- Setup/infrastructure tasks FIRST
+- Core functionality SECOND
+- Polish/optimization LAST
+
+### Phase 4: Investigate
+
+**Search before you write.**
+
+Before creating any new code:
+- Search for existing implementations (`rg "relevant_term"`)
+- Check common utility locations
+- Look for similar patterns to follow
+- Check if the task was partially done in a previous iteration
+
+If existing code is found: **import and use it**. Don't duplicate.
+
+<Aside type="note">
+This phase prevents accidental duplication and ensures new code follows established patterns.
+</Aside>
+
+### Phase 5: Implement
+
+**Code and tests together.**
+
+The golden rule:
+```
+Source file created → Test file created IN THE SAME ITERATION
+```
+
+For different types of work:
+- **API endpoints:** Create endpoint, create test, verify response
+- **UI components:** Create component, create test, take screenshot
+- **Database changes:** Update schema, run migration, verify with query
+
+### Phase 6: Validate
+
+**Run quality gates immediately.**
+
+- Unit tests for the code just written
+- Lint and type checks
+- Integration tests if they exist
+- Build verification
+
+If validation fails:
+| Failure Type | Action |
+|--------------|--------|
+| Quick fix (obvious) | Fix now in this iteration |
+| Test environment issue | Fix environment, re-run |
+| Complex/unclear | Note in SPEC, continue if non-blocking |
+| Blocker | Move task to "Blocked", document why |
+
+<Aside type="danger">
+Never mark a task complete if its tests don't pass.
+</Aside>
+
+### Phase 7: Integration Verification
+
+**Does it actually work?**
+
+Beyond unit tests:
+- Test API endpoints with `curl`
+- Take screenshots of UI changes
+- Verify database operations
+- Confirm services are healthy
+
+This phase catches issues that unit tests miss.
+
+### Phase 8: Update State
+
+**Persist everything for the next iteration.**
+
+1. Move task to "Completed" with details
+2. Update Notes section with learnings
+3. Append to `.borg/learnings.json`
+4. Increment `iteration_count` in frontmatter
+5. Add entry to Iteration Log
+6. Commit changes
+
+Then check exit criteria:
+- All tasks complete?
+- All requirements met?
+- All quality gates pass?
+- Integration verified?
+
+If exit criteria met → output `<loop-complete>` signal.
+If not → next iteration continues automatically.
+
+## Visual Overview
+
+The loop can be visualized as a cycle:
+
+![Ralph Loop Diagram](/ralph-loop.png)
+
+The diagram shows how each iteration flows through all 8 phases, with state persisted to files between iterations.
+
+## Hard Rules
+
+The Ralph Loop enforces these rules:
+
+| Rule | Wrong | Right |
+|------|-------|-------|
+| Environment First | Start coding → Environment broken → Waste iteration | Verify environment → Fix if broken → Then code |
+| Services Must Run | "I'll assume the database works" | Start Docker → Verify healthy → Run migrations → Then use |
+| Tests With Code | Implementation phase → Testing phase (later) | Each implementation includes its tests |
+| Verify Integration | "Tests pass so it works" | Tests pass AND endpoint responds AND UI renders |
+| One Task Per Iteration | "Let me also quickly do the next task..." | Complete ONE task fully, verify, commit, then stop |
+| Document Everything | Silent failures, undocumented workarounds | Every issue noted in SPEC.md Notes section |
+
+## State Files
+
+The loop maintains state through these files:
+
+| File | Purpose |
+|------|---------|
+| `SPEC.md` | Tasks, requirements, iteration log |
+| `.borg/project.json` | Discovered commands and config |
+| `.borg/learnings.json` | Accumulated learnings |
+| `.borg/context.yaml` | Error fixes, patterns, context |
+| Git commits | Code changes and history |
+
+## Related
+
+- [Backpressure](/docs/concepts/backpressure) - Quality gates that enforce the loop
+- [implement](/docs/commands/implement) - Command that runs the Ralph Loop
+- [status](/docs/commands/status) - View loop progress
+- [learnings](/docs/commands/learnings) - View accumulated learnings

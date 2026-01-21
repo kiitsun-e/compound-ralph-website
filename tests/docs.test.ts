@@ -699,3 +699,81 @@ describe("Concept: backpressure", () => {
     expect(content).toContain("/docs/commands/implement");
   });
 });
+
+describe("Concept: Ralph Loop", () => {
+  const conceptPath = "concepts/ralph-loop.mdx";
+
+  test("file exists", () => {
+    const exists = existsSync(join(DOCS_DIR, conceptPath));
+    expect(exists).toBe(true);
+  });
+
+  test("has valid frontmatter with title and description", () => {
+    const content = readDoc(conceptPath);
+    const frontmatter = extractFrontmatter(content);
+    expect(frontmatter.title).toBe("Ralph Loop");
+    expect(frontmatter.description).toBeDefined();
+    expect(frontmatter.description).toContain("autonomous");
+  });
+
+  test("explains how the loop works", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("## How It Works");
+    expect(content).toContain("iterations");
+    expect(content).toContain("fresh context");
+    expect(content).toContain("one task");
+  });
+
+  test("documents all 8 phases", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("## The 8 Phases");
+    expect(content).toContain("### Phase 0: Discovery");
+    expect(content).toContain("### Phase 1: Environment Setup");
+    expect(content).toContain("### Phase 2: Orient");
+    expect(content).toContain("### Phase 3: Select Task");
+    expect(content).toContain("### Phase 4: Investigate");
+    expect(content).toContain("### Phase 5: Implement");
+    expect(content).toContain("### Phase 6: Validate");
+    expect(content).toContain("### Phase 7: Integration Verification");
+    expect(content).toContain("### Phase 8: Update State");
+  });
+
+  test("includes hard rules table", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("## Hard Rules");
+    expect(content).toContain("| Rule | Wrong | Right |");
+    expect(content).toContain("Environment First");
+    expect(content).toContain("Tests With Code");
+    expect(content).toContain("One Task Per Iteration");
+  });
+
+  test("documents state files", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("## State Files");
+    expect(content).toContain("SPEC.md");
+    expect(content).toContain(".borg/project.json");
+    expect(content).toContain(".borg/learnings.json");
+    expect(content).toContain("Git commits");
+  });
+
+  test("references the diagram", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("## Visual Overview");
+    expect(content).toContain("![Ralph Loop Diagram]");
+    expect(content).toContain("ralph-loop.png");
+  });
+
+  test("uses Starlight Aside components", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("import { Aside");
+    expect(content).toContain("<Aside type=");
+  });
+
+  test("includes related links section", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("## Related");
+    expect(content).toContain("/docs/concepts/backpressure");
+    expect(content).toContain("/docs/commands/implement");
+    expect(content).toContain("/docs/commands/learnings");
+  });
+});
