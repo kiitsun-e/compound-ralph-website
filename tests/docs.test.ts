@@ -435,6 +435,68 @@ describe("Command: design", () => {
   });
 });
 
+describe("Command: status", () => {
+  const commandPath = "commands/status.mdx";
+
+  test("file exists", () => {
+    const exists = existsSync(join(DOCS_DIR, commandPath));
+    expect(exists).toBe(true);
+  });
+
+  test("has valid frontmatter with title and description", () => {
+    const content = readDoc(commandPath);
+    const frontmatter = extractFrontmatter(content);
+    expect(frontmatter.title).toBe("borg status");
+    expect(frontmatter.description).toBeDefined();
+  });
+
+  test("includes usage section with code block", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Usage");
+    expect(content).toContain("```bash");
+    expect(content).toContain("borg status");
+  });
+
+  test("explains what it shows with table", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## What It Shows");
+    expect(content).toContain("| Column |");
+    expect(content).toContain("Name");
+    expect(content).toContain("Status");
+    expect(content).toContain("Iterations");
+  });
+
+  test("documents status states with colors", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Status States");
+    expect(content).toContain("pending");
+    expect(content).toContain("building");
+    expect(content).toContain("complete");
+    expect(content).toContain("blocked");
+  });
+
+  test("includes output example", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Output Example");
+    expect(content).toContain("Ralph Borg Status");
+  });
+
+  test("includes examples section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Examples");
+    expect(content).toContain("borg status");
+    expect(content).toContain("borg implement");
+  });
+
+  test("includes related commands section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Related Commands");
+    expect(content).toContain("/docs/commands/implement");
+    expect(content).toContain("/docs/commands/review");
+    expect(content).toContain("/docs/commands/learnings");
+  });
+});
+
 describe("Command: fix", () => {
   const commandPath = "commands/fix.mdx";
 

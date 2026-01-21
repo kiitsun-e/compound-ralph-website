@@ -1,0 +1,99 @@
+---
+title: borg status
+description: Show progress of all specs including iteration counts and task completion
+---
+
+Display the status of all feature specifications in your project, including their current state, iteration count, and task progress.
+
+## Usage
+
+```bash
+borg status
+```
+
+## What It Shows
+
+The status command scans your `specs/` directory and displays a table with:
+
+| Column | Description |
+|--------|-------------|
+| Name | Spec directory name |
+| Status | Current state (pending, building, complete, blocked) |
+| Iterations | Number of Ralph Loop iterations run |
+| Tasks | Completed/Total task count |
+
+## Status States
+
+| Status | Color | Meaning |
+|--------|-------|---------|
+| `pending` | Default | Spec created but not started |
+| `building` | Yellow | Currently being implemented |
+| `complete` | Green | All tasks done and verified |
+| `blocked` | Red | Implementation stopped due to an issue |
+
+## Output Example
+
+```
+Ralph Borg Status
+═══════════════════════════════════════════════════════════════
+
+Name                           Status            Iterations  Tasks
+───────────────────────────────────────────────────────────────
+user-authentication            complete          8           5/5
+api-rate-limiting              building          3           2/7
+email-notifications            pending           0           0/4
+payment-integration            blocked           5           3/6
+```
+
+## Reading the Output
+
+- **Name**: Matches the directory name under `specs/`
+- **Status**: Color-coded for quick scanning
+- **Iterations**: How many times the Ralph Loop has run
+- **Tasks**: Format is `completed/total` from SPEC.md checkboxes
+
+## Examples
+
+### Basic usage
+
+```bash
+borg status
+```
+
+### After starting implementation
+
+```bash
+borg implement specs/my-feature
+# ... Claude works autonomously ...
+# Press Ctrl+C to pause
+
+borg status
+# Shows my-feature with status: building and iteration count
+```
+
+### Checking progress across multiple features
+
+```bash
+borg status
+# See all features at a glance
+# Pick one to continue: borg implement specs/feature-name
+```
+
+## Includes Fix Specs
+
+The status command also shows nested fix specs created by `borg fix`:
+
+```
+Name                           Status            Iterations  Tasks
+───────────────────────────────────────────────────────────────
+user-auth                      complete          8           5/5
+user-auth/fixes/code           building          2           3/5
+user-auth/fixes/design         pending           0           0/3
+```
+
+## Related Commands
+
+- [borg implement](/docs/commands/implement) - Run the Ralph Loop on a spec
+- [borg review](/docs/commands/review) - Review completed implementation
+- [borg fix](/docs/commands/fix) - Create fix specs from review findings
+- [borg learnings](/docs/commands/learnings) - View learnings from iterations

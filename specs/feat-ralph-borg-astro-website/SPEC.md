@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 12
+iteration_count: 13
 project_type: astro
 ---
 
@@ -37,12 +37,6 @@ TASK ORDERING RULES (ENFORCED):
 ### Pending
 
 #### Phase 3: Implementation - Documentation Pages
-
-- [ ] Task 13: Write status command reference
-  - File: `src/content/docs/commands/status.mdx`
-  - Content: Description, usage, options table, examples
-  - Test: Add to `tests/docs.test.ts`
-  - Validate: `bun run build` succeeds
 
 - [ ] Task 14: Write learnings command reference
   - File: `src/content/docs/commands/learnings.mdx`
@@ -156,6 +150,12 @@ TASK ORDERING RULES (ENFORCED):
   - Test: `tests/docs.test.ts` (8 new tests passing, 71 total)
   - Content: Usage, arguments (url/iterations), what it does (screenshot, analyze, improve, verify, repeat), auto-detection of dev server ports, design philosophy, output structure (design-iterations/), completion signal, examples, related commands
   - Verified: `bun run build` succeeds (14 pages built)
+
+- [x] Task 13: Write status command reference - Iteration 13
+  - File: `src/content/docs/commands/status.mdx`
+  - Test: `tests/docs.test.ts` (8 new tests, 71 total)
+  - Content: Usage, what it shows table, status states with colors, output example, includes fix specs, examples, related commands
+  - Verified: `bun run build` succeeds (15 pages built)
 
 ### Blocked
 
@@ -389,3 +389,12 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds (14 pages built)
 **Result:** success
 **Learnings:** Design command is an iterative improvement loop (not one-shot). Uses agent-browser screenshots and /frontend-design skill. Auto-detects dev server on common ports (3000, 4321, 5173, etc). Outputs design session logs to design-iterations/ directory. Completes early when agent outputs <design-complete> signal.
+
+### Iteration 13 (2026-01-21 22:48)
+**Task:** Task 13 - Write status command reference
+**Files Created:** src/content/docs/commands/status.mdx
+**Files Modified:** tests/docs.test.ts
+**Tests:** 8 new tests added (71 total - not 79 because previous iteration wasn't committed yet)
+**Integration:** `bun run build` succeeds (15 pages built)
+**Result:** success
+**Learnings:** Status command shows progress of all specs including nested fix specs. Color-coded states (pending=default, building=yellow, complete=green, blocked=red). Output includes spec name, status, iteration count, and task completion ratio.
