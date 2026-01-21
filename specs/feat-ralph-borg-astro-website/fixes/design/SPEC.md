@@ -17,7 +17,7 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
 
 ## Requirements
 
-- [ ] Landing page uses distinctive fonts instead of generic system fonts
+- [x] Landing page uses distinctive fonts instead of generic system fonts
 - [ ] Hero layout breaks the centered symmetry pattern with asymmetry or unexpected elements
 - [ ] Feature cards are clearly visible with proper contrast and visual presence
 - [ ] Buttons have polish, character, and satisfying interactions
@@ -37,15 +37,15 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
 
 #### Phase 2: Fixes (ordered by priority - P1 first, then P2, then P3)
 
-- [ ] Task 2: Replace generic system fonts with distinctive typography
+- [x] Task 2: Replace generic system fonts with distinctive typography (completed: iteration 1)
   - File: `src/pages/index.astro:62`
   - Reference: `todos/design/001-p2-generic-system-fonts.md`
   - Acceptance:
-    - [ ] Landing page uses a distinctive display font for headlines (not system fonts)
-    - [ ] Body text uses an intentional font choice that pairs well with headlines
-    - [ ] Font choice reflects the "autonomous AI agent" personality
-    - [ ] Fonts are properly loaded (web fonts or self-hosted)
-    - [ ] No system font fallbacks visible in the hero section
+    - [x] Landing page uses a distinctive display font for headlines (not system fonts)
+    - [x] Body text uses an intentional font choice that pairs well with headlines
+    - [x] Font choice reflects the "autonomous AI agent" personality
+    - [x] Fonts are properly loaded (web fonts or self-hosted)
+    - [x] No system font fallbacks visible in the hero section
 
 - [ ] Task 3: Break the cookie-cutter centered hero layout
   - File: `src/pages/index.astro:18-50` (HTML structure)
@@ -177,3 +177,7 @@ Re-run `borg review` after fixes to verify issues are resolved.
 - Added bun-types to fix TypeScript errors in test files
 - Configured tsconfig.json with bun-types
 - TypeScript check passes, build succeeds
+- Completed Task 2: Replaced generic system fonts with distinctive typography
+- Added JetBrains Mono for headlines (technical/CLI feel)
+- Added Outfit for body text (modern geometric pairing)
+- Fonts loaded via Google Fonts with preconnect for performance

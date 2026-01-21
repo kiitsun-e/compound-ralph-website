@@ -13,6 +13,9 @@ const description = 'Autonomous feature implementation combining rich planning w
 	<title>{title}</title>
 	<meta name="description" content={description} />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body class="landing">
 	<main class="landing-main">
@@ -59,7 +62,7 @@ const description = 'Autonomous feature implementation combining rich planning w
 		min-height: 100vh;
 		background: var(--landing-bg, #0a0f0d);
 		color: var(--landing-text, #e0f2e9);
-		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+		font-family: 'Outfit', sans-serif;
 	}
 
 	.landing-main {
@@ -78,6 +81,7 @@ const description = 'Autonomous feature implementation combining rich planning w
 		margin: 0 0 1.5rem 0;
 		font-size: 3.5rem;
 		font-weight: 700;
+		font-family: 'JetBrains Mono', monospace;
 		letter-spacing: -0.02em;
 	}
 
@@ -154,6 +158,7 @@ const description = 'Autonomous feature implementation combining rich planning w
 		margin: 0 0 0.75rem 0;
 		font-size: 1.125rem;
 		font-weight: 600;
+		font-family: 'JetBrains Mono', monospace;
 		color: var(--landing-accent, #00e5ff);
 	}
 
