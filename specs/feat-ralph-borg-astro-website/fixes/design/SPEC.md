@@ -5,7 +5,7 @@ created: 2026-01-21
 parent_spec: feat-ralph-borg-astro-website
 fix_type: design
 todo_count: 8
-iteration_count: 2
+iteration_count: 3
 project_type: bun
 ---
 
@@ -19,7 +19,7 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
 
 - [x] Landing page uses distinctive fonts instead of generic system fonts
 - [x] Hero layout breaks the centered symmetry pattern with asymmetry or unexpected elements
-- [ ] Feature cards are clearly visible with proper contrast and visual presence
+- [x] Feature cards are clearly visible with proper contrast and visual presence
 - [ ] Buttons have polish, character, and satisfying interactions
 - [ ] Background has visual atmosphere and depth beyond solid color
 - [ ] Page has entrance animations with staggered reveals
@@ -59,15 +59,15 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
     - [x] Design feels intentional and distinctive, not templated
     - [x] Layout still works on mobile (can be simpler/centered on small screens)
 
-- [ ] Task 4: Make feature cards visible and impactful
+- [x] Task 4: Make feature cards visible and impactful (completed: iteration 3)
   - File: `src/pages/index.astro:146-151`
   - Reference: `todos/design/003-p2-invisible-feature-cards.md`
   - Acceptance:
-    - [ ] Feature cards are clearly visible against the background
-    - [ ] Cards have visual presence (shadows, borders, or backgrounds that stand out)
-    - [ ] Description text has sufficient contrast (WCAG AA minimum)
-    - [ ] Cards feel like distinct UI elements, not afterthoughts
-    - [ ] Hover states are visible and feel intentional
+    - [x] Feature cards are clearly visible against the background
+    - [x] Cards have visual presence (shadows, borders, or backgrounds that stand out)
+    - [x] Description text has sufficient contrast (WCAG AA minimum)
+    - [x] Cards feel like distinct UI elements, not afterthoughts
+    - [x] Hover states are visible and feel intentional
 
 - [ ] Task 5: Add polish and character to buttons
   - File: `src/pages/index.astro:106-138`
@@ -190,3 +190,12 @@ Re-run `borg review` after fixes to verify issues are resolved.
 - Added feature numbers (01, 02, 03) for visual rhythm
 - Tertiary feature offset with margin for visual tension
 - Mobile-first design: stacked/centered on small screens, asymmetric on desktop
+
+### Iteration 3
+- Completed Task 4: Make feature cards visible and impactful
+- Added gradient backgrounds with cyan-to-green for visual presence
+- Increased border opacity from 0.06 to 0.15/0.25 for visibility
+- Added multi-layer box shadows for depth and dimension
+- Updated description text from #6b8f7a to rgba(224,242,233,0.85) for WCAG AA contrast
+- Added hover states with lift effect, glow, and intensified shadows
+- Primary feature card has enhanced emphasis with stronger gradients
