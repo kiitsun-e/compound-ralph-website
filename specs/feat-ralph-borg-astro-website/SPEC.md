@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 11
+iteration_count: 12
 project_type: astro
 ---
 
@@ -37,12 +37,6 @@ TASK ORDERING RULES (ENFORCED):
 ### Pending
 
 #### Phase 3: Implementation - Documentation Pages
-
-- [ ] Task 12: Write design command reference
-  - File: `src/content/docs/commands/design.mdx`
-  - Content: Description, usage, options table, examples
-  - Test: Add to `tests/docs.test.ts`
-  - Validate: `bun run build` succeeds
 
 - [ ] Task 13: Write status command reference
   - File: `src/content/docs/commands/status.mdx`
@@ -156,6 +150,12 @@ TASK ORDERING RULES (ENFORCED):
   - Test: `tests/docs.test.ts` (8 new tests passing, 63 total)
   - Content: Usage, arguments (code/design/spec-dir), output structure showing fixes/ directory, task ordering by priority, complete fix workflow example, fix SPEC structure, related commands
   - Verified: `bun run build` succeeds (13 pages built)
+
+- [x] Task 12: Write design command reference - Iteration 12
+  - File: `src/content/docs/commands/design.mdx`
+  - Test: `tests/docs.test.ts` (8 new tests passing, 71 total)
+  - Content: Usage, arguments (url/iterations), what it does (screenshot, analyze, improve, verify, repeat), auto-detection of dev server ports, design philosophy, output structure (design-iterations/), completion signal, examples, related commands
+  - Verified: `bun run build` succeeds (14 pages built)
 
 ### Blocked
 
@@ -380,3 +380,12 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds (13 pages built)
 **Result:** success
 **Learnings:** Fix command bridges review → implementation. Converts todos to a fix SPEC.md in fixes/ directory. Can fix all, code-only, or design-only. Tasks are ordered by priority (P1→P2→P3). Creates nested fix specs: specs/feature/fixes/[type]/SPEC.md.
+
+### Iteration 12 (2026-01-21 22:42)
+**Task:** Task 12 - Write design command reference
+**Files Created:** src/content/docs/commands/design.mdx
+**Files Modified:** tests/docs.test.ts
+**Tests:** 8 new tests added (71 total passing)
+**Integration:** `bun run build` succeeds (14 pages built)
+**Result:** success
+**Learnings:** Design command is an iterative improvement loop (not one-shot). Uses agent-browser screenshots and /frontend-design skill. Auto-detects dev server on common ports (3000, 4321, 5173, etc). Outputs design session logs to design-iterations/ directory. Completes early when agent outputs <design-complete> signal.

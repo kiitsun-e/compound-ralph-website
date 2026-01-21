@@ -1,0 +1,125 @@
+---
+title: borg design
+description: Run an iterative design improvement loop using screenshots and the frontend-design skill
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+The `design` command runs an autonomous design improvement loop. It takes screenshots of your running application, analyzes the current design, and makes bold styling changes to create distinctive, polished UIs.
+
+## Usage
+
+```bash
+borg design [url] [iterations]
+```
+
+## Arguments
+
+| Argument | Description | Default |
+|----------|-------------|---------|
+| `url` | URL of running dev server | Auto-detected |
+| `iterations` | Number of improvement passes | 5 |
+
+## What It Does
+
+The design command applies the `/frontend-design` skill philosophy in an iterative loop:
+
+1. **Screenshot** - Captures current state of the target URL
+2. **Analyze** - Identifies bland, generic, or "AI-looking" elements
+3. **Improve** - Makes bold CSS/styling changes (not subtle tweaks)
+4. **Verify** - Takes an after screenshot to confirm improvement
+5. **Repeat** - Continues until design is polished or iterations complete
+
+<Aside type="tip">
+Each iteration focuses on one section or component. The goal is *distinctive, memorable* design—not safe defaults.
+</Aside>
+
+## Auto-Detection
+
+If no URL is provided, `borg design` checks common dev server ports:
+
+| Port | Typical Use |
+|------|-------------|
+| 3000 | Next.js, Rails, Express |
+| 4321 | Astro |
+| 5173 | Vite |
+| 5174 | Vite (alternate) |
+| 8080 | Generic dev servers |
+
+## Design Philosophy
+
+The design loop actively avoids:
+- Gray backgrounds
+- Generic shadows
+- Safe, muted color choices
+- Template-looking layouts
+
+It embraces:
+- Bold typography
+- Intentional whitespace
+- Strong visual rhythm
+- Personality and craft
+
+## Output Structure
+
+Design sessions are saved to `design-iterations/`:
+
+```
+design-iterations/
+└── 20260121-143000/
+    ├── 01-design.md
+    ├── 02-design.md
+    └── 03-design.md
+```
+
+Each iteration log includes timestamps, the target URL, and the full output.
+
+## Completion Signal
+
+The loop stops early when the agent determines the design is polished:
+
+```
+<design-complete>Design polished.</design-complete>
+```
+
+## Examples
+
+### Auto-detect dev server
+
+```bash
+# Start your dev server first
+bun run dev &
+
+# Run design loop (auto-detects URL)
+borg design
+```
+
+### Specify URL and iterations
+
+```bash
+# 10 iterations on a specific URL
+borg design http://localhost:3000 10
+```
+
+### Design after implementation
+
+```bash
+# Complete workflow
+borg implement specs/feat-landing-page
+borg design                           # Polish the UI
+borg review --design                  # Get design feedback
+```
+
+## What Happens Next
+
+After the design loop:
+
+1. **Review changes** - `git diff` to see styling modifications
+2. **Run design review** - `borg review --design` for feedback
+3. **Commit if satisfied** - Standard git workflow
+
+## Related Commands
+
+- [`borg implement`](/docs/commands/implement) - Build the feature first
+- [`borg review --design`](/docs/commands/review) - Review design quality
+- [`borg fix design`](/docs/commands/fix) - Fix design review findings
