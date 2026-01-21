@@ -561,3 +561,68 @@ describe("Command: fix", () => {
     expect(content).toContain("/docs/commands/status");
   });
 });
+
+describe("Command: learnings", () => {
+  const commandPath = "commands/learnings.mdx";
+
+  test("file exists", () => {
+    const exists = existsSync(join(DOCS_DIR, commandPath));
+    expect(exists).toBe(true);
+  });
+
+  test("has valid frontmatter with title and description", () => {
+    const content = readDoc(commandPath);
+    const frontmatter = extractFrontmatter(content);
+    expect(frontmatter.title).toBe("borg learnings");
+    expect(frontmatter.description).toBeDefined();
+  });
+
+  test("includes usage section with code block", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Usage");
+    expect(content).toContain("```bash");
+    expect(content).toContain("borg learnings");
+  });
+
+  test("includes arguments table with category and limit", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Arguments");
+    expect(content).toContain("| Argument |");
+    expect(content).toContain("`category`");
+    expect(content).toContain("`limit`");
+  });
+
+  test("documents categories table", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Categories");
+    expect(content).toContain("environment");
+    expect(content).toContain("pattern");
+    expect(content).toContain("gotcha");
+    expect(content).toContain("fix");
+    expect(content).toContain("discovery");
+    expect(content).toContain("iteration_failure");
+  });
+
+  test("explains storage format with learnings.json", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Storage");
+    expect(content).toContain(".borg/learnings.json");
+    expect(content).toContain('"learnings"');
+  });
+
+  test("includes examples section with filtering", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Examples");
+    expect(content).toContain("borg learnings");
+    expect(content).toContain("borg learnings fix");
+    expect(content).toContain("borg learnings pattern");
+  });
+
+  test("includes related commands section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Related Commands");
+    expect(content).toContain("/docs/commands/implement");
+    expect(content).toContain("/docs/commands/status");
+    expect(content).toContain("/docs/commands/init");
+  });
+});

@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 13
+iteration_count: 14
 project_type: astro
 ---
 
@@ -37,12 +37,6 @@ TASK ORDERING RULES (ENFORCED):
 ### Pending
 
 #### Phase 3: Implementation - Documentation Pages
-
-- [ ] Task 14: Write learnings command reference
-  - File: `src/content/docs/commands/learnings.mdx`
-  - Content: Description, usage, options table, examples
-  - Test: Add to `tests/docs.test.ts`
-  - Validate: `bun run build` succeeds
 
 - [ ] Task 15: Write backpressure concept page
   - File: `src/content/docs/concepts/backpressure.mdx`
@@ -156,6 +150,12 @@ TASK ORDERING RULES (ENFORCED):
   - Test: `tests/docs.test.ts` (8 new tests, 71 total)
   - Content: Usage, what it shows table, status states with colors, output example, includes fix specs, examples, related commands
   - Verified: `bun run build` succeeds (15 pages built)
+
+- [x] Task 14: Write learnings command reference - Iteration 14
+  - File: `src/content/docs/commands/learnings.mdx`
+  - Test: `tests/docs.test.ts` (8 new tests, 87 total)
+  - Content: Usage, arguments (category, limit), categories table, storage format, how learnings are captured, output example, examples with filtering, why learnings matter, related commands
+  - Verified: `bun run build` succeeds (16 pages built)
 
 ### Blocked
 
@@ -398,3 +398,12 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds (15 pages built)
 **Result:** success
 **Learnings:** Status command shows progress of all specs including nested fix specs. Color-coded states (pending=default, building=yellow, complete=green, blocked=red). Output includes spec name, status, iteration count, and task completion ratio.
+
+### Iteration 14 (2026-01-21 22:51)
+**Task:** Task 14 - Write learnings command reference
+**Files Created:** src/content/docs/commands/learnings.mdx
+**Files Modified:** tests/docs.test.ts
+**Tests:** 8 new tests added (87 total passing)
+**Integration:** `bun run build` succeeds (16 pages built)
+**Result:** success
+**Learnings:** Learnings command views .borg/learnings.json contents. Six categories: environment, pattern, gotcha, fix, discovery, iteration_failure. Supports filtering by category and limiting results. Learnings persist across iterations and are injected into implementation prompts for context.
