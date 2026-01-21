@@ -5,7 +5,7 @@ created: 2026-01-21
 parent_spec: feat-ralph-borg-astro-website
 fix_type: design
 todo_count: 8
-iteration_count: 1
+iteration_count: 2
 project_type: bun
 ---
 
@@ -18,7 +18,7 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
 ## Requirements
 
 - [x] Landing page uses distinctive fonts instead of generic system fonts
-- [ ] Hero layout breaks the centered symmetry pattern with asymmetry or unexpected elements
+- [x] Hero layout breaks the centered symmetry pattern with asymmetry or unexpected elements
 - [ ] Feature cards are clearly visible with proper contrast and visual presence
 - [ ] Buttons have polish, character, and satisfying interactions
 - [ ] Background has visual atmosphere and depth beyond solid color
@@ -47,17 +47,17 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
     - [x] Fonts are properly loaded (web fonts or self-hosted)
     - [x] No system font fallbacks visible in the hero section
 
-- [ ] Task 3: Break the cookie-cutter centered hero layout
+- [x] Task 3: Break the cookie-cutter centered hero layout (completed: iteration 2)
   - File: `src/pages/index.astro:18-50` (HTML structure)
   - File: `src/pages/index.astro:72-75` (hero CSS)
   - File: `src/pages/index.astro:141-144` (features grid)
   - Reference: `todos/design/002-p2-cookie-cutter-hero-layout.md`
   - Acceptance:
-    - [ ] Hero layout breaks the centered symmetry pattern
-    - [ ] Feature cards have varied visual weight (not three identical boxes)
-    - [ ] Layout has visual tension or unexpected elements
-    - [ ] Design feels intentional and distinctive, not templated
-    - [ ] Layout still works on mobile (can be simpler/centered on small screens)
+    - [x] Hero layout breaks the centered symmetry pattern
+    - [x] Feature cards have varied visual weight (not three identical boxes)
+    - [x] Layout has visual tension or unexpected elements
+    - [x] Design feels intentional and distinctive, not templated
+    - [x] Layout still works on mobile (can be simpler/centered on small screens)
 
 - [ ] Task 4: Make feature cards visible and impactful
   - File: `src/pages/index.astro:146-151`
@@ -181,3 +181,12 @@ Re-run `borg review` after fixes to verify issues are resolved.
 - Added JetBrains Mono for headlines (technical/CLI feel)
 - Added Outfit for body text (modern geometric pairing)
 - Fonts loaded via Google Fonts with preconnect for performance
+
+### Iteration 2
+- Completed Task 3: Break the cookie-cutter centered hero layout
+- Added asymmetric hero grid (1.4fr 1fr on desktop) with left-aligned text
+- Added hero visual element with loop glyph [⟳] and orbital ring
+- Created asymmetric feature grid with primary card spanning 2 rows
+- Added feature numbers (01, 02, 03) for visual rhythm
+- Tertiary feature offset with margin for visual tension
+- Mobile-first design: stacked/centered on small screens, asymmetric on desktop
