@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 1
+iteration_count: 2
 project_type: astro
 ---
 
@@ -37,12 +37,6 @@ TASK ORDERING RULES (ENFORCED):
 ### Pending
 
 #### Phase 1: Setup (MUST COMPLETE BEFORE IMPLEMENTATION)
-
-- [ ] Task 2: Configure astro.config.mjs with site settings and sidebar
-  - File: `astro.config.mjs`
-  - Configure: site URL, social links, sidebar structure per plan
-  - Validate: `bun run build` succeeds
-  - Visual: `agent-browser screenshot localhost:4321` after `bun run dev`
 
 - [ ] Task 3: Add custom CSS with cyan/green accent theme
   - File: `src/styles/custom.css`
@@ -158,6 +152,11 @@ TASK ORDERING RULES (ENFORCED):
 - [x] Task 1: Initialize Astro with Starlight template - Iteration 1
   - Files: package.json, astro.config.mjs, src/content/docs/*, tsconfig.json
   - Verified: `bun run build` succeeds (with expected warnings)
+
+- [x] Task 2: Configure astro.config.mjs with site settings and sidebar - Iteration 2
+  - Files: astro.config.mjs, src/styles/custom.css (placeholder), src/content/docs/*.mdx (placeholders)
+  - Configured: site URL (ralph-borg.dev), GitHub social link, sidebar with Getting Started, Commands, Concepts
+  - Verified: `bun run build` succeeds, visual screenshots captured showing sidebar structure
 
 ### Blocked
 
@@ -292,3 +291,13 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds with expected warnings
 **Result:** success
 **Learnings:** create-astro creates a subdirectory when the target directory is not empty; needed to move files to root
+
+### Iteration 2 (2026-01-21 22:03)
+**Task:** Task 2 - Configure astro.config.mjs with site settings and sidebar
+**Files Modified:** astro.config.mjs
+**Files Created:** src/styles/custom.css (placeholder), src/content/docs/getting-started.mdx (placeholder), src/content/docs/concepts/backpressure.mdx (placeholder), src/content/docs/concepts/ralph-loop.mdx (placeholder)
+**Tests:** N/A (config task)
+**Integration:** `bun run build` succeeds, sidebar renders correctly with all three sections
+**Visual:** Screenshots captured showing "Ralph Borg" title, GitHub link, and sidebar structure
+**Result:** success
+**Learnings:** Created placeholder content files to ensure sidebar works before actual content is written
