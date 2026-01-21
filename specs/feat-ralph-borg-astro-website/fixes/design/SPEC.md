@@ -5,7 +5,7 @@ created: 2026-01-21
 parent_spec: feat-ralph-borg-astro-website
 fix_type: design
 todo_count: 8
-iteration_count: 3
+iteration_count: 4
 project_type: bun
 ---
 
@@ -20,7 +20,7 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
 - [x] Landing page uses distinctive fonts instead of generic system fonts
 - [x] Hero layout breaks the centered symmetry pattern with asymmetry or unexpected elements
 - [x] Feature cards are clearly visible with proper contrast and visual presence
-- [ ] Buttons have polish, character, and satisfying interactions
+- [x] Buttons have polish, character, and satisfying interactions
 - [ ] Background has visual atmosphere and depth beyond solid color
 - [ ] Page has entrance animations with staggered reveals
 - [ ] Typography has dramatic hierarchy with clear size distinctions
@@ -69,15 +69,15 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
     - [x] Cards feel like distinct UI elements, not afterthoughts
     - [x] Hover states are visible and feel intentional
 
-- [ ] Task 5: Add polish and character to buttons
+- [x] Task 5: Add polish and character to buttons (completed: iteration 4)
   - File: `src/pages/index.astro:106-138`
   - Reference: `todos/design/004-p2-bland-buttons.md`
   - Acceptance:
-    - [ ] Primary button has visual interest (gradient, shine, or texture)
-    - [ ] Secondary button doesn't look disabled (has visible fill or stronger border)
-    - [ ] Hover states are satisfying and feel responsive
-    - [ ] Active/click states provide feedback
-    - [ ] Buttons feel polished and intentional
+    - [x] Primary button has visual interest (gradient, shine, or texture)
+    - [x] Secondary button doesn't look disabled (has visible fill or stronger border)
+    - [x] Hover states are satisfying and feel responsive
+    - [x] Active/click states provide feedback
+    - [x] Buttons feel polished and intentional
 
 - [ ] Task 6: Add visual atmosphere and depth to background
   - File: `src/pages/index.astro:57-61`
@@ -199,3 +199,12 @@ Re-run `borg review` after fixes to verify issues are resolved.
 - Updated description text from #6b8f7a to rgba(224,242,233,0.85) for WCAG AA contrast
 - Added hover states with lift effect, glow, and intensified shadows
 - Primary feature card has enhanced emphasis with stronger gradients
+
+### Iteration 4
+- Completed Task 5: Add polish and character to buttons
+- Primary button: cyan-to-green gradient with animated shine sweep effect
+- Secondary button: subtle cyan fill (8% opacity) with stronger border (1.5px, 40% opacity)
+- Added JetBrains Mono font family for technical feel
+- Smooth cubic-bezier transitions for springy hover lift
+- Active/click states with scale(0.98) and inset shadows for tactile feedback
+- Multi-layer box shadows for depth on both button states
