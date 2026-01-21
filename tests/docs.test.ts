@@ -3,6 +3,7 @@ import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 
 const DOCS_DIR = join(import.meta.dir, "../src/content/docs");
+const COMMANDS_DIR = join(DOCS_DIR, "commands");
 
 // Helper to read MDX file content
 function readDoc(relativePath: string): string {
@@ -73,5 +74,64 @@ describe("Getting Started Guide", () => {
     expect(content).toContain("/docs/commands/init");
     expect(content).toContain("/docs/concepts/backpressure");
     expect(content).toContain("/docs/concepts/ralph-loop");
+  });
+});
+
+describe("Command: init", () => {
+  const commandPath = "commands/init.mdx";
+
+  test("file exists", () => {
+    const exists = existsSync(join(DOCS_DIR, commandPath));
+    expect(exists).toBe(true);
+  });
+
+  test("has valid frontmatter with title and description", () => {
+    const content = readDoc(commandPath);
+    const frontmatter = extractFrontmatter(content);
+    expect(frontmatter.title).toBe("borg init");
+    expect(frontmatter.description).toBeDefined();
+  });
+
+  test("includes usage section with code block", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Usage");
+    expect(content).toContain("```bash");
+    expect(content).toContain("borg init");
+  });
+
+  test("includes arguments table", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Arguments");
+    expect(content).toContain("| Argument |");
+    expect(content).toContain("`path`");
+  });
+
+  test("explains what it creates", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## What It Creates");
+    expect(content).toContain("specs/");
+    expect(content).toContain("plans/");
+    expect(content).toContain("AGENTS.md");
+  });
+
+  test("includes auto-detection table", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("Auto-Detection");
+    expect(content).toContain("| Project Type |");
+    expect(content).toContain("Bun");
+    expect(content).toContain("npm");
+    expect(content).toContain("Rails");
+  });
+
+  test("includes examples section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Examples");
+    expect(content).toContain("borg init");
+  });
+
+  test("includes related commands section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Related Commands");
+    expect(content).toContain("/docs/commands/plan");
   });
 });

@@ -1,0 +1,84 @@
+---
+title: borg init
+description: Initialize a project for Ralph Borg with auto-detected configuration
+---
+
+Initialize a project for Ralph Borg by creating the necessary directory structure and configuration files.
+
+## Usage
+
+```bash
+borg init [path]
+```
+
+## Arguments
+
+| Argument | Description | Default |
+|----------|-------------|---------|
+| `path` | Directory to initialize | Current directory |
+
+## What It Creates
+
+Running `borg init` sets up the following:
+
+```
+your-project/
+├── specs/           # Feature specifications go here
+├── plans/           # Rich plans from borg plan
+├── .borg/           # Project configuration
+│   └── project.json # Auto-detected commands
+└── AGENTS.md        # Build/test/lint commands
+```
+
+### Auto-Detection
+
+Ralph Borg detects your project type and configures appropriate commands:
+
+| Project Type | Detection File | Build Command | Test Command |
+|-------------|----------------|---------------|--------------|
+| Bun | `bun.lockb` | `bun run build` | `bun test` |
+| npm | `package-lock.json` | `npm run build` | `npm test` |
+| Rails | `Gemfile` | `bin/rails assets:precompile` | `bin/rails test` |
+| Python | `pyproject.toml` | `pip install -e .` | `pytest` |
+| Go | `go.mod` | `go build` | `go test ./...` |
+
+## Examples
+
+### Initialize current directory
+
+```bash
+cd my-project
+borg init
+```
+
+Output:
+```
+✓ Created specs/
+✓ Created plans/
+✓ Created .borg/project.json
+✓ Detected: bun (bun.lockb found)
+✓ Generated AGENTS.md
+
+Project initialized for Ralph Borg.
+Next: borg plan "your feature description"
+```
+
+### Initialize a specific path
+
+```bash
+borg init ~/projects/my-app
+```
+
+### Re-initialize to update detection
+
+If you add a lockfile or change project structure:
+
+```bash
+borg init
+# Re-detects project type and updates configuration
+```
+
+## Related Commands
+
+- [borg plan](/docs/commands/plan) - Create a feature plan
+- [borg status](/docs/commands/status) - Check project status

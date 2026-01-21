@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 5
+iteration_count: 6
 project_type: astro
 ---
 
@@ -37,12 +37,6 @@ TASK ORDERING RULES (ENFORCED):
 ### Pending
 
 #### Phase 3: Implementation - Documentation Pages
-
-- [ ] Task 6: Write init command reference
-  - File: `src/content/docs/commands/init.mdx`
-  - Content: Description, usage, options table, examples
-  - Test: Add to `tests/docs.test.ts`
-  - Validate: `bun run build` succeeds
 
 - [ ] Task 7: Write plan command reference
   - File: `src/content/docs/commands/plan.mdx`
@@ -156,6 +150,12 @@ TASK ORDERING RULES (ENFORCED):
   - Content: Prerequisites (Claude CLI, git), installation, first feature walkthrough (init, plan, spec, implement, status)
   - Uses Starlight components (Steps, Aside)
   - Verified: `bun run build` succeeds
+
+- [x] Task 6: Write init command reference - Iteration 6
+  - File: `src/content/docs/commands/init.mdx`
+  - Test: `tests/docs.test.ts` (8 new tests passing, 23 total)
+  - Content: Usage, arguments table, what it creates, auto-detection table, examples, related commands
+  - Verified: `bun run build` succeeds (8 pages built)
 
 ### Blocked
 
@@ -326,3 +326,12 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds
 **Result:** success
 **Learnings:** Starlight components (Steps, Aside) can be imported from '@astrojs/starlight/components' for enhanced documentation formatting
+
+### Iteration 6 (2026-01-21 22:27)
+**Task:** Task 6 - Write init command reference
+**Files Created:** src/content/docs/commands/init.mdx
+**Files Modified:** tests/docs.test.ts
+**Tests:** 8 new tests added (23 total passing)
+**Integration:** `bun run build` succeeds (8 pages built)
+**Result:** success
+**Learnings:** Command reference pages follow pattern: Usage, Arguments/Options table, What It Does, Examples, Related Commands
