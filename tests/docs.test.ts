@@ -77,6 +77,63 @@ describe("Getting Started Guide", () => {
   });
 });
 
+describe("Command: plan", () => {
+  const commandPath = "commands/plan.mdx";
+
+  test("file exists", () => {
+    const exists = existsSync(join(DOCS_DIR, commandPath));
+    expect(exists).toBe(true);
+  });
+
+  test("has valid frontmatter with title and description", () => {
+    const content = readDoc(commandPath);
+    const frontmatter = extractFrontmatter(content);
+    expect(frontmatter.title).toBe("borg plan");
+    expect(frontmatter.description).toBeDefined();
+  });
+
+  test("includes usage section with code block", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Usage");
+    expect(content).toContain("```bash");
+    expect(content).toContain("borg plan");
+  });
+
+  test("includes arguments table", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Arguments");
+    expect(content).toContain("| Argument |");
+    expect(content).toContain("description");
+  });
+
+  test("explains interactive mode", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("Interactive");
+    expect(content).toContain("/workflows:plan");
+    expect(content).toContain("/deepen-plan");
+  });
+
+  test("includes examples section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Examples");
+    expect(content).toContain("borg plan");
+  });
+
+  test("includes what happens next section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("What Happens Next");
+    expect(content).toContain("borg spec");
+    expect(content).toContain("borg implement");
+  });
+
+  test("includes related commands section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Related Commands");
+    expect(content).toContain("/docs/commands/spec");
+    expect(content).toContain("/docs/commands/implement");
+  });
+});
+
 describe("Command: init", () => {
   const commandPath = "commands/init.mdx";
 

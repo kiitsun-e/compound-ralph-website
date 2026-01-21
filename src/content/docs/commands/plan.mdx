@@ -1,0 +1,102 @@
+---
+title: borg plan
+description: Create and enrich a feature plan using compound-engineering workflows
+---
+
+Create a feature plan using rich, human-guided planning workflows. Plans are deeply researched before implementation begins.
+
+## Usage
+
+```bash
+borg plan <description>
+```
+
+## Arguments
+
+| Argument | Description | Required |
+|----------|-------------|----------|
+| `description` | Feature description in natural language | Yes |
+
+## What It Does
+
+The `plan` command initiates an interactive planning session:
+
+1. **Runs `/workflows:plan`** to create a structured plan
+2. **Enables `/deepen-plan`** to enrich with 40+ parallel research agents
+3. **Outputs to** `plans/<feature-name>.md`
+
+### Interactive Mode
+
+Planning is interactive—you answer questions and refine scope. This is intentional: human judgment during planning leads to better specifications.
+
+The command will:
+- Ask clarifying questions about your feature
+- Propose architecture decisions for your approval
+- Identify edge cases and trade-offs
+- Research best practices for your tech stack
+
+## Output
+
+Plans are saved to `plans/<feature-name>.md` with this structure:
+
+```
+plans/
+└── add-dark-mode-toggle.md
+```
+
+The plan file includes:
+- **Overview** - What the feature does
+- **Requirements** - Specific deliverables
+- **Technical Approach** - Architecture decisions
+- **Tasks** - Broken down into implementable units
+- **Research Notes** - Best practices discovered
+
+## Examples
+
+### Create a simple feature plan
+
+```bash
+borg plan "add user authentication with email/password"
+```
+
+This starts an interactive session where you'll be asked about:
+- Authentication library preferences
+- Password requirements
+- Session management approach
+- OAuth integration needs
+
+### Create a plan with detailed description
+
+```bash
+borg plan "add dark mode toggle with system preference detection and persistent user choice"
+```
+
+More detailed descriptions lead to fewer clarifying questions.
+
+### Deepen an existing plan
+
+After the initial plan is created, you can run `/deepen-plan` in the Claude session to:
+- Research implementation patterns from popular libraries
+- Analyze similar features in well-known codebases
+- Identify potential pitfalls and edge cases
+- Add more detailed task breakdowns
+
+## What Happens Next
+
+After planning:
+
+1. **Review the plan** in `plans/<feature-name>.md`
+2. **Convert to spec** with `borg spec plans/<feature-name>.md`
+3. **Implement** with `borg implement`
+
+## Tips
+
+- **Be specific** - "add button" is worse than "add logout button to navbar that clears session"
+- **Include constraints** - Mention frameworks, libraries, or patterns you want to use
+- **Take your time** - Good plans prevent rework during implementation
+
+## Related Commands
+
+- [borg spec](/docs/commands/spec) - Convert plan to implementation spec
+- [borg implement](/docs/commands/implement) - Start autonomous implementation
+- [borg init](/docs/commands/init) - Initialize project (run before planning)

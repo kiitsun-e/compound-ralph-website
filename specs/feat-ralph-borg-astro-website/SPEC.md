@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 6
+iteration_count: 7
 project_type: astro
 ---
 
@@ -37,12 +37,6 @@ TASK ORDERING RULES (ENFORCED):
 ### Pending
 
 #### Phase 3: Implementation - Documentation Pages
-
-- [ ] Task 7: Write plan command reference
-  - File: `src/content/docs/commands/plan.mdx`
-  - Content: Description, usage, options table, examples
-  - Test: Add to `tests/docs.test.ts`
-  - Validate: `bun run build` succeeds
 
 - [ ] Task 8: Write spec command reference
   - File: `src/content/docs/commands/spec.mdx`
@@ -156,6 +150,12 @@ TASK ORDERING RULES (ENFORCED):
   - Test: `tests/docs.test.ts` (8 new tests passing, 23 total)
   - Content: Usage, arguments table, what it creates, auto-detection table, examples, related commands
   - Verified: `bun run build` succeeds (8 pages built)
+
+- [x] Task 7: Write plan command reference - Iteration 7
+  - File: `src/content/docs/commands/plan.mdx`
+  - Test: `tests/docs.test.ts` (8 new tests passing, 31 total)
+  - Content: Usage, arguments table, what it does, interactive mode, examples, what happens next, related commands
+  - Verified: `bun run build` succeeds (9 pages built)
 
 ### Blocked
 
@@ -335,3 +335,12 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds (8 pages built)
 **Result:** success
 **Learnings:** Command reference pages follow pattern: Usage, Arguments/Options table, What It Does, Examples, Related Commands
+
+### Iteration 7 (2026-01-21 22:29)
+**Task:** Task 7 - Write plan command reference
+**Files Created:** src/content/docs/commands/plan.mdx
+**Files Modified:** tests/docs.test.ts
+**Tests:** 8 new tests added (31 total passing)
+**Integration:** `bun run build` succeeds (9 pages built)
+**Result:** success
+**Learnings:** Plan command is interactive (human-guided), unlike implement which is autonomous. Documented the interactive workflow including /workflows:plan and /deepen-plan integration
