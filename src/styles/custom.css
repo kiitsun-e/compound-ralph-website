@@ -1,1 +1,39 @@
-/* Custom CSS placeholder - will be configured in Task 3 */
+/* Ralph Borg - Custom Starlight Theme
+ * Cyan/green accent color scheme for the documentation site
+ */
+
+/* Starlight theme color overrides */
+:root {
+	/* Primary accent color - cyan */
+	--sl-color-accent: #00e5ff;
+	--sl-color-accent-low: rgba(0, 229, 255, 0.15);
+	--sl-color-accent-high: #00ff9f;
+
+	/* Text link color */
+	--sl-color-text-accent: #00e5ff;
+}
+
+/* Dark mode specific overrides (Starlight uses dark mode by default) */
+:root[data-theme='dark'] {
+	--sl-color-accent: #00e5ff;
+	--sl-color-accent-low: rgba(0, 229, 255, 0.15);
+	--sl-color-accent-high: #00ff9f;
+	--sl-color-text-accent: #00e5ff;
+}
+
+/* Light mode overrides - slightly darker for readability */
+:root[data-theme='light'] {
+	--sl-color-accent: #00b8d4;
+	--sl-color-accent-low: rgba(0, 184, 212, 0.15);
+	--sl-color-accent-high: #00c853;
+	--sl-color-text-accent: #00838f;
+}
+
+/* Landing page color variables (for custom landing page in Task 4) */
+:root {
+	--landing-bg: #0a0f0d;
+	--landing-text: #e0f2e9;
+	--landing-accent: #00e5ff;
+	--landing-accent-green: #00ff9f;
+	--landing-muted: #6b8f7a;
+}

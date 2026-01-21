@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 2
+iteration_count: 3
 project_type: astro
 ---
 
@@ -35,13 +35,6 @@ TASK ORDERING RULES (ENFORCED):
 -->
 
 ### Pending
-
-#### Phase 1: Setup (MUST COMPLETE BEFORE IMPLEMENTATION)
-
-- [ ] Task 3: Add custom CSS with cyan/green accent theme
-  - File: `src/styles/custom.css`
-  - Add: CSS variables for accent colors as specified in plan
-  - Validate: CSS file exists and is imported in config
 
 #### Phase 2: Implementation - Landing Page
 
@@ -157,6 +150,12 @@ TASK ORDERING RULES (ENFORCED):
   - Files: astro.config.mjs, src/styles/custom.css (placeholder), src/content/docs/*.mdx (placeholders)
   - Configured: site URL (ralph-borg.dev), GitHub social link, sidebar with Getting Started, Commands, Concepts
   - Verified: `bun run build` succeeds, visual screenshots captured showing sidebar structure
+
+- [x] Task 3: Add custom CSS with cyan/green accent theme - Iteration 3
+  - File: `src/styles/custom.css`
+  - Added: Starlight theme variables (--sl-color-accent, --sl-color-accent-low, --sl-color-accent-high)
+  - Added: Landing page color variables for Task 4
+  - Verified: `bun run build` succeeds
 
 ### Blocked
 
@@ -301,3 +300,11 @@ export default defineConfig({
 **Visual:** Screenshots captured showing "Ralph Borg" title, GitHub link, and sidebar structure
 **Result:** success
 **Learnings:** Created placeholder content files to ensure sidebar works before actual content is written
+
+### Iteration 3 (2026-01-21 22:13)
+**Task:** Task 3 - Add custom CSS with cyan/green accent theme
+**Files Modified:** src/styles/custom.css
+**Tests:** N/A (styling task - visual verification needed)
+**Integration:** `bun run build` succeeds
+**Result:** success
+**Learnings:** Starlight uses --sl-color-accent, --sl-color-accent-low, --sl-color-accent-high for theming; also added landing page CSS variables for the custom landing page (Task 4)
