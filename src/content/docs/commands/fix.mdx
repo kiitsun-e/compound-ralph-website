@@ -1,0 +1,168 @@
+---
+title: borg fix
+description: Convert review findings into a fix spec and implement the fixes
+---
+
+Convert review findings (todos) into a fix spec and start implementation. This bridges the gap between review and remediation.
+
+## Usage
+
+```bash
+borg fix [code|design] [spec-dir]
+```
+
+## Arguments
+
+| Argument | Description | Required |
+|----------|-------------|----------|
+| `code` | Fix only code review findings | No |
+| `design` | Fix only design review findings | No |
+| `spec-dir` | Path to spec directory containing todos | No (auto-detects) |
+
+## What It Does
+
+The `fix` command creates a new SPEC.md from review findings and prepares it for implementation:
+
+1. **Reads todos** - Collects all `.md` files from `todos/code/` and/or `todos/design/`
+2. **Creates fix SPEC** - Generates `fixes/SPEC.md` with tasks ordered by priority
+3. **Sets up iteration** - Creates PROMPT.md for the Ralph Loop
+4. **Ready for implement** - Run `borg implement` to start fixing
+
+### Output Structure
+
+```
+specs/my-feature/
+├── SPEC.md              # Original feature spec
+├── PROMPT.md
+├── todos/
+│   ├── code/            # From borg review
+│   └── design/          # From borg review --design
+└── fixes/               # Created by borg fix
+    ├── SPEC.md          # Fix tasks from todos
+    └── PROMPT.md        # Fix iteration instructions
+```
+
+Or when fixing specific types:
+
+```
+specs/my-feature/
+└── fixes/
+    ├── code/            # From borg fix code
+    │   ├── SPEC.md
+    │   └── PROMPT.md
+    └── design/          # From borg fix design
+        ├── SPEC.md
+        └── PROMPT.md
+```
+
+### Task Ordering
+
+Tasks in the fix SPEC are ordered by priority:
+
+1. **P1 - Critical** - Security vulnerabilities, data loss risks
+2. **P2 - Important** - Performance issues, bad patterns
+3. **P3 - Minor** - Code style, documentation
+
+## Examples
+
+### Fix all review findings
+
+```bash
+borg fix specs/add-user-auth/
+```
+
+Output:
+
+```
+[STEP] Creating Fix Spec: All Issues
+[INFO] Source spec: add-user-auth
+[INFO] Found 5 todos to convert
+[INFO] Converting todos to fix SPEC...
+```
+
+### Fix only code issues
+
+```bash
+borg fix code specs/add-user-auth/
+```
+
+Creates `specs/add-user-auth/fixes/code/SPEC.md` with only code review findings.
+
+### Fix only design issues
+
+```bash
+borg fix design
+```
+
+Auto-detects the active spec and creates a design-only fix spec.
+
+### Complete fix workflow
+
+```bash
+# 1. Review your feature
+borg review specs/my-feature/
+
+# 2. Check what was found
+ls specs/my-feature/todos/code/
+
+# 3. Create fix spec
+borg fix specs/my-feature/
+
+# 4. Implement the fixes
+borg implement specs/my-feature/fixes/
+
+# 5. Re-review to verify
+borg review specs/my-feature/
+```
+
+## Fix SPEC Structure
+
+The generated SPEC.md follows this format:
+
+```markdown
+---
+name: my-feature-fixes-all
+status: pending
+parent_spec: my-feature
+fix_type: all
+todo_count: 5
+---
+
+# Fix: my-feature (all)
+
+## Requirements
+[Each todo's Problem Statement becomes a requirement]
+
+## Tasks
+
+### Pending
+
+#### Phase 1: Setup
+- [ ] Task 1: Verify dependencies and quality gates work
+
+#### Phase 2: Fixes (ordered by priority)
+- [ ] Task 2: [P1 fix description]
+  - File: `path/to/file.ts`
+  - Reference: `todos/code/001-p1-issue.md`
+
+#### Phase 3: Verification
+- [ ] Task N: Run full test suite
+```
+
+## What Happens If No Todos Exist
+
+```bash
+$ borg fix
+[WARN] No todos found to fix.
+
+Run a review first:
+  borg review              # Code review
+  borg review --design     # Design review
+```
+
+## Related Commands
+
+- [borg review](/docs/commands/review) - Generate the todos that fix consumes
+- [borg implement](/docs/commands/implement) - Run the fix spec
+- [borg status](/docs/commands/status) - Check progress of fix specs
+- [borg design](/docs/commands/design) - Alternative for design-only polish

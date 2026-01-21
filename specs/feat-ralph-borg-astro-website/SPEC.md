@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 10
+iteration_count: 11
 project_type: astro
 ---
 
@@ -37,12 +37,6 @@ TASK ORDERING RULES (ENFORCED):
 ### Pending
 
 #### Phase 3: Implementation - Documentation Pages
-
-- [ ] Task 11: Write fix command reference
-  - File: `src/content/docs/commands/fix.mdx`
-  - Content: Description, usage, options table, examples
-  - Test: Add to `tests/docs.test.ts`
-  - Validate: `bun run build` succeeds
 
 - [ ] Task 12: Write design command reference
   - File: `src/content/docs/commands/design.mdx`
@@ -156,6 +150,12 @@ TASK ORDERING RULES (ENFORCED):
   - Test: `tests/docs.test.ts` (8 new tests passing, 55 total)
   - Content: Usage, arguments table, options (--design, --design-only, --url), output structure with todos directories, priority levels table, design review focus, examples, related commands
   - Verified: `bun run build` succeeds (12 pages built)
+
+- [x] Task 11: Write fix command reference - Iteration 11
+  - File: `src/content/docs/commands/fix.mdx`
+  - Test: `tests/docs.test.ts` (8 new tests passing, 63 total)
+  - Content: Usage, arguments (code/design/spec-dir), output structure showing fixes/ directory, task ordering by priority, complete fix workflow example, fix SPEC structure, related commands
+  - Verified: `bun run build` succeeds (13 pages built)
 
 ### Blocked
 
@@ -371,3 +371,12 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds (12 pages built)
 **Result:** success
 **Learnings:** Review command has two modes: code review and design review. Code review outputs to todos/code/, design review to todos/design/. Priority levels (P1/P2/P3) indicate urgency. The --url option allows specifying design review target when auto-detection fails.
+
+### Iteration 11 (2026-01-21 22:40)
+**Task:** Task 11 - Write fix command reference
+**Files Created:** src/content/docs/commands/fix.mdx
+**Files Modified:** tests/docs.test.ts
+**Tests:** 8 new tests added (63 total passing)
+**Integration:** `bun run build` succeeds (13 pages built)
+**Result:** success
+**Learnings:** Fix command bridges review → implementation. Converts todos to a fix SPEC.md in fixes/ directory. Can fix all, code-only, or design-only. Tasks are ordered by priority (P1→P2→P3). Creates nested fix specs: specs/feature/fixes/[type]/SPEC.md.

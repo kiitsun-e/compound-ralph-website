@@ -372,3 +372,68 @@ describe("Command: init", () => {
     expect(content).toContain("/docs/commands/plan");
   });
 });
+
+describe("Command: fix", () => {
+  const commandPath = "commands/fix.mdx";
+
+  test("file exists", () => {
+    const exists = existsSync(join(DOCS_DIR, commandPath));
+    expect(exists).toBe(true);
+  });
+
+  test("has valid frontmatter with title and description", () => {
+    const content = readDoc(commandPath);
+    const frontmatter = extractFrontmatter(content);
+    expect(frontmatter.title).toBe("borg fix");
+    expect(frontmatter.description).toBeDefined();
+  });
+
+  test("includes usage section with code block", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Usage");
+    expect(content).toContain("```bash");
+    expect(content).toContain("borg fix");
+  });
+
+  test("includes arguments table with code and design options", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Arguments");
+    expect(content).toContain("| Argument |");
+    expect(content).toContain("`code`");
+    expect(content).toContain("`design`");
+    expect(content).toContain("`spec-dir`");
+  });
+
+  test("explains output structure with fixes directory", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("Output Structure");
+    expect(content).toContain("fixes/");
+    expect(content).toContain("SPEC.md");
+    expect(content).toContain("PROMPT.md");
+  });
+
+  test("documents task ordering by priority", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("Task Ordering");
+    expect(content).toContain("P1");
+    expect(content).toContain("P2");
+    expect(content).toContain("P3");
+  });
+
+  test("includes examples section with complete workflow", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Examples");
+    expect(content).toContain("borg fix");
+    expect(content).toContain("Complete fix workflow");
+    expect(content).toContain("borg review");
+    expect(content).toContain("borg implement");
+  });
+
+  test("includes related commands section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Related Commands");
+    expect(content).toContain("/docs/commands/review");
+    expect(content).toContain("/docs/commands/implement");
+    expect(content).toContain("/docs/commands/status");
+  });
+});
