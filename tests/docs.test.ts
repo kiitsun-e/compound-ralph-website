@@ -71,9 +71,9 @@ describe("Getting Started Guide", () => {
   test("includes next steps section with links", () => {
     const content = readDoc("getting-started.mdx");
     expect(content).toContain("## Next Steps");
-    expect(content).toContain("/docs/commands/init");
-    expect(content).toContain("/docs/concepts/backpressure");
-    expect(content).toContain("/docs/concepts/ralph-loop");
+    expect(content).toContain("/commands/init");
+    expect(content).toContain("/concepts/backpressure");
+    expect(content).toContain("/concepts/ralph-loop");
   });
 });
 
@@ -129,8 +129,8 @@ describe("Command: plan", () => {
   test("includes related commands section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Related Commands");
-    expect(content).toContain("/docs/commands/spec");
-    expect(content).toContain("/docs/commands/implement");
+    expect(content).toContain("/commands/spec");
+    expect(content).toContain("/commands/implement");
   });
 });
 
@@ -188,8 +188,8 @@ describe("Command: spec", () => {
   test("includes related commands section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Related Commands");
-    expect(content).toContain("/docs/commands/plan");
-    expect(content).toContain("/docs/commands/implement");
+    expect(content).toContain("/commands/plan");
+    expect(content).toContain("/commands/implement");
   });
 });
 
@@ -244,9 +244,9 @@ describe("Command: implement", () => {
   test("includes related commands section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Related Commands");
-    expect(content).toContain("/docs/commands/spec");
-    expect(content).toContain("/docs/commands/status");
-    expect(content).toContain("/docs/commands/review");
+    expect(content).toContain("/commands/spec");
+    expect(content).toContain("/commands/status");
+    expect(content).toContain("/commands/review");
   });
 });
 
@@ -308,9 +308,9 @@ describe("Command: review", () => {
   test("includes related commands section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Related Commands");
-    expect(content).toContain("/docs/commands/implement");
-    expect(content).toContain("/docs/commands/fix");
-    expect(content).toContain("/docs/commands/status");
+    expect(content).toContain("/commands/implement");
+    expect(content).toContain("/commands/fix");
+    expect(content).toContain("/commands/status");
   });
 });
 
@@ -369,7 +369,7 @@ describe("Command: init", () => {
   test("includes related commands section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Related Commands");
-    expect(content).toContain("/docs/commands/plan");
+    expect(content).toContain("/commands/plan");
   });
 });
 
@@ -429,9 +429,9 @@ describe("Command: design", () => {
   test("includes related commands section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Related Commands");
-    expect(content).toContain("/docs/commands/implement");
-    expect(content).toContain("/docs/commands/review");
-    expect(content).toContain("/docs/commands/fix");
+    expect(content).toContain("/commands/implement");
+    expect(content).toContain("/commands/review");
+    expect(content).toContain("/commands/fix");
   });
 });
 
@@ -491,9 +491,9 @@ describe("Command: status", () => {
   test("includes related commands section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Related Commands");
-    expect(content).toContain("/docs/commands/implement");
-    expect(content).toContain("/docs/commands/review");
-    expect(content).toContain("/docs/commands/learnings");
+    expect(content).toContain("/commands/implement");
+    expect(content).toContain("/commands/review");
+    expect(content).toContain("/commands/learnings");
   });
 });
 
@@ -556,9 +556,9 @@ describe("Command: fix", () => {
   test("includes related commands section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Related Commands");
-    expect(content).toContain("/docs/commands/review");
-    expect(content).toContain("/docs/commands/implement");
-    expect(content).toContain("/docs/commands/status");
+    expect(content).toContain("/commands/review");
+    expect(content).toContain("/commands/implement");
+    expect(content).toContain("/commands/status");
   });
 });
 
@@ -621,9 +621,9 @@ describe("Command: learnings", () => {
   test("includes related commands section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Related Commands");
-    expect(content).toContain("/docs/commands/implement");
-    expect(content).toContain("/docs/commands/status");
-    expect(content).toContain("/docs/commands/init");
+    expect(content).toContain("/commands/implement");
+    expect(content).toContain("/commands/status");
+    expect(content).toContain("/commands/init");
   });
 });
 
@@ -695,8 +695,8 @@ describe("Concept: backpressure", () => {
   test("includes related links section", () => {
     const content = readDoc(conceptPath);
     expect(content).toContain("## Related");
-    expect(content).toContain("/docs/concepts/ralph-loop");
-    expect(content).toContain("/docs/commands/implement");
+    expect(content).toContain("/concepts/ralph-loop");
+    expect(content).toContain("/commands/implement");
   });
 });
 
@@ -772,8 +772,8 @@ describe("Concept: Ralph Loop", () => {
   test("includes related links section", () => {
     const content = readDoc(conceptPath);
     expect(content).toContain("## Related");
-    expect(content).toContain("/docs/concepts/backpressure");
-    expect(content).toContain("/docs/commands/implement");
-    expect(content).toContain("/docs/commands/learnings");
+    expect(content).toContain("/concepts/backpressure");
+    expect(content).toContain("/commands/implement");
+    expect(content).toContain("/commands/learnings");
   });
 });
