@@ -3,4 +3,182 @@ title: Backpressure
 description: Self-correction through quality gates
 ---
 
-Coming soon.
+import { Aside } from '@astrojs/starlight/components';
+
+Backpressure is what makes autonomous loops converge on correct solutions instead of spiraling into chaos. Instead of telling the agent what to do, you engineer an environment where **wrong outputs get rejected automatically**.
+
+## What is Backpressure?
+
+Backpressure = automated feedback mechanisms that let agents self-correct without human intervention.
+
+<Aside type="tip">
+Think of backpressure like guardrails on a highway. You don't need to steer the car every second—the rails keep it on track automatically.
+</Aside>
+
+The philosophy:
+- ❌ "Telling the agent what to do"
+- ✅ "Engineering conditions where good outcomes emerge naturally through iteration"
+
+## Types of Gates
+
+### Hard Gates (Deterministic)
+
+Binary pass/fail with no ambiguity. **Start here.**
+
+| Gate | What it catches | Example |
+|------|-----------------|---------|
+| Tests | Logic errors, regressions | `bun test` |
+| Type checker | Interface mismatches | `bun run typecheck` |
+| Linter | Style violations, common bugs | `bun run lint` |
+| Build | Syntax errors, missing deps | `bun run build` |
+| Security scanner | Known vulnerabilities | `bun run audit` |
+
+Hard gates are deterministic, fast, and unambiguous. They're the foundation of any backpressure system.
+
+### Soft Gates (Heuristic)
+
+Require interpretation but still automated:
+
+| Gate | What it catches | Implementation |
+|------|-----------------|----------------|
+| Coverage threshold | Missing tests | `bun test --coverage` + check percentage |
+| Bundle size | Bloat | `bun run analyze` + size check |
+| Screenshot comparison | Visual regressions | agent-browser + image diff |
+| Performance benchmark | Speed regressions | Lighthouse CI, k6 |
+
+### LLM-as-Judge (Subjective)
+
+For criteria that need reasoning:
+
+```markdown
+## Quality Gates
+- [ ] Code review: Ask Claude "Does this code follow our patterns? Be harsh."
+- [ ] UX review: Ask Claude "Is this UI intuitive? Would a user understand it?"
+```
+
+<Aside type="caution">
+Add LLM-as-judge **last**, after mechanical backpressure is working. Start with deterministic gates.
+</Aside>
+
+## Backpressure by Project Type
+
+Ralph Borg auto-detects your project type and sets appropriate gates.
+
+### TypeScript/Bun
+
+```markdown
+## Quality Gates
+- [ ] Tests pass: `bun test`
+- [ ] Lint clean: `bun run lint`
+- [ ] Types check: `bun run typecheck`
+- [ ] Build succeeds: `bun run build`
+```
+
+### Rails
+
+```markdown
+## Quality Gates
+- [ ] Tests pass: `bin/rails test`
+- [ ] System tests: `bin/rails test:system`
+- [ ] Lint clean: `bundle exec rubocop`
+- [ ] Security: `bundle exec brakeman -q`
+```
+
+### Python
+
+```markdown
+## Quality Gates
+- [ ] Tests pass: `pytest`
+- [ ] Coverage > 80%: `pytest --cov --cov-fail-under=80`
+- [ ] Lint clean: `ruff check .`
+- [ ] Types check: `mypy .`
+```
+
+## Enforced Patterns
+
+These patterns are enforced in SPEC.md task structure:
+
+### 1. Dependencies First
+
+**The Problem:** Creating files then running tests → "command not found"
+
+**The Solution:** Task 1 is ALWAYS "Install dependencies":
+
+```markdown
+#### Phase 1: Setup
+- [ ] Task 1: Install dependencies and verify quality gates
+  - Run: `bun install`
+  - Verify: `bun test`, `bun lint`, `bun typecheck` all execute
+```
+
+### 2. Tests With Code (Same Iteration)
+
+**The Problem:** Creating tests at the end → no backpressure during implementation
+
+**The Solution:** Each task specifies its test file:
+
+```markdown
+- [ ] Task 5: Create Counter component
+  - File: `src/components/Counter.svelte`
+  - Test: `tests/unit/Counter.test.ts` (CREATE IN SAME ITERATION)
+  - Validate: `bun lint && bun typecheck`
+```
+
+### 3. Visual Verification for UI
+
+UI tasks require agent-browser screenshots:
+
+```markdown
+- [ ] Task 8: Create Header component
+  - File: `src/components/Header.tsx`
+  - Test: `tests/unit/Header.test.tsx`
+  - Visual: `agent-browser screenshot localhost:3000`
+```
+
+### 4. Validate Per-Task
+
+Run validation after every task, not deferred to the end:
+
+```markdown
+## Quality Gates
+
+### Per-Task Gates (run after each task)
+- [ ] Lint passes on changed files
+- [ ] Types check on changed files
+- [ ] Related tests pass
+
+### Full Gates (run after each iteration)
+- [ ] All tests pass: `bun test`
+- [ ] Full lint clean: `bun lint`
+```
+
+## Failure Handling
+
+When a quality gate fails:
+
+| Failure Type | Action |
+|--------------|--------|
+| Quick fix (obvious) | Fix NOW in this iteration |
+| Test environment issue | Fix environment, re-run |
+| Complex/unclear | Note in SPEC, continue if non-blocking |
+| Blocker | Move task to "Blocked", document why |
+
+<Aside type="danger">
+Never mark a task complete if its tests don't pass.
+</Aside>
+
+## Why Backpressure Works
+
+The loop handles corrections. You set up the rails.
+
+When you add comprehensive backpressure:
+- Tests catch regressions before they compound
+- Types catch interface mismatches immediately
+- Lint catches style issues automatically
+- The loop self-corrects without human intervention
+
+## Related
+
+- [Ralph Loop](/docs/concepts/ralph-loop) - The iteration cycle that runs backpressure
+- [borg implement](/docs/commands/implement) - Command that executes the loop
+- [borg review](/docs/commands/review) - Code review as additional backpressure

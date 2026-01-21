@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 14
+iteration_count: 15
 project_type: astro
 ---
 
@@ -37,12 +37,6 @@ TASK ORDERING RULES (ENFORCED):
 ### Pending
 
 #### Phase 3: Implementation - Documentation Pages
-
-- [ ] Task 15: Write backpressure concept page
-  - File: `src/content/docs/concepts/backpressure.mdx`
-  - Content: What it is, why it matters, gate types
-  - Test: Add to `tests/docs.test.ts`
-  - Validate: `bun run build` succeeds
 
 - [ ] Task 16: Write ralph-loop concept page with diagram reference
   - File: `src/content/docs/concepts/ralph-loop.mdx`
@@ -156,6 +150,12 @@ TASK ORDERING RULES (ENFORCED):
   - Test: `tests/docs.test.ts` (8 new tests, 87 total)
   - Content: Usage, arguments (category, limit), categories table, storage format, how learnings are captured, output example, examples with filtering, why learnings matter, related commands
   - Verified: `bun run build` succeeds (16 pages built)
+
+- [x] Task 15: Write backpressure concept page - Iteration 15
+  - File: `src/content/docs/concepts/backpressure.mdx`
+  - Test: `tests/docs.test.ts` (9 new tests, 96 total)
+  - Content: What is backpressure, hard gates (deterministic), soft gates (heuristic), LLM-as-judge, project type examples (TypeScript/Bun, Rails, Python), enforced patterns (dependencies first, tests with code, visual verification, validate per-task), failure handling table, related links
+  - Verified: `bun run build` succeeds (17 pages built)
 
 ### Blocked
 
@@ -407,3 +407,11 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds (16 pages built)
 **Result:** success
 **Learnings:** Learnings command views .borg/learnings.json contents. Six categories: environment, pattern, gotcha, fix, discovery, iteration_failure. Supports filtering by category and limiting results. Learnings persist across iterations and are injected into implementation prompts for context.
+
+### Iteration 15 (2026-01-21 22:54)
+**Task:** Task 15 - Write backpressure concept page
+**Files Modified:** src/content/docs/concepts/backpressure.mdx, tests/docs.test.ts
+**Tests:** 9 new tests added (96 total passing)
+**Integration:** `bun run build` succeeds (17 pages built)
+**Result:** success
+**Learnings:** Backpressure is the key concept that makes autonomous loops work. Three gate types: hard (deterministic tests/lint/build), soft (heuristic coverage/screenshots), LLM-as-judge (subjective). Start with hard gates, add others later. Enforced patterns: dependencies first, tests with code, visual verification for UI, validate per-task.

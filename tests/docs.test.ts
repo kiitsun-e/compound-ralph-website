@@ -626,3 +626,76 @@ describe("Command: learnings", () => {
     expect(content).toContain("/docs/commands/init");
   });
 });
+
+describe("Concept: backpressure", () => {
+  const conceptPath = "concepts/backpressure.mdx";
+
+  test("file exists", () => {
+    const exists = existsSync(join(DOCS_DIR, conceptPath));
+    expect(exists).toBe(true);
+  });
+
+  test("has valid frontmatter with title and description", () => {
+    const content = readDoc(conceptPath);
+    const frontmatter = extractFrontmatter(content);
+    expect(frontmatter.title).toBe("Backpressure");
+    expect(frontmatter.description).toBeDefined();
+  });
+
+  test("explains what backpressure is", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("## What is Backpressure");
+    expect(content).toContain("self-correct");
+    expect(content).toContain("automated feedback");
+  });
+
+  test("documents hard gates with examples", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("## Types of Gates");
+    expect(content).toContain("Hard Gates");
+    expect(content).toContain("| Gate |");
+    expect(content).toContain("Tests");
+    expect(content).toContain("Type checker");
+    expect(content).toContain("Linter");
+    expect(content).toContain("Build");
+  });
+
+  test("documents soft gates", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("Soft Gates");
+    expect(content).toContain("Coverage threshold");
+    expect(content).toContain("Screenshot comparison");
+  });
+
+  test("includes project type examples", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("TypeScript/Bun");
+    expect(content).toContain("Rails");
+    expect(content).toContain("Python");
+    expect(content).toContain("bun test");
+    expect(content).toContain("pytest");
+  });
+
+  test("documents enforced patterns", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("Enforced Patterns");
+    expect(content).toContain("Dependencies First");
+    expect(content).toContain("Tests With Code");
+    expect(content).toContain("Visual Verification");
+  });
+
+  test("includes failure handling table", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("Failure Handling");
+    expect(content).toContain("| Failure Type |");
+    expect(content).toContain("Quick fix");
+    expect(content).toContain("Blocker");
+  });
+
+  test("includes related links section", () => {
+    const content = readDoc(conceptPath);
+    expect(content).toContain("## Related");
+    expect(content).toContain("/docs/concepts/ralph-loop");
+    expect(content).toContain("/docs/commands/implement");
+  });
+});
