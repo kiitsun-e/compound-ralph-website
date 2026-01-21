@@ -250,6 +250,70 @@ describe("Command: implement", () => {
   });
 });
 
+describe("Command: review", () => {
+  const commandPath = "commands/review.mdx";
+
+  test("file exists", () => {
+    const exists = existsSync(join(DOCS_DIR, commandPath));
+    expect(exists).toBe(true);
+  });
+
+  test("has valid frontmatter with title and description", () => {
+    const content = readDoc(commandPath);
+    const frontmatter = extractFrontmatter(content);
+    expect(frontmatter.title).toBe("borg review");
+    expect(frontmatter.description).toBeDefined();
+  });
+
+  test("includes usage section with code block", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Usage");
+    expect(content).toContain("```bash");
+    expect(content).toContain("borg review");
+  });
+
+  test("includes options table", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Options");
+    expect(content).toContain("| Option |");
+    expect(content).toContain("--design");
+    expect(content).toContain("--design-only");
+    expect(content).toContain("--url");
+  });
+
+  test("explains output structure with todos directories", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("Output Structure");
+    expect(content).toContain("todos/");
+    expect(content).toContain("code/");
+    expect(content).toContain("design/");
+  });
+
+  test("includes priority levels table", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("Priority Levels");
+    expect(content).toContain("| Priority |");
+    expect(content).toContain("P1");
+    expect(content).toContain("P2");
+    expect(content).toContain("P3");
+  });
+
+  test("includes examples section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Examples");
+    expect(content).toContain("borg review specs/");
+    expect(content).toContain("--design");
+  });
+
+  test("includes related commands section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Related Commands");
+    expect(content).toContain("/docs/commands/implement");
+    expect(content).toContain("/docs/commands/fix");
+    expect(content).toContain("/docs/commands/status");
+  });
+});
+
 describe("Command: init", () => {
   const commandPath = "commands/init.mdx";
 

@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 9
+iteration_count: 10
 project_type: astro
 ---
 
@@ -37,13 +37,6 @@ TASK ORDERING RULES (ENFORCED):
 ### Pending
 
 #### Phase 3: Implementation - Documentation Pages
-
-
-- [ ] Task 10: Write review command reference
-  - File: `src/content/docs/commands/review.mdx`
-  - Content: Description, usage, options table, examples
-  - Test: Add to `tests/docs.test.ts`
-  - Validate: `bun run build` succeeds
 
 - [ ] Task 11: Write fix command reference
   - File: `src/content/docs/commands/fix.mdx`
@@ -157,6 +150,12 @@ TASK ORDERING RULES (ENFORCED):
   - Test: `tests/docs.test.ts` (8 new tests passing, 47 total)
   - Content: Usage, arguments table, Ralph Loop explanation, auto-detection, failure handling, examples, related commands
   - Verified: `bun run build` succeeds (11 pages built)
+
+- [x] Task 10: Write review command reference - Iteration 10
+  - File: `src/content/docs/commands/review.mdx`
+  - Test: `tests/docs.test.ts` (8 new tests passing, 55 total)
+  - Content: Usage, arguments table, options (--design, --design-only, --url), output structure with todos directories, priority levels table, design review focus, examples, related commands
+  - Verified: `bun run build` succeeds (12 pages built)
 
 ### Blocked
 
@@ -363,3 +362,12 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds (11 pages built)
 **Result:** success
 **Learnings:** Implement is the core autonomous command—runs the Ralph Loop. Key concepts: fresh context each iteration, backpressure via quality gates, auto-detection of pending specs. Documented failure handling scenarios (test failures, consecutive failures, Ctrl+C, API errors).
+
+### Iteration 10 (2026-01-21 22:37)
+**Task:** Task 10 - Write review command reference
+**Files Created:** src/content/docs/commands/review.mdx
+**Files Modified:** tests/docs.test.ts
+**Tests:** 8 new tests added (55 total passing)
+**Integration:** `bun run build` succeeds (12 pages built)
+**Result:** success
+**Learnings:** Review command has two modes: code review and design review. Code review outputs to todos/code/, design review to todos/design/. Priority levels (P1/P2/P3) indicate urgency. The --url option allows specifying design review target when auto-detection fails.

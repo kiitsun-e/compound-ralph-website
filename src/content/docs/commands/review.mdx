@@ -1,0 +1,152 @@
+---
+title: borg review
+description: Run code and design reviews on a completed feature, generating actionable todo files
+---
+
+Run code and design reviews on a completed feature. Findings are saved as todo files in the spec directory for tracking and fixing.
+
+## Usage
+
+```bash
+borg review [spec-dir] [options]
+```
+
+## Arguments
+
+| Argument | Description | Required |
+|----------|-------------|----------|
+| `spec-dir` | Path to spec directory containing SPEC.md | No (auto-detects) |
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `--design` | Include design review (in addition to code review) |
+| `--design-only` | Run only design review, skip code review |
+| `--url <url>` | URL for design review (auto-detects dev server if not provided) |
+
+## What It Does
+
+The `review` command runs comprehensive reviews on implemented features:
+
+1. **Code Review** - Analyzes code for security, performance, architecture issues
+2. **Design Review** - Screenshots the UI and identifies visual/UX problems
+
+Findings are saved as individual todo files with priority levels and tags.
+
+### Output Structure
+
+```
+specs/my-feature/
+├── SPEC.md
+├── PROMPT.md
+└── todos/
+    ├── code/
+    │   ├── 001-p1-sql-injection.md
+    │   └── 002-p2-missing-validation.md
+    └── design/
+        ├── 001-p2-bland-hero.md
+        └── 002-p2-weak-typography.md
+```
+
+### Todo File Format
+
+Each finding follows this structure:
+
+```markdown
+---
+priority: p1|p2|p3
+tags: [security, performance, architecture]
+spec: my-feature
+type: code
+---
+# Issue Title
+
+## Problem Statement
+What's wrong with the current implementation.
+
+## Findings
+- File: `path/to/file.ts:42`
+
+## Recommended Action
+Specific steps to fix the issue.
+
+## Acceptance Criteria
+- [ ] Specific outcome to verify
+```
+
+## Examples
+
+### Run code review on a feature
+
+```bash
+borg review specs/add-user-auth/
+```
+
+Output:
+
+```
+[STEP] Running Code Review
+[INFO] Reviewing spec: add-user-auth
+[INFO] Findings will be saved to: add-user-auth/todos/code/
+```
+
+### Run both code and design review
+
+```bash
+borg review specs/landing-page/ --design
+```
+
+This runs code review first, then takes screenshots and reviews the UI.
+
+### Run design review only
+
+```bash
+borg review --design-only --url http://localhost:3000
+```
+
+Skips code review, goes straight to visual analysis.
+
+### Auto-detect active spec
+
+```bash
+borg review
+```
+
+Finds the spec with `status: building` or `status: complete` and reviews it.
+
+## Priority Levels
+
+| Priority | Description | Action |
+|----------|-------------|--------|
+| **P1** | Critical - Security vulnerabilities, data loss risks | Fix before merge |
+| **P2** | Important - Performance issues, bad patterns | Fix soon |
+| **P3** | Minor - Code style, documentation | Fix when convenient |
+
+## Design Review Focus
+
+Design reviews look for common AI-generated design anti-patterns:
+
+- Bland/generic appearance
+- Poor typography choices
+- Weak color palette
+- Bad spacing and rhythm
+- Missing visual hierarchy
+- Generic, unstyled components
+- Lack of personality or brand identity
+
+## What Happens Next
+
+After review, use these commands to address findings:
+
+1. **Check findings** - Review the generated todo files
+2. **Create fix spec** - `borg fix code` or `borg fix design`
+3. **Implement fixes** - `borg implement`
+4. **Re-review** - `borg review` to verify clean
+
+## Related Commands
+
+- [borg implement](/docs/commands/implement) - Build the feature being reviewed
+- [borg fix](/docs/commands/fix) - Create fix specs from review findings
+- [borg status](/docs/commands/status) - Check progress of all specs
+- [borg design](/docs/commands/design) - Polish UI design iteratively
