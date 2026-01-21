@@ -1,0 +1,6 @@
+# Ralph-borg accumulated context
+# This file persists across iterations and fresh Claude instances
+
+learnings: []
+errors_fixed: []
+patterns_discovered: []
