@@ -68,6 +68,47 @@ const description = 'Autonomous feature implementation combining rich planning w
 </html>
 
 <style>
+	/* Entrance animations */
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes fadeInScale {
+		from {
+			opacity: 0;
+			transform: scale(0.9);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	@keyframes orbitSpin {
+		from {
+			transform: rotate(-15deg);
+		}
+		to {
+			transform: rotate(345deg);
+		}
+	}
+
+	@keyframes gradientShift {
+		0%, 100% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+	}
+
 	/* Landing page specific styles */
 	.landing {
 		margin: 0;
@@ -138,13 +179,17 @@ const description = 'Autonomous feature implementation combining rich planning w
 		font-weight: 700;
 		font-family: 'JetBrains Mono', monospace;
 		letter-spacing: -0.02em;
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out forwards;
 	}
 
 	.hero-name {
-		background: linear-gradient(135deg, var(--landing-accent, #00e5ff), var(--landing-accent-green, #00ff9f));
+		background: linear-gradient(135deg, var(--landing-accent, #00e5ff), var(--landing-accent-green, #00ff9f), var(--landing-accent, #00e5ff));
+		background-size: 200% 200%;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
+		animation: gradientShift 8s ease infinite;
 	}
 
 	.hero-tagline {
@@ -153,12 +198,18 @@ const description = 'Autonomous feature implementation combining rich planning w
 		color: var(--landing-muted, #6b8f7a);
 		margin: 0 0 2.5rem 0;
 		max-width: 28ch;
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out forwards;
+		animation-delay: 0.15s;
 	}
 
 	.hero-buttons {
 		display: flex;
 		gap: 1rem;
 		flex-wrap: wrap;
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out forwards;
+		animation-delay: 0.3s;
 	}
 
 	/* Hero visual element */
@@ -168,6 +219,9 @@ const description = 'Autonomous feature implementation combining rich planning w
 		align-items: center;
 		justify-content: center;
 		min-height: 180px;
+		opacity: 0;
+		animation: fadeInScale 0.8s ease-out forwards;
+		animation-delay: 0.2s;
 	}
 
 	.hero-glyph {
@@ -199,7 +253,7 @@ const description = 'Autonomous feature implementation combining rich planning w
 		height: 200px;
 		border: 1px dashed rgba(0, 229, 255, 0.2);
 		border-radius: 50%;
-		transform: rotate(-15deg);
+		animation: orbitSpin 30s linear infinite;
 	}
 
 	/* Buttons */
@@ -323,6 +377,20 @@ const description = 'Autonomous feature implementation combining rich planning w
 			inset 0 1px 0 rgba(255, 255, 255, 0.04);
 		position: relative;
 		transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out forwards;
+	}
+
+	.feature-primary {
+		animation-delay: 0.45s;
+	}
+
+	.feature-secondary {
+		animation-delay: 0.55s;
+	}
+
+	.feature-tertiary {
+		animation-delay: 0.65s;
 	}
 
 	.feature:hover {
@@ -473,6 +541,25 @@ const description = 'Autonomous feature implementation combining rich planning w
 
 		.feature-tertiary {
 			margin-left: 2rem;
+		}
+	}
+
+	/* Respect user motion preferences */
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+
+		.hero-title,
+		.hero-tagline,
+		.hero-buttons,
+		.hero-visual,
+		.feature {
+			opacity: 1;
 		}
 	}
 </style>

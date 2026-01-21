@@ -5,7 +5,7 @@ created: 2026-01-21
 parent_spec: feat-ralph-borg-astro-website
 fix_type: design
 todo_count: 8
-iteration_count: 4
+iteration_count: 6
 project_type: bun
 ---
 
@@ -21,8 +21,8 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
 - [x] Hero layout breaks the centered symmetry pattern with asymmetry or unexpected elements
 - [x] Feature cards are clearly visible with proper contrast and visual presence
 - [x] Buttons have polish, character, and satisfying interactions
-- [ ] Background has visual atmosphere and depth beyond solid color
-- [ ] Page has entrance animations with staggered reveals
+- [x] Background has visual atmosphere and depth beyond solid color
+- [x] Page has entrance animations with staggered reveals
 - [ ] Typography has dramatic hierarchy with clear size distinctions
 - [ ] Landing page has distinct visual identity unique to Ralph Borg
 
@@ -79,25 +79,25 @@ This spec addresses 8 design findings from review of feat-ralph-borg-astro-websi
     - [x] Active/click states provide feedback
     - [x] Buttons feel polished and intentional
 
-- [ ] Task 6: Add visual atmosphere and depth to background
+- [x] Task 6: Add visual atmosphere and depth to background (completed: iteration 5)
   - File: `src/pages/index.astro:57-61`
   - Reference: `todos/design/005-p2-no-visual-atmosphere.md`
   - Acceptance:
-    - [ ] Background has visual depth beyond solid color
-    - [ ] Atmosphere matches the "autonomous AI" theme
-    - [ ] Visual elements don't distract from content
-    - [ ] Page feels crafted and intentional, not flat
-    - [ ] Works well in both light and dark modes (if applicable)
+    - [x] Background has visual depth beyond solid color
+    - [x] Atmosphere matches the "autonomous AI" theme
+    - [x] Visual elements don't distract from content
+    - [x] Page feels crafted and intentional, not flat
+    - [x] Works well in both light and dark modes (if applicable)
 
-- [ ] Task 7: Add entrance animations and motion design
+- [x] Task 7: Add entrance animations and motion design (completed: iteration 6)
   - File: `src/pages/index.astro:54-185`
   - Reference: `todos/design/006-p2-no-entrance-animations.md`
   - Acceptance:
-    - [ ] Hero elements animate in with staggered timing
-    - [ ] Feature cards have entrance animation
-    - [ ] Animations feel smooth and polished (not jarring)
-    - [ ] `prefers-reduced-motion` is respected
-    - [ ] Page feels dynamic and alive on load
+    - [x] Hero elements animate in with staggered timing
+    - [x] Feature cards have entrance animation
+    - [x] Animations feel smooth and polished (not jarring)
+    - [x] `prefers-reduced-motion` is respected
+    - [x] Page feels dynamic and alive on load
 
 - [ ] Task 8: Strengthen typographic hierarchy
   - File: `src/pages/index.astro:78-80` (hero title)
@@ -208,3 +208,24 @@ Re-run `borg review` after fixes to verify issues are resolved.
 - Smooth cubic-bezier transitions for springy hover lift
 - Active/click states with scale(0.98) and inset shadows for tactile feedback
 - Multi-layer box shadows for depth on both button states
+
+### Iteration 5
+- Completed Task 6: Add visual atmosphere and depth to background
+- Added multi-layer gradient mesh with three radial gradients for ambient glow
+- Cyan glow at top-left (15% 20%), green glow at bottom-right (85% 75%), subtle cyan at center-right (60% 40%)
+- Added SVG noise texture overlay with fractal noise filter at 2.5% opacity for depth
+- Noise overlay uses fixed positioning with pointer-events: none to not interfere with content
+- Main content positioned above overlay with z-index: 1
+- Works well in dark mode (the current theme), subtle enough to not distract
+
+### Iteration 6
+- Completed Task 7: Add entrance animations and motion design
+- Added @keyframes: fadeInUp, fadeInScale, orbitSpin, gradientShift
+- Hero title: fadeInUp 0.6s with no delay
+- Hero tagline: fadeInUp 0.6s with 0.15s delay
+- Hero buttons: fadeInUp 0.6s with 0.3s delay
+- Hero visual: fadeInScale 0.8s with 0.2s delay
+- Hero orbit: slow continuous 30s spin animation
+- Hero name gradient: subtle 8s gradient shift animation for life
+- Feature cards: fadeInUp with staggered delays (0.45s, 0.55s, 0.65s)
+- Added prefers-reduced-motion media query to respect accessibility preferences
