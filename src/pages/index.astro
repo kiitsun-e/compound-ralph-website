@@ -37,10 +37,25 @@ const description = 'Autonomous feature implementation combining rich planning w
 				</div>
 			</div>
 			<div class="hero-visual" aria-hidden="true">
+				<div class="hero-terminal">
+					<div class="terminal-header">
+						<span class="terminal-dot"></span>
+						<span class="terminal-dot"></span>
+						<span class="terminal-dot"></span>
+					</div>
+					<div class="terminal-body">
+						<div class="terminal-line">
+							<span class="terminal-prompt">$</span>
+							<span class="terminal-cmd">borg implement</span>
+							<span class="terminal-cursor"></span>
+						</div>
+					</div>
+				</div>
 				<div class="hero-glyph">
 					<span class="glyph-bracket">[</span>
 					<span class="glyph-symbol">⟳</span>
 					<span class="glyph-bracket">]</span>
+					<span class="glyph-status"></span>
 				</div>
 				<div class="hero-orbit"></div>
 			</div>
@@ -256,6 +271,104 @@ const description = 'Autonomous feature implementation combining rich planning w
 		border: 1px dashed rgba(0, 229, 255, 0.2);
 		border-radius: 50%;
 		animation: orbitSpin 30s linear infinite;
+	}
+
+	/* Terminal element - Ralph Borg signature */
+	.hero-terminal {
+		position: absolute;
+		top: -20px;
+		left: 50%;
+		transform: translateX(-50%);
+		background: rgba(10, 15, 13, 0.9);
+		border: 1px solid rgba(0, 229, 255, 0.2);
+		border-radius: 6px;
+		padding: 0;
+		width: 180px;
+		font-family: 'JetBrains Mono', monospace;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+		overflow: hidden;
+	}
+
+	.terminal-header {
+		display: flex;
+		gap: 4px;
+		padding: 6px 8px;
+		background: rgba(0, 229, 255, 0.05);
+		border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+	}
+
+	.terminal-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: rgba(0, 229, 255, 0.3);
+	}
+
+	.terminal-dot:first-child {
+		background: rgba(255, 95, 87, 0.6);
+	}
+
+	.terminal-dot:nth-child(2) {
+		background: rgba(255, 189, 46, 0.6);
+	}
+
+	.terminal-dot:last-child {
+		background: rgba(40, 205, 65, 0.6);
+	}
+
+	.terminal-body {
+		padding: 8px 10px;
+	}
+
+	.terminal-line {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 0.75rem;
+	}
+
+	.terminal-prompt {
+		color: var(--landing-accent-green, #00ff9f);
+	}
+
+	.terminal-cmd {
+		color: var(--landing-text, #e0f2e9);
+	}
+
+	@keyframes blink {
+		0%, 50% { opacity: 1; }
+		51%, 100% { opacity: 0; }
+	}
+
+	.terminal-cursor {
+		width: 6px;
+		height: 12px;
+		background: var(--landing-accent, #00e5ff);
+		animation: blink 1s step-end infinite;
+	}
+
+	/* Status indicator - shows agent is "alive" */
+	.glyph-status {
+		position: absolute;
+		top: -4px;
+		right: -12px;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: var(--landing-accent-green, #00ff9f);
+		box-shadow: 0 0 8px var(--landing-accent-green, #00ff9f);
+		animation: pulse 2s ease-in-out infinite;
+	}
+
+	@keyframes pulse {
+		0%, 100% {
+			transform: scale(1);
+			opacity: 1;
+		}
+		50% {
+			transform: scale(1.2);
+			opacity: 0.7;
+		}
 	}
 
 	/* Buttons */
@@ -496,6 +609,15 @@ const description = 'Autonomous feature implementation combining rich planning w
 		.hero-orbit {
 			width: 280px;
 			height: 280px;
+		}
+
+		.hero-terminal {
+			width: 200px;
+			top: -30px;
+		}
+
+		.terminal-line {
+			font-size: 0.8125rem;
 		}
 
 		/* Asymmetric feature grid - varied sizes */
