@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 16
+iteration_count: 17
 project_type: astro
 ---
 
@@ -38,9 +38,9 @@ TASK ORDERING RULES (ENFORCED):
 
 #### Phase 3: Implementation - Documentation Pages
 
-- [ ] Task 17: Create static Ralph Loop diagram
-  - File: `src/assets/ralph-loop.png`
-  - Content: Simple circular diagram showing 8 phases (Mermaid or Excalidraw export)
+- [x] Task 17: Create static Ralph Loop diagram - Iteration 17
+  - File: `public/ralph-loop.svg`
+  - Content: SVG circular diagram showing 8 phases with cyan/green theme
   - Validate: File exists and is referenced in ralph-loop.mdx
 
 #### Phase 4: Integration and Visual Verification
@@ -206,7 +206,7 @@ BACKPRESSURE RULES (ENFORCED):
 | `src/content/docs/getting-started.mdx` | `tests/docs.test.ts` | Yes |
 | `src/content/docs/commands/*.mdx` (9 files) | `tests/docs.test.ts` | Yes |
 | `src/content/docs/concepts/*.mdx` (2 files) | `tests/docs.test.ts` | Yes |
-| `src/assets/ralph-loop.png` | N/A (asset) | Yes - diagram |
+| `public/ralph-loop.svg` | N/A (asset) | Yes - diagram |
 
 ### Patterns to Follow
 
@@ -423,3 +423,12 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds (16 pages built)
 **Result:** success
 **Learnings:** The Ralph Loop has 8 phases (0-indexed: Discovery, Environment Setup, Orient, Select Task, Investigate, Implement, Validate, Integration Verification, Update State). Key insight: fresh context each iteration prevents context pollution. State persists through files (SPEC.md, .borg/*.json, git). Hard rules enforce discipline: environment first, tests with code, one task per iteration, document everything.
+
+### Iteration 17 (2026-01-21 22:59)
+**Task:** Task 17 - Create static Ralph Loop diagram
+**Files Created:** public/ralph-loop.svg
+**Files Modified:** src/content/docs/concepts/ralph-loop.mdx (updated diagram reference from .png to .svg), tests/docs.test.ts (updated test expectation)
+**Tests:** 105 tests passing (updated diagram reference test)
+**Integration:** `bun run build` succeeds (16 pages built)
+**Result:** success
+**Learnings:** Used SVG instead of PNG for the diagram - SVG is better for diagrams (scalable, smaller file size, editable). Placed in public/ folder for static asset serving. Diagram uses cyan/green theme to match site styling, shows 8 phases in a circular layout with context phases (0-4) and execution phases (5-7) color-coded differently.

@@ -760,7 +760,7 @@ describe("Concept: Ralph Loop", () => {
     const content = readDoc(conceptPath);
     expect(content).toContain("## Visual Overview");
     expect(content).toContain("![Ralph Loop Diagram]");
-    expect(content).toContain("ralph-loop.png");
+    expect(content).toContain("ralph-loop.svg");
   });
 
   test("uses Starlight Aside components", () => {
