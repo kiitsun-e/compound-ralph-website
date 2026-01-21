@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 4
+iteration_count: 5
 project_type: astro
 ---
 
@@ -37,12 +37,6 @@ TASK ORDERING RULES (ENFORCED):
 ### Pending
 
 #### Phase 3: Implementation - Documentation Pages
-
-- [ ] Task 5: Write Getting Started guide
-  - File: `src/content/docs/getting-started.mdx`
-  - Content: Prerequisites, installation, first project walkthrough
-  - Test: `tests/docs.test.ts` (verify frontmatter, content structure)
-  - Validate: `bun run build` succeeds
 
 - [ ] Task 6: Write init command reference
   - File: `src/content/docs/commands/init.mdx`
@@ -154,6 +148,13 @@ TASK ORDERING RULES (ENFORCED):
   - Test: `tests/landing-page.test.ts` (8 tests passing)
   - Content: Hero with gradient title, tagline, Get Started/GitHub buttons, 3 feature cards
   - Visual: Screenshot captured - dark theme with cyan/green accents renders correctly
+  - Verified: `bun run build` succeeds
+
+- [x] Task 5: Write Getting Started guide - Iteration 5
+  - File: `src/content/docs/getting-started.mdx`
+  - Test: `tests/docs.test.ts` (7 tests passing)
+  - Content: Prerequisites (Claude CLI, git), installation, first feature walkthrough (init, plan, spec, implement, status)
+  - Uses Starlight components (Steps, Aside)
   - Verified: `bun run build` succeeds
 
 ### Blocked
@@ -316,3 +317,12 @@ export default defineConfig({
 **Visual:** Screenshot captured - landing page renders with dark theme, cyan/green gradient title, feature cards
 **Result:** success
 **Learnings:** Custom Astro pages outside Starlight's content system need to import CSS manually; scoped styles in .astro files work well with CSS custom properties
+
+### Iteration 5 (2026-01-21 22:25)
+**Task:** Task 5 - Write Getting Started guide
+**Files Modified:** src/content/docs/getting-started.mdx
+**Files Created:** tests/docs.test.ts
+**Tests:** 7 tests passing (file exists, frontmatter, prerequisites, installation, first feature walkthrough, Starlight components, next steps links)
+**Integration:** `bun run build` succeeds
+**Result:** success
+**Learnings:** Starlight components (Steps, Aside) can be imported from '@astrojs/starlight/components' for enhanced documentation formatting

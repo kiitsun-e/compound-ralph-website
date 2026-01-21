@@ -1,6 +1,128 @@
 ---
 title: Getting Started
-description: Get up and running with Ralph Borg
+description: Get up and running with Ralph Borg in minutes
 ---
 
-Coming soon.
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+Ralph Borg is an autonomous feature implementation system. It combines human-guided planning with autonomous code generation, using continuous backpressure (tests, lint, types) to self-correct.
+
+## Prerequisites
+
+- **Claude Code CLI** - [Install from claude.ai/code](https://claude.ai/code)
+- **git** - For version control
+
+### Optional
+
+- **compound-engineering plugin** - For rich planning workflows:
+  ```bash
+  claude "/plugin install compound-engineering"
+  ```
+
+## Installation
+
+Ralph Borg is a standalone bash script. Download it and add to your PATH:
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/ralph-borg.git
+
+# Add to PATH (add to your shell profile)
+export PATH="$PATH:$HOME/ralph-borg"
+
+# Verify installation
+borg help
+```
+
+## Your First Feature
+
+Let's walk through implementing a feature from start to finish.
+
+<Steps>
+
+1. **Initialize your project**
+
+   Navigate to your project and run:
+
+   ```bash
+   cd my-project
+   borg init
+   ```
+
+   This creates:
+   - `specs/` - Where feature specs live
+   - `plans/` - Where rich plans are stored
+   - `AGENTS.md` - Auto-detected build/test commands
+   - `.borg/` - Context and configuration
+
+2. **Create a plan**
+
+   Describe the feature you want to build:
+
+   ```bash
+   borg plan "add dark mode toggle with system preference detection"
+   ```
+
+   This launches an interactive session where you refine the feature scope. The result is a detailed plan in `plans/add-dark-mode-toggle.md`.
+
+3. **Convert plan to spec**
+
+   Transform your plan into an implementation-ready spec:
+
+   ```bash
+   borg spec plans/add-dark-mode-toggle.md
+   ```
+
+   This creates `specs/add-dark-mode-toggle/SPEC.md` - the single source of truth for implementation.
+
+4. **Start autonomous implementation**
+
+   Fire and forget:
+
+   ```bash
+   borg implement
+   ```
+
+   The system will:
+   - Pick up the first task
+   - Implement it with tests
+   - Run all quality gates
+   - Commit progress
+   - Move to the next task
+   - Repeat until complete
+
+5. **Check progress**
+
+   At any point, check how things are going:
+
+   ```bash
+   borg status
+   ```
+
+   Output shows all specs with their status, iteration count, and task progress.
+
+</Steps>
+
+<Aside type="tip">
+You can walk away during `borg implement`. It runs autonomously and commits progress. Check back later to see completed work.
+</Aside>
+
+## What Happens During Implementation
+
+Each iteration follows a consistent cycle:
+
+1. **Orient** - Load context from SPEC.md
+2. **Select** - Pick the next pending task
+3. **Investigate** - Search codebase first, don't duplicate
+4. **Implement** - Write code and tests together
+5. **Validate** - Run all quality gates
+6. **Update** - Mark task complete, add learnings
+7. **Commit** - Save progress to git
+
+If tests fail, the system self-corrects in the same iteration. If it gets stuck, it records the blocker and continues with the next task.
+
+## Next Steps
+
+- Learn about all [commands](/docs/commands/init)
+- Understand [backpressure](/docs/concepts/backpressure) and why it matters
+- See how the [Ralph Loop](/docs/concepts/ralph-loop) works in detail
