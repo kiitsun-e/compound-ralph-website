@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 8
+iteration_count: 9
 project_type: astro
 ---
 
@@ -38,11 +38,6 @@ TASK ORDERING RULES (ENFORCED):
 
 #### Phase 3: Implementation - Documentation Pages
 
-- [ ] Task 9: Write implement command reference
-  - File: `src/content/docs/commands/implement.mdx`
-  - Content: Description, usage, options table, examples (use plan example as template)
-  - Test: Add to `tests/docs.test.ts`
-  - Validate: `bun run build` succeeds
 
 - [ ] Task 10: Write review command reference
   - File: `src/content/docs/commands/review.mdx`
@@ -156,6 +151,12 @@ TASK ORDERING RULES (ENFORCED):
   - Test: `tests/docs.test.ts` (8 new tests passing, 39 total)
   - Content: Usage, arguments table, what it does, SPEC.md structure table, examples, quality gate auto-detection, related commands
   - Verified: `bun run build` succeeds (10 pages built)
+
+- [x] Task 9: Write implement command reference - Iteration 9
+  - File: `src/content/docs/commands/implement.mdx`
+  - Test: `tests/docs.test.ts` (8 new tests passing, 47 total)
+  - Content: Usage, arguments table, Ralph Loop explanation, auto-detection, failure handling, examples, related commands
+  - Verified: `bun run build` succeeds (11 pages built)
 
 ### Blocked
 
@@ -353,3 +354,12 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds (10 pages built)
 **Result:** success
 **Learnings:** Spec command transforms plans into SPEC.md (state file) and PROMPT.md (iteration instructions). Auto-detects quality gates by project type. Documented the complete SPEC.md structure table for reference.
+
+### Iteration 9 (2026-01-21 22:35)
+**Task:** Task 9 - Write implement command reference
+**Files Created:** src/content/docs/commands/implement.mdx
+**Files Modified:** tests/docs.test.ts
+**Tests:** 8 new tests added (47 total passing)
+**Integration:** `bun run build` succeeds (11 pages built)
+**Result:** success
+**Learnings:** Implement is the core autonomous command—runs the Ralph Loop. Key concepts: fresh context each iteration, backpressure via quality gates, auto-detection of pending specs. Documented failure handling scenarios (test failures, consecutive failures, Ctrl+C, API errors).

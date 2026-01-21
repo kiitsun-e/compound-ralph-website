@@ -193,6 +193,63 @@ describe("Command: spec", () => {
   });
 });
 
+describe("Command: implement", () => {
+  const commandPath = "commands/implement.mdx";
+
+  test("file exists", () => {
+    const exists = existsSync(join(DOCS_DIR, commandPath));
+    expect(exists).toBe(true);
+  });
+
+  test("has valid frontmatter with title and description", () => {
+    const content = readDoc(commandPath);
+    const frontmatter = extractFrontmatter(content);
+    expect(frontmatter.title).toBe("borg implement");
+    expect(frontmatter.description).toBeDefined();
+  });
+
+  test("includes usage section with code block", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Usage");
+    expect(content).toContain("```bash");
+    expect(content).toContain("borg implement");
+  });
+
+  test("includes arguments table", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Arguments");
+    expect(content).toContain("| Argument |");
+    expect(content).toContain("spec-dir");
+  });
+
+  test("explains the Ralph Loop", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("Ralph Loop");
+    expect(content).toContain("autonomous");
+    expect(content).toContain("backpressure");
+  });
+
+  test("includes auto-detection section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("Auto-Detection");
+    expect(content).toContain("status: building");
+  });
+
+  test("includes examples section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Examples");
+    expect(content).toContain("borg implement specs/");
+  });
+
+  test("includes related commands section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Related Commands");
+    expect(content).toContain("/docs/commands/spec");
+    expect(content).toContain("/docs/commands/status");
+    expect(content).toContain("/docs/commands/review");
+  });
+});
+
 describe("Command: init", () => {
   const commandPath = "commands/init.mdx";
 
