@@ -134,6 +134,65 @@ describe("Command: plan", () => {
   });
 });
 
+describe("Command: spec", () => {
+  const commandPath = "commands/spec.mdx";
+
+  test("file exists", () => {
+    const exists = existsSync(join(DOCS_DIR, commandPath));
+    expect(exists).toBe(true);
+  });
+
+  test("has valid frontmatter with title and description", () => {
+    const content = readDoc(commandPath);
+    const frontmatter = extractFrontmatter(content);
+    expect(frontmatter.title).toBe("borg spec");
+    expect(frontmatter.description).toBeDefined();
+  });
+
+  test("includes usage section with code block", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Usage");
+    expect(content).toContain("```bash");
+    expect(content).toContain("borg spec");
+  });
+
+  test("includes arguments table", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Arguments");
+    expect(content).toContain("| Argument |");
+    expect(content).toContain("plan-file");
+  });
+
+  test("explains what it does", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## What It Does");
+    expect(content).toContain("SPEC.md");
+    expect(content).toContain("PROMPT.md");
+  });
+
+  test("includes SPEC.md structure table", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("SPEC.md Structure");
+    expect(content).toContain("| Section |");
+    expect(content).toContain("Frontmatter");
+    expect(content).toContain("Requirements");
+    expect(content).toContain("Quality Gates");
+  });
+
+  test("includes examples section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Examples");
+    expect(content).toContain("borg spec plans/");
+  });
+
+  test("includes related commands section", () => {
+    const content = readDoc(commandPath);
+    expect(content).toContain("## Related Commands");
+    expect(content).toContain("/docs/commands/plan");
+    expect(content).toContain("/docs/commands/implement");
+  });
+});
+
 describe("Command: init", () => {
   const commandPath = "commands/init.mdx";
 

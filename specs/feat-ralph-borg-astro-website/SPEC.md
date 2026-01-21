@@ -3,7 +3,7 @@ name: feat-ralph-borg-astro-website
 status: building
 created: 2026-01-21
 plan_file: plans/feat-ralph-borg-astro-website.md
-iteration_count: 7
+iteration_count: 8
 project_type: astro
 ---
 
@@ -37,12 +37,6 @@ TASK ORDERING RULES (ENFORCED):
 ### Pending
 
 #### Phase 3: Implementation - Documentation Pages
-
-- [ ] Task 8: Write spec command reference
-  - File: `src/content/docs/commands/spec.mdx`
-  - Content: Description, usage, options table, examples
-  - Test: Add to `tests/docs.test.ts`
-  - Validate: `bun run build` succeeds
 
 - [ ] Task 9: Write implement command reference
   - File: `src/content/docs/commands/implement.mdx`
@@ -156,6 +150,12 @@ TASK ORDERING RULES (ENFORCED):
   - Test: `tests/docs.test.ts` (8 new tests passing, 31 total)
   - Content: Usage, arguments table, what it does, interactive mode, examples, what happens next, related commands
   - Verified: `bun run build` succeeds (9 pages built)
+
+- [x] Task 8: Write spec command reference - Iteration 8
+  - File: `src/content/docs/commands/spec.mdx`
+  - Test: `tests/docs.test.ts` (8 new tests passing, 39 total)
+  - Content: Usage, arguments table, what it does, SPEC.md structure table, examples, quality gate auto-detection, related commands
+  - Verified: `bun run build` succeeds (10 pages built)
 
 ### Blocked
 
@@ -344,3 +344,12 @@ export default defineConfig({
 **Integration:** `bun run build` succeeds (9 pages built)
 **Result:** success
 **Learnings:** Plan command is interactive (human-guided), unlike implement which is autonomous. Documented the interactive workflow including /workflows:plan and /deepen-plan integration
+
+### Iteration 8 (2026-01-21 22:32)
+**Task:** Task 8 - Write spec command reference
+**Files Created:** src/content/docs/commands/spec.mdx
+**Files Modified:** tests/docs.test.ts
+**Tests:** 8 new tests added (39 total passing)
+**Integration:** `bun run build` succeeds (10 pages built)
+**Result:** success
+**Learnings:** Spec command transforms plans into SPEC.md (state file) and PROMPT.md (iteration instructions). Auto-detects quality gates by project type. Documented the complete SPEC.md structure table for reference.

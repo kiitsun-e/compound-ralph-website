@@ -1,0 +1,107 @@
+---
+title: borg spec
+description: Convert a plan to SPEC.md format for autonomous implementation
+---
+
+Convert a rich plan into the SPEC.md format that powers autonomous implementation. The spec becomes the single source of truth for the feature.
+
+## Usage
+
+```bash
+borg spec <plan-file>
+```
+
+## Arguments
+
+| Argument | Description | Required |
+|----------|-------------|----------|
+| `plan-file` | Path to the plan file (e.g., `plans/add-dark-mode.md`) | Yes |
+
+## What It Does
+
+The `spec` command transforms your human-created plan into a structured specification:
+
+1. **Creates spec directory** at `specs/<feature-name>/`
+2. **Generates SPEC.md** - The state file tracking requirements, tasks, and progress
+3. **Generates PROMPT.md** - Instructions for each iteration of the autonomous loop
+4. **Auto-detects quality gates** based on your project type
+5. **Injects accumulated context** from previous implementations
+
+### Files Created
+
+```
+specs/
+└── add-dark-mode/
+    ├── SPEC.md       # State file (single source of truth)
+    └── PROMPT.md     # Iteration instructions for the loop
+```
+
+## SPEC.md Structure
+
+The generated SPEC.md contains these sections:
+
+| Section | Purpose |
+|---------|---------|
+| **Frontmatter** | Status, iteration count, project type |
+| **Overview** | 2-3 sentence description |
+| **Requirements** | Checkboxes that don't change during implementation |
+| **Tasks** | Pending, In Progress, Completed, Blocked |
+| **Quality Gates** | Per-task and full iteration gates |
+| **Exit Criteria** | All must be true to complete |
+| **Context** | Key files, patterns, notes |
+| **Iteration Log** | History of each iteration |
+
+## Examples
+
+### Convert a plan to spec
+
+```bash
+borg spec plans/add-dark-mode-toggle.md
+```
+
+Output:
+```
+📋 Converting plan to spec...
+✅ Created specs/add-dark-mode-toggle/SPEC.md
+✅ Created specs/add-dark-mode-toggle/PROMPT.md
+✅ Detected project type: bun
+✅ Added quality gates: test, lint, typecheck, build
+
+Ready to implement. Run:
+  borg implement specs/add-dark-mode-toggle/
+```
+
+### Review and refine before implementing
+
+After running `borg spec`, you should review the generated SPEC.md:
+
+1. **Check task ordering** - Setup tasks should come first
+2. **Verify test associations** - Each implementation task should specify its test file
+3. **Add missing context** - Document patterns or constraints
+4. **Refine requirements** - Make them specific and testable
+
+## Quality Gate Auto-Detection
+
+Based on your project type, `spec` automatically adds appropriate quality gates:
+
+| Project Type | Quality Gates |
+|-------------|---------------|
+| Bun | `bun test`, `bun run lint`, `bun run typecheck`, `bun run build` |
+| npm | `npm run test`, `npm run lint`, `npx tsc --noEmit` |
+| Rails | `bin/rails test`, `bundle exec rubocop` |
+| Python | `pytest`, `ruff check .`, `mypy .` |
+| Go | `go test ./...`, `golangci-lint run` |
+| Rust | `cargo test`, `cargo clippy` |
+
+## Tips
+
+- **Review before implementing** - The generated spec is a starting point; refine it
+- **Add context early** - Document patterns, file locations, and constraints
+- **Keep tasks small** - Each task should be completable in one iteration
+- **Specify test files** - Each implementation task should say where tests go
+
+## Related Commands
+
+- [borg plan](/docs/commands/plan) - Create the plan that becomes a spec
+- [borg implement](/docs/commands/implement) - Start autonomous implementation
+- [borg status](/docs/commands/status) - Check implementation progress

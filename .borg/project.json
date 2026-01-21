@@ -1,8 +1,8 @@
 {
-  "discovered": "2026-01-21T22:01:00+00:00",
+  "discovered": "2026-01-21T22:02:35+00:00",
   "package_manager": "bun",
   "commands": {
-    "test": "bun test",
+    "test": "",
     "test_e2e": "",
     "build": "bun run build",
     "db": "",
@@ -12,7 +12,7 @@
     "e2e_dir": ""
   },
   "mtimes": {
-    "package_json": "1769032860",
-    "lockfile": "1769032860"
+    "package_json": "1769032874",
+    "lockfile": "1769032870"
   }
 }
