@@ -1,14 +1,14 @@
 ---
-title: borg init
-description: Initialize a project for Ralph Borg with auto-detected configuration
+title: cr init
+description: Initialize a project for Compound Ralph with auto-detected configuration
 ---
 
-Initialize a project for Ralph Borg by creating the necessary directory structure and configuration files.
+Initialize a project for Compound Ralph by creating the necessary directory structure and configuration files.
 
 ## Usage
 
 ```bash
-borg init [path]
+cr init [path]
 ```
 
 ## Arguments
@@ -19,20 +19,20 @@ borg init [path]
 
 ## What It Creates
 
-Running `borg init` sets up the following:
+Running `cr init` sets up the following:
 
 ```
 your-project/
 ├── specs/           # Feature specifications go here
-├── plans/           # Rich plans from borg plan
-├── .borg/           # Project configuration
+├── plans/           # Rich plans from cr plan
+├── .cr/             # Project configuration
 │   └── project.json # Auto-detected commands
 └── AGENTS.md        # Build/test/lint commands
 ```
 
 ### Auto-Detection
 
-Ralph Borg detects your project type and configures appropriate commands:
+Compound Ralph detects your project type and configures appropriate commands:
 
 | Project Type | Detection File | Build Command | Test Command |
 |-------------|----------------|---------------|--------------|
@@ -48,25 +48,25 @@ Ralph Borg detects your project type and configures appropriate commands:
 
 ```bash
 cd my-project
-borg init
+cr init
 ```
 
 Output:
 ```
 ✓ Created specs/
 ✓ Created plans/
-✓ Created .borg/project.json
+✓ Created .cr/project.json
 ✓ Detected: bun (bun.lockb found)
 ✓ Generated AGENTS.md
 
-Project initialized for Ralph Borg.
-Next: borg plan "your feature description"
+Project initialized for Compound Ralph.
+Next: cr plan "your feature description"
 ```
 
 ### Initialize a specific path
 
 ```bash
-borg init ~/projects/my-app
+cr init ~/projects/my-app
 ```
 
 ### Re-initialize to update detection
@@ -74,11 +74,11 @@ borg init ~/projects/my-app
 If you add a lockfile or change project structure:
 
 ```bash
-borg init
+cr init
 # Re-detects project type and updates configuration
 ```
 
 ## Related Commands
 
-- [borg plan](/commands/plan) - Create a feature plan
-- [borg status](/commands/status) - Check project status
+- [cr plan](/commands/plan) - Create a feature plan
+- [cr status](/commands/status) - Check project status

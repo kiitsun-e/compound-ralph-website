@@ -1,5 +1,5 @@
 ---
-title: borg design
+title: cr design
 description: Run an iterative design improvement loop using screenshots and the frontend-design skill
 ---
 
@@ -10,7 +10,7 @@ The `design` command runs an autonomous design improvement loop. It takes screen
 ## Usage
 
 ```bash
-borg design [url] [iterations]
+cr design [url] [--n iterations]
 ```
 
 ## Arguments
@@ -18,7 +18,7 @@ borg design [url] [iterations]
 | Argument | Description | Default |
 |----------|-------------|---------|
 | `url` | URL of running dev server | Auto-detected |
-| `iterations` | Number of improvement passes | 5 |
+| `--n` | Force exact number of iterations (disables early exit) | 5 |
 
 ## What It Does
 
@@ -34,9 +34,28 @@ The design command applies the `/frontend-design` skill philosophy in an iterati
 Each iteration focuses on one section or component. The goal is *distinctive, memorable* design—not safe defaults.
 </Aside>
 
+## The `--n` Flag
+
+By default, the design loop may exit early if it determines the design is polished. Use `--n` to force an exact number of iterations:
+
+```bash
+# Force exactly 10 iterations, no early exit
+cr design http://localhost:3000 --n 10
+```
+
+This is useful when:
+- You want thorough refinement regardless of the agent's assessment
+- Working on complex UIs that need many passes
+- Testing the loop's cumulative improvements
+
+Without `--n`, the loop stops when it outputs the completion signal:
+```
+<design-complete>Design polished.</design-complete>
+```
+
 ## Auto-Detection
 
-If no URL is provided, `borg design` checks common dev server ports:
+If no URL is provided, `cr design` checks common dev server ports:
 
 | Port | Typical Use |
 |------|-------------|
@@ -74,14 +93,6 @@ design-iterations/
 
 Each iteration log includes timestamps, the target URL, and the full output.
 
-## Completion Signal
-
-The loop stops early when the agent determines the design is polished:
-
-```
-<design-complete>Design polished.</design-complete>
-```
-
 ## Examples
 
 ### Auto-detect dev server
@@ -91,23 +102,30 @@ The loop stops early when the agent determines the design is polished:
 bun run dev &
 
 # Run design loop (auto-detects URL)
-borg design
+cr design
 ```
 
-### Specify URL and iterations
+### Specify URL and force iterations
 
 ```bash
-# 10 iterations on a specific URL
-borg design http://localhost:3000 10
+# Force exactly 10 iterations on a specific URL
+cr design http://localhost:3000 --n 10
 ```
 
 ### Design after implementation
 
 ```bash
 # Complete workflow
-borg implement specs/feat-landing-page
-borg design                           # Polish the UI
-borg review --design                  # Get design feedback
+cr implement specs/feat-landing-page
+cr design                           # Polish the UI
+cr review --design                  # Get design feedback
+```
+
+### Quick polish pass
+
+```bash
+# Just a few iterations for touch-ups
+cr design --n 3
 ```
 
 ## What Happens Next
@@ -115,11 +133,11 @@ borg review --design                  # Get design feedback
 After the design loop:
 
 1. **Review changes** - `git diff` to see styling modifications
-2. **Run design review** - `borg review --design` for feedback
+2. **Run design review** - `cr review --design` for feedback
 3. **Commit if satisfied** - Standard git workflow
 
 ## Related Commands
 
-- [`borg implement`](/commands/implement) - Build the feature first
-- [`borg review --design`](/commands/review) - Review design quality
-- [`borg fix design`](/commands/fix) - Fix design review findings
+- [`cr implement`](/commands/implement) - Build the feature first
+- [`cr review --design`](/commands/review) - Review design quality
+- [`cr fix design`](/commands/fix) - Fix design review findings

@@ -1,14 +1,14 @@
 ---
-title: borg learnings
+title: cr learnings
 description: View project learnings accumulated during Ralph Loop iterations
 ---
 
-View learnings that have been automatically captured during implementation. Learnings are stored in `.borg/learnings.json` and accumulate across iterations.
+View learnings that have been automatically captured during implementation. Learnings are stored in `.cr/learnings.json` and accumulate across iterations.
 
 ## Usage
 
 ```bash
-borg learnings [category] [limit]
+cr learnings [category] [limit]
 ```
 
 ## Arguments
@@ -33,7 +33,7 @@ Learnings are automatically categorized by type:
 
 ## How Learnings Are Captured
 
-During `borg implement`, learnings are recorded automatically when:
+During `cr implement`, learnings are recorded automatically when:
 
 - The agent discovers existing code patterns
 - Tests fail and are subsequently fixed
@@ -50,7 +50,7 @@ Each learning includes:
 
 ## Storage
 
-Learnings are stored in `.borg/learnings.json`:
+Learnings are stored in `.cr/learnings.json`:
 
 ```json
 {
@@ -79,7 +79,7 @@ All categories (last 20)
 [gotcha] API types are auto-generated, don't manually edit
 
 Categories: environment, pattern, gotcha, fix, discovery, iteration_failure
-Usage: borg learnings [category] [limit]
+Usage: cr learnings [category] [limit]
 ```
 
 ## Examples
@@ -87,26 +87,26 @@ Usage: borg learnings [category] [limit]
 ### View all learnings
 
 ```bash
-borg learnings
+cr learnings
 ```
 
 ### Filter by category
 
 ```bash
-borg learnings fix
+cr learnings fix
 # Shows only successful error fixes
 
-borg learnings pattern
+cr learnings pattern
 # Shows only discovered code patterns
 ```
 
 ### Limit results
 
 ```bash
-borg learnings "" 5
+cr learnings "" 5
 # Shows last 5 learnings (all categories)
 
-borg learnings gotcha 10
+cr learnings gotcha 10
 # Shows last 10 gotchas
 ```
 
@@ -115,7 +115,7 @@ borg learnings gotcha 10
 Learnings compound across iterations:
 
 1. **Fresh Context Each Iteration**: Claude starts fresh each time
-2. **Learnings Persist**: Stored in `.borg/learnings.json`
+2. **Learnings Persist**: Stored in `.cr/learnings.json`
 3. **Context Injection**: Recent learnings are included in the prompt
 4. **Avoid Repeated Mistakes**: The agent sees what worked before
 
@@ -123,6 +123,6 @@ This enables the loop to get smarter over time without requiring manual interven
 
 ## Related Commands
 
-- [borg implement](/commands/implement) - Generates learnings during execution
-- [borg status](/commands/status) - Check spec progress
-- [borg init](/commands/init) - Initialize project with .borg directory
+- [cr implement](/commands/implement) - Generates learnings during execution
+- [cr status](/commands/status) - Check spec progress
+- [cr init](/commands/init) - Initialize project with .cr directory

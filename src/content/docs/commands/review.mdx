@@ -1,14 +1,16 @@
 ---
-title: borg review
+title: cr review
 description: Run code and design reviews on a completed feature, generating actionable todo files
 ---
+
+import { Aside } from '@astrojs/starlight/components';
 
 Run code and design reviews on a completed feature. Findings are saved as todo files in the spec directory for tracking and fixing.
 
 ## Usage
 
 ```bash
-borg review [spec-dir] [options]
+cr review [spec-dir] [options]
 ```
 
 ## Arguments
@@ -33,6 +35,10 @@ The `review` command runs comprehensive reviews on implemented features:
 2. **Design Review** - Screenshots the UI and identifies visual/UX problems
 
 Findings are saved as individual todo files with priority levels and tags.
+
+<Aside type="note">
+Design reviews use the `/frontend-design` skill internally, applying the same philosophy used in `cr design` to identify issues with bland, generic, or AI-looking interfaces.
+</Aside>
 
 ### Output Structure
 
@@ -80,7 +86,7 @@ Specific steps to fix the issue.
 ### Run code review on a feature
 
 ```bash
-borg review specs/add-user-auth/
+cr review specs/add-user-auth/
 ```
 
 Output:
@@ -94,7 +100,7 @@ Output:
 ### Run both code and design review
 
 ```bash
-borg review specs/landing-page/ --design
+cr review specs/landing-page/ --design
 ```
 
 This runs code review first, then takes screenshots and reviews the UI.
@@ -102,15 +108,15 @@ This runs code review first, then takes screenshots and reviews the UI.
 ### Run design review only
 
 ```bash
-borg review --design-only --url http://localhost:3000
+cr review --design-only --url http://localhost:3000
 ```
 
-Skips code review, goes straight to visual analysis.
+Skips code review, goes straight to visual analysis using the `/frontend-design` skill.
 
 ### Auto-detect active spec
 
 ```bash
-borg review
+cr review
 ```
 
 Finds the spec with `status: building` or `status: complete` and reviews it.
@@ -125,7 +131,7 @@ Finds the spec with `status: building` or `status: complete` and reviews it.
 
 ## Design Review Focus
 
-Design reviews look for common AI-generated design anti-patterns:
+Design reviews use the `/frontend-design` skill to look for common AI-generated design anti-patterns:
 
 - Bland/generic appearance
 - Poor typography choices
@@ -135,18 +141,20 @@ Design reviews look for common AI-generated design anti-patterns:
 - Generic, unstyled components
 - Lack of personality or brand identity
 
+The skill applies the same bold, opinionated design philosophy used in `cr design`, but produces actionable todo items instead of implementing fixes directly.
+
 ## What Happens Next
 
 After review, use these commands to address findings:
 
 1. **Check findings** - Review the generated todo files
-2. **Create fix spec** - `borg fix code` or `borg fix design`
-3. **Implement fixes** - `borg implement`
-4. **Re-review** - `borg review` to verify clean
+2. **Create fix spec** - `cr fix code` or `cr fix design`
+3. **Implement fixes** - `cr implement`
+4. **Re-review** - `cr review` to verify clean
 
 ## Related Commands
 
-- [borg implement](/commands/implement) - Build the feature being reviewed
-- [borg fix](/commands/fix) - Create fix specs from review findings
-- [borg status](/commands/status) - Check progress of all specs
-- [borg design](/commands/design) - Polish UI design iteratively
+- [cr implement](/commands/implement) - Build the feature being reviewed
+- [cr fix](/commands/fix) - Create fix specs from review findings
+- [cr status](/commands/status) - Check progress of all specs
+- [cr design](/commands/design) - Polish UI design iteratively

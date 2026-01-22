@@ -4,16 +4,17 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://ralph-borg.dev',
+	site: 'https://compound-ralph.dev',
 	integrations: [
 		starlight({
-			title: 'Ralph Borg',
+			title: 'Compound Ralph',
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/yourusername/ralph-borg' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/yourusername/compound-ralph' },
 			],
 			customCss: ['./src/styles/custom.css'],
 			sidebar: [
 				{ label: 'Getting Started', slug: 'getting-started' },
+				{ label: 'Case Study', slug: 'case-study' },
 				{
 					label: 'Commands',
 					autogenerate: { directory: 'commands' },

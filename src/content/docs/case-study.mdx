@@ -1,0 +1,156 @@
+---
+title: Case Study - This Site
+description: How this documentation site was built using Compound Ralph
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+This documentation site was built entirely using the Compound Ralph workflow. From initial planning through design polish, every step was executed through the `cr` command line tool.
+
+## Overview
+
+The goal was to create an Astro-based documentation site with Starlight. What makes this interesting is that it demonstrates the full CR workflow in a real project—including how design iteration improves AI-generated interfaces.
+
+## The Build Process
+
+<Steps>
+
+1. **Initialize the project**
+
+   ```bash
+   cr init
+   ```
+
+2. **Create the plan**
+
+   ```bash
+   cr plan "build an astro documentation site for compound-ralph"
+   ```
+
+   This generated a comprehensive plan covering Astro setup, Starlight configuration, component structure, and documentation pages.
+
+3. **Convert to spec**
+
+   ```bash
+   cr spec plans/feat-compound-ralph-astro-website.md
+   ```
+
+4. **Run autonomous implementation**
+
+   ```bash
+   cr implement specs/feat-compound-ralph-astro-website
+   ```
+
+   **Result: 16 iterations** to build the complete site structure, pages, and styling.
+
+5. **Run design review**
+
+   ```bash
+   cr review --design-only specs/feat-compound-ralph-astro-website/
+   ```
+
+   Design review identified 8 visual issues including bland hero, weak typography, and generic styling.
+
+6. **Create design fix spec**
+
+   ```bash
+   cr fix design specs/feat-compound-ralph-astro-website
+   ```
+
+7. **Polish the design**
+
+   ```bash
+   cr implement specs/feat-compound-ralph-astro-website/fixes/design
+   ```
+
+   **Result: 7 iterations** to transform the generic AI-looking interface into a distinctive, polished design.
+
+</Steps>
+
+## Iteration Breakdown
+
+| Phase | Command | Iterations |
+|-------|---------|------------|
+| Initial implementation | `cr implement` | 16 |
+| Design fixes | `cr implement fixes/design` | 7 |
+| **Total** | | **23** |
+
+Each iteration was fully autonomous—the agent read the SPEC, picked a task, implemented it, ran quality gates, and committed progress.
+
+## Key Observations
+
+### Backpressure Caught Issues Early
+
+During implementation, the Ralph Loop runs tests, lint, and build after every task. This caught several issues:
+
+- TypeScript errors in component props
+- Missing dependencies in package.json
+- Broken imports after file reorganization
+
+Each issue was fixed in the same iteration, preventing cascading problems.
+
+### Design Review Identified 8 Visual Issues
+
+The initial AI-generated design was functional but generic. The design review found:
+
+1. Bland hero section lacking visual interest
+2. Weak typographic hierarchy
+3. Generic color palette (too much gray)
+4. Poor spacing and rhythm
+5. Missing visual atmosphere
+6. No distinctive brand identity
+7. Generic button styling
+8. Lack of animation and motion
+
+### Each Iteration Built on Learnings
+
+The CR system stores learnings in `.cr/learnings.json`. When the design fix spec ran, the agent had context about:
+
+- The project's CSS structure
+- Existing color variables
+- Component patterns already in use
+- Previous fixes that worked
+
+This compounding knowledge made later iterations more efficient.
+
+## Before and After
+
+The design transformation is visible in the landing page:
+
+**Before (initial implementation):**
+- Gray backgrounds
+- System fonts
+- Generic shadowed cards
+- No visual personality
+
+**After (design fixes):**
+- Gradient mesh backgrounds
+- Custom JetBrains Mono typography
+- Animated glowing elements
+- Distinctive terminal aesthetic
+- Particle effects and scan lines
+
+## Commands Used
+
+Here's the complete command history from the build:
+
+```bash
+cr init
+cr plan "build an astro documentation site for compound-ralph"
+cr spec plans/feat-compound-ralph-astro-website.md
+cr implement specs/feat-compound-ralph-astro-website   # 16 iterations
+cr review --design-only specs/feat-compound-ralph-astro-website/
+cr fix design specs/feat-compound-ralph-astro-website
+cr implement specs/feat-compound-ralph-astro-website/fixes/design  # 7 iterations
+```
+
+## Takeaways
+
+1. **The workflow works end-to-end** - From blank directory to polished site with no manual coding
+2. **Design iteration is essential** - AI-generated designs need refinement; the `cr design` and `cr review --design` commands address this
+3. **Backpressure prevents debt** - Running quality gates after every task catches issues early
+4. **Learnings compound** - Context from previous iterations makes the system more effective over time
+
+<Aside type="tip">
+Try building your own project with the CR workflow. Start with `cr init` and `cr plan`, then let the autonomous loop do the heavy lifting.
+</Aside>

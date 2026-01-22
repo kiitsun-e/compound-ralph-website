@@ -1,37 +1,54 @@
 ---
 title: Getting Started
-description: Get up and running with Ralph Borg in minutes
+description: Get up and running with Compound Ralph in minutes
 ---
 
 import { Steps, Aside } from '@astrojs/starlight/components';
 
-Ralph Borg is an autonomous feature implementation system. It combines human-guided planning with autonomous code generation, using continuous backpressure (tests, lint, types) to self-correct.
+Compound Ralph is an autonomous feature implementation system. It combines human-guided planning with autonomous code generation, using continuous backpressure (tests, lint, types) to self-correct.
 
 ## Prerequisites
 
-- **Claude Code CLI** - [Install from claude.ai/code](https://claude.ai/code)
-- **git** - For version control
+1. **Git** - Version control (usually pre-installed)
+   ```bash
+   git --version  # Verify installation
+   ```
 
-### Optional
+2. **Claude Code CLI** - [Install from claude.ai/code](https://claude.ai/code)
+   ```bash
+   claude --version  # Verify installation
+   ```
 
-- **compound-engineering plugin** - For rich planning workflows:
-  ```bash
-  claude "/plugin install compound-engineering"
-  ```
+3. **Compound Engineering Plugin** - Planning workflows and design skills:
+   ```bash
+   # First, add the plugin marketplace
+   claude "/plugin marketplace add https://github.com/EveryInc/compound-engineering-plugin"
+
+   # Then install the plugin
+   claude "/plugin install compound-engineering"
+   ```
+   Provides: `/workflows:plan`, `/deepen-plan`, `/workflows:review`, `/frontend-design` skill
+
+4. **Vercel agent-browser CLI** - Browser automation for screenshots and visual testing:
+   ```bash
+   npm install -g agent-browser
+   agent-browser install  # Downloads Chromium
+   ```
+   Used for design reviews and visual regression testing.
 
 ## Installation
 
-Ralph Borg is a standalone bash script. Download it and add to your PATH:
+Compound Ralph is a standalone bash script. Download it and add to your PATH:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/ralph-borg.git
+git clone https://github.com/yourusername/compound-ralph.git
 
 # Add to PATH (add to your shell profile)
-export PATH="$PATH:$HOME/ralph-borg"
+export PATH="$PATH:$HOME/compound-ralph"
 
 # Verify installation
-borg help
+cr help
 ```
 
 ## Your First Feature
@@ -46,21 +63,21 @@ Let's walk through implementing a feature from start to finish.
 
    ```bash
    cd my-project
-   borg init
+   cr init
    ```
 
    This creates:
    - `specs/` - Where feature specs live
    - `plans/` - Where rich plans are stored
    - `AGENTS.md` - Auto-detected build/test commands
-   - `.borg/` - Context and configuration
+   - `.cr/` - Context and configuration
 
 2. **Create a plan**
 
    Describe the feature you want to build:
 
    ```bash
-   borg plan "add dark mode toggle with system preference detection"
+   cr plan "add dark mode toggle with system preference detection"
    ```
 
    This launches an interactive session where you refine the feature scope. The result is a detailed plan in `plans/add-dark-mode-toggle.md`.
@@ -70,7 +87,7 @@ Let's walk through implementing a feature from start to finish.
    Transform your plan into an implementation-ready spec:
 
    ```bash
-   borg spec plans/add-dark-mode-toggle.md
+   cr spec plans/add-dark-mode-toggle.md
    ```
 
    This creates `specs/add-dark-mode-toggle/SPEC.md` - the single source of truth for implementation.
@@ -80,7 +97,7 @@ Let's walk through implementing a feature from start to finish.
    Fire and forget:
 
    ```bash
-   borg implement
+   cr implement
    ```
 
    The system will:
@@ -96,7 +113,7 @@ Let's walk through implementing a feature from start to finish.
    At any point, check how things are going:
 
    ```bash
-   borg status
+   cr status
    ```
 
    Output shows all specs with their status, iteration count, and task progress.
@@ -104,7 +121,7 @@ Let's walk through implementing a feature from start to finish.
 </Steps>
 
 <Aside type="tip">
-You can walk away during `borg implement`. It runs autonomously and commits progress. Check back later to see completed work.
+You can walk away during `cr implement`. It runs autonomously and commits progress. Check back later to see completed work.
 </Aside>
 
 ## What Happens During Implementation

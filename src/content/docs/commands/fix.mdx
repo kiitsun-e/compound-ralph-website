@@ -1,5 +1,5 @@
 ---
-title: borg fix
+title: cr fix
 description: Convert review findings into a fix spec and implement the fixes
 ---
 
@@ -8,7 +8,7 @@ Convert review findings (todos) into a fix spec and start implementation. This b
 ## Usage
 
 ```bash
-borg fix [code|design] [spec-dir]
+cr fix [code|design] [spec-dir]
 ```
 
 ## Arguments
@@ -26,7 +26,7 @@ The `fix` command creates a new SPEC.md from review findings and prepares it for
 1. **Reads todos** - Collects all `.md` files from `todos/code/` and/or `todos/design/`
 2. **Creates fix SPEC** - Generates `fixes/SPEC.md` with tasks ordered by priority
 3. **Sets up iteration** - Creates PROMPT.md for the Ralph Loop
-4. **Ready for implement** - Run `borg implement` to start fixing
+4. **Ready for implement** - Run `cr implement` to start fixing
 
 ### Output Structure
 
@@ -35,9 +35,9 @@ specs/my-feature/
 ├── SPEC.md              # Original feature spec
 ├── PROMPT.md
 ├── todos/
-│   ├── code/            # From borg review
-│   └── design/          # From borg review --design
-└── fixes/               # Created by borg fix
+│   ├── code/            # From cr review
+│   └── design/          # From cr review --design
+└── fixes/               # Created by cr fix
     ├── SPEC.md          # Fix tasks from todos
     └── PROMPT.md        # Fix iteration instructions
 ```
@@ -47,10 +47,10 @@ Or when fixing specific types:
 ```
 specs/my-feature/
 └── fixes/
-    ├── code/            # From borg fix code
+    ├── code/            # From cr fix code
     │   ├── SPEC.md
     │   └── PROMPT.md
-    └── design/          # From borg fix design
+    └── design/          # From cr fix design
         ├── SPEC.md
         └── PROMPT.md
 ```
@@ -68,7 +68,7 @@ Tasks in the fix SPEC are ordered by priority:
 ### Fix all review findings
 
 ```bash
-borg fix specs/add-user-auth/
+cr fix specs/add-user-auth/
 ```
 
 Output:
@@ -83,7 +83,7 @@ Output:
 ### Fix only code issues
 
 ```bash
-borg fix code specs/add-user-auth/
+cr fix code specs/add-user-auth/
 ```
 
 Creates `specs/add-user-auth/fixes/code/SPEC.md` with only code review findings.
@@ -91,7 +91,7 @@ Creates `specs/add-user-auth/fixes/code/SPEC.md` with only code review findings.
 ### Fix only design issues
 
 ```bash
-borg fix design
+cr fix design
 ```
 
 Auto-detects the active spec and creates a design-only fix spec.
@@ -100,19 +100,19 @@ Auto-detects the active spec and creates a design-only fix spec.
 
 ```bash
 # 1. Review your feature
-borg review specs/my-feature/
+cr review specs/my-feature/
 
 # 2. Check what was found
 ls specs/my-feature/todos/code/
 
 # 3. Create fix spec
-borg fix specs/my-feature/
+cr fix specs/my-feature/
 
 # 4. Implement the fixes
-borg implement specs/my-feature/fixes/
+cr implement specs/my-feature/fixes/
 
 # 5. Re-review to verify
-borg review specs/my-feature/
+cr review specs/my-feature/
 ```
 
 ## Fix SPEC Structure
@@ -152,17 +152,17 @@ todo_count: 5
 ## What Happens If No Todos Exist
 
 ```bash
-$ borg fix
+$ cr fix
 [WARN] No todos found to fix.
 
 Run a review first:
-  borg review              # Code review
-  borg review --design     # Design review
+  cr review              # Code review
+  cr review --design     # Design review
 ```
 
 ## Related Commands
 
-- [borg review](/commands/review) - Generate the todos that fix consumes
-- [borg implement](/commands/implement) - Run the fix spec
-- [borg status](/commands/status) - Check progress of fix specs
-- [borg design](/commands/design) - Alternative for design-only polish
+- [cr review](/commands/review) - Generate the todos that fix consumes
+- [cr implement](/commands/implement) - Run the fix spec
+- [cr status](/commands/status) - Check progress of fix specs
+- [cr design](/commands/design) - Alternative for design-only polish

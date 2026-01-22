@@ -1,5 +1,5 @@
 ---
-title: borg implement
+title: cr implement
 description: Start the autonomous implementation loop to build features from a SPEC.md
 ---
 
@@ -8,7 +8,7 @@ Start the autonomous implementation loop. This command reads your SPEC.md and ex
 ## Usage
 
 ```bash
-borg implement [spec-dir]
+cr implement [spec-dir]
 ```
 
 ## Arguments
@@ -36,15 +36,15 @@ The `implement` command runs the Ralph Loop—an autonomous, iterative implement
 
 ## Auto-Detection
 
-When run without arguments, `borg implement` looks for:
+When run without arguments, `cr implement` looks for:
 
 1. Fix specs first: `fixes/code/`, `fixes/design/`
 2. Then feature specs with `status: building` or `status: pending`
 
 ```bash
 # These are equivalent if only one spec is active:
-borg implement
-borg implement specs/my-feature/
+cr implement
+cr implement specs/my-feature/
 ```
 
 ## Examples
@@ -52,14 +52,14 @@ borg implement specs/my-feature/
 ### Start implementing a feature
 
 ```bash
-borg implement specs/add-user-auth/
+cr implement specs/add-user-auth/
 ```
 
 This starts the loop. You'll see output like:
 
 ```
 ═══════════════════════════════════════════════════════════════
-  RALPH BORG - Iteration 1
+  COMPOUND RALPH - Iteration 1
   Spec: specs/add-user-auth/
 ═══════════════════════════════════════════════════════════════
 Starting task: Install dependencies...
@@ -69,7 +69,7 @@ Starting task: Install dependencies...
 
 ```bash
 # Ctrl+C to stop, then later:
-borg implement
+cr implement
 ```
 
 The loop picks up where it left off because state lives in SPEC.md.
@@ -79,7 +79,7 @@ The loop picks up where it left off because state lives in SPEC.md.
 By default, the loop runs up to 50 iterations. For larger features:
 
 ```bash
-MAX_ITERATIONS=100 borg implement specs/large-feature/
+MAX_ITERATIONS=100 cr implement specs/large-feature/
 ```
 
 ## The Ralph Loop
@@ -110,7 +110,7 @@ When errors occur:
 |----------|----------|
 | Test failure | Agent attempts to fix in same iteration |
 | Consecutive failures | Stops after 5 failures, preserves progress |
-| Ctrl+C interrupt | Clean exit, resume with `borg implement` |
+| Ctrl+C interrupt | Clean exit, resume with `cr implement` |
 | Claude API error | Automatic retry with exponential backoff |
 
 ## Output Files
@@ -120,7 +120,7 @@ The implement command updates:
 | File | Purpose |
 |------|---------|
 | `SPEC.md` | Task status, iteration log, notes |
-| `.borg/learnings.json` | Discovered patterns for future iterations |
+| `.cr/learnings.json` | Discovered patterns for future iterations |
 | Git commits | One per completed task |
 
 ## Tips
@@ -128,11 +128,11 @@ The implement command updates:
 - **Start small** - Break tasks into atomic units in your spec
 - **Trust backpressure** - Tests catch most issues automatically
 - **Check iteration log** - SPEC.md shows what happened each iteration
-- **Use fix specs** - Run `borg review` then `borg fix` for cleanup
+- **Use fix specs** - Run `cr review` then `cr fix` for cleanup
 
 ## Related Commands
 
-- [borg spec](/commands/spec) - Create the SPEC.md that implement reads
-- [borg status](/commands/status) - Check progress of all specs
-- [borg review](/commands/review) - Review completed work
-- [borg fix](/commands/fix) - Create fix specs from review findings
+- [cr spec](/commands/spec) - Create the SPEC.md that implement reads
+- [cr status](/commands/status) - Check progress of all specs
+- [cr review](/commands/review) - Review completed work
+- [cr fix](/commands/fix) - Create fix specs from review findings

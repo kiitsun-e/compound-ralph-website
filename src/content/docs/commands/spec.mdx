@@ -1,5 +1,5 @@
 ---
-title: borg spec
+title: cr spec
 description: Convert a plan to SPEC.md format for autonomous implementation
 ---
 
@@ -8,7 +8,7 @@ Convert a rich plan into the SPEC.md format that powers autonomous implementatio
 ## Usage
 
 ```bash
-borg spec <plan-file>
+cr spec <plan-file>
 ```
 
 ## Arguments
@@ -56,7 +56,7 @@ The generated SPEC.md contains these sections:
 ### Convert a plan to spec
 
 ```bash
-borg spec plans/add-dark-mode-toggle.md
+cr spec plans/add-dark-mode-toggle.md
 ```
 
 Output:
@@ -68,12 +68,12 @@ Output:
 ✅ Added quality gates: test, lint, typecheck, build
 
 Ready to implement. Run:
-  borg implement specs/add-dark-mode-toggle/
+  cr implement specs/add-dark-mode-toggle/
 ```
 
 ### Review and refine before implementing
 
-After running `borg spec`, you should review the generated SPEC.md:
+After running `cr spec`, you should review the generated SPEC.md:
 
 1. **Check task ordering** - Setup tasks should come first
 2. **Verify test associations** - Each implementation task should specify its test file
@@ -102,6 +102,6 @@ Based on your project type, `spec` automatically adds appropriate quality gates:
 
 ## Related Commands
 
-- [borg plan](/commands/plan) - Create the plan that becomes a spec
-- [borg implement](/commands/implement) - Start autonomous implementation
-- [borg status](/commands/status) - Check implementation progress
+- [cr plan](/commands/plan) - Create the plan that becomes a spec
+- [cr implement](/commands/implement) - Start autonomous implementation
+- [cr status](/commands/status) - Check implementation progress

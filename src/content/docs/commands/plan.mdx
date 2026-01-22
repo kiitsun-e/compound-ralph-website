@@ -1,5 +1,5 @@
 ---
-title: borg plan
+title: cr plan
 description: Create and enrich a feature plan using compound-engineering workflows
 ---
 
@@ -8,7 +8,7 @@ Create a feature plan using rich, human-guided planning workflows. Plans are dee
 ## Usage
 
 ```bash
-borg plan <description>
+cr plan <description>
 ```
 
 ## Arguments
@@ -56,7 +56,7 @@ The plan file includes:
 ### Create a simple feature plan
 
 ```bash
-borg plan "add user authentication with email/password"
+cr plan "add user authentication with email/password"
 ```
 
 This starts an interactive session where you'll be asked about:
@@ -68,7 +68,7 @@ This starts an interactive session where you'll be asked about:
 ### Create a plan with detailed description
 
 ```bash
-borg plan "add dark mode toggle with system preference detection and persistent user choice"
+cr plan "add dark mode toggle with system preference detection and persistent user choice"
 ```
 
 More detailed descriptions lead to fewer clarifying questions.
@@ -86,8 +86,8 @@ After the initial plan is created, you can run `/deepen-plan` in the Claude sess
 After planning:
 
 1. **Review the plan** in `plans/<feature-name>.md`
-2. **Convert to spec** with `borg spec plans/<feature-name>.md`
-3. **Implement** with `borg implement`
+2. **Convert to spec** with `cr spec plans/<feature-name>.md`
+3. **Implement** with `cr implement`
 
 ## Tips
 
@@ -97,6 +97,6 @@ After planning:
 
 ## Related Commands
 
-- [borg spec](/commands/spec) - Convert plan to implementation spec
-- [borg implement](/commands/implement) - Start autonomous implementation
-- [borg init](/commands/init) - Initialize project (run before planning)
+- [cr spec](/commands/spec) - Convert plan to implementation spec
+- [cr implement](/commands/implement) - Start autonomous implementation
+- [cr init](/commands/init) - Initialize project (run before planning)

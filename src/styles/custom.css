@@ -1,39 +1,963 @@
 /* Ralph Borg - Custom Starlight Theme
- * Cyan/green accent color scheme for the documentation site
+ * Dark terminal aesthetic matching the landing page
  */
 
-/* Starlight theme color overrides */
-:root {
-	/* Primary accent color - cyan */
-	--sl-color-accent: #00e5ff;
-	--sl-color-accent-low: rgba(0, 229, 255, 0.15);
-	--sl-color-accent-high: #00ff9f;
+/* Import fonts to match landing page */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600&display=swap');
 
-	/* Text link color */
-	--sl-color-text-accent: #00e5ff;
-}
-
-/* Dark mode specific overrides (Starlight uses dark mode by default) */
-:root[data-theme='dark'] {
-	--sl-color-accent: #00e5ff;
-	--sl-color-accent-low: rgba(0, 229, 255, 0.15);
-	--sl-color-accent-high: #00ff9f;
-	--sl-color-text-accent: #00e5ff;
-}
-
-/* Light mode overrides - slightly darker for readability */
-:root[data-theme='light'] {
-	--sl-color-accent: #00b8d4;
-	--sl-color-accent-low: rgba(0, 184, 212, 0.15);
-	--sl-color-accent-high: #00c853;
-	--sl-color-text-accent: #00838f;
-}
-
-/* Landing page color variables (for custom landing page in Task 4) */
+/* Landing page color variables */
 :root {
 	--landing-bg: #0a0f0d;
 	--landing-text: #e0f2e9;
 	--landing-accent: #00e5ff;
 	--landing-accent-green: #00ff9f;
 	--landing-muted: #6b8f7a;
+}
+
+/* Force dark mode and override Starlight defaults */
+:root,
+:root[data-theme='dark'],
+:root[data-theme='light'] {
+	/* Background colors - dark terminal aesthetic */
+	--sl-color-bg: #0a0f0d;
+	--sl-color-bg-nav: rgba(10, 15, 13, 0.95);
+	--sl-color-bg-sidebar: rgba(8, 12, 10, 0.98);
+	--sl-color-bg-inline-code: rgba(0, 229, 255, 0.08);
+
+	/* Accent colors - cyan/green gradient system */
+	--sl-color-accent: #00e5ff;
+	--sl-color-accent-low: rgba(0, 229, 255, 0.12);
+	--sl-color-accent-high: #00ff9f;
+
+	/* Text colors */
+	--sl-color-white: #e0f2e9;
+	--sl-color-gray-1: #c5ddd0;
+	--sl-color-gray-2: #9bbfaa;
+	--sl-color-gray-3: #6b8f7a;
+	--sl-color-gray-4: #4a6858;
+	--sl-color-gray-5: #2d4038;
+	--sl-color-gray-6: #1a2b24;
+	--sl-color-black: #0a0f0d;
+
+	--sl-color-text: #e0f2e9;
+	--sl-color-text-accent: #00e5ff;
+
+	/* Borders and hairlines */
+	--sl-color-hairline: rgba(0, 229, 255, 0.12);
+	--sl-color-hairline-light: rgba(0, 229, 255, 0.06);
+	--sl-color-hairline-shade: rgba(0, 0, 0, 0.4);
+
+	/* Typography */
+	--sl-font: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+	--sl-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+	/* Spacing adjustments */
+	--sl-content-width: 50rem;
+	--sl-sidebar-width: 18rem;
+}
+
+/* ========================================
+   Global Styles (Starlight docs only)
+   ======================================== */
+
+/* Dark background with subtle gradient - for Starlight pages */
+html:has([data-pagefind-body]),
+html:has(.sidebar) {
+	background:
+		radial-gradient(ellipse 80% 60% at 15% 20%, rgba(0, 229, 255, 0.04) 0%, transparent 50%),
+		radial-gradient(ellipse 60% 80% at 85% 75%, rgba(0, 255, 159, 0.03) 0%, transparent 45%),
+		#0a0f0d !important;
+	color-scheme: dark;
+}
+
+/* Ensure landing page keeps its own background */
+html:has(.landing) {
+	background: transparent !important;
+}
+
+body:has(.sidebar) {
+	background: transparent;
+}
+
+/* ========================================
+   Header / Navigation
+   ======================================== */
+
+/* Site header styling */
+header.header {
+	background: rgba(10, 15, 13, 0.92) !important;
+	backdrop-filter: blur(12px);
+	border-bottom: 1px solid rgba(0, 229, 255, 0.1) !important;
+}
+
+/* Logo/site title */
+.site-title {
+	font-family: 'JetBrains Mono', monospace !important;
+	font-weight: 700 !important;
+	font-size: 1.25rem !important;
+	letter-spacing: -0.02em;
+	background: linear-gradient(135deg, #00e5ff, #00ff9f);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+/* Search bar styling */
+site-search button {
+	background: rgba(0, 229, 255, 0.06) !important;
+	border: 1px solid rgba(0, 229, 255, 0.15) !important;
+	border-radius: 8px !important;
+}
+
+site-search button:hover {
+	background: rgba(0, 229, 255, 0.1) !important;
+	border-color: rgba(0, 229, 255, 0.25) !important;
+}
+
+/* ========================================
+   Sidebar
+   ======================================== */
+
+/* Sidebar container */
+nav.sidebar {
+	background: rgba(8, 12, 10, 0.6);
+	border-right: 1px solid rgba(0, 229, 255, 0.08);
+}
+
+/* Sidebar group labels */
+.sidebar-content .top-level > li > details > summary,
+.sidebar-content .top-level > li > a {
+	font-family: 'JetBrains Mono', monospace;
+	font-weight: 600;
+	font-size: 0.8125rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #6b8f7a;
+	padding: 0.75rem 1rem;
+}
+
+/* Active sidebar item */
+[aria-current="page"],
+[aria-current="true"] {
+	background: linear-gradient(90deg, rgba(0, 229, 255, 0.12), rgba(0, 229, 255, 0.03)) !important;
+	border-left: 3px solid #00e5ff !important;
+	color: #00e5ff !important;
+	font-weight: 600 !important;
+	box-shadow: inset 0 1px 0 rgba(0, 229, 255, 0.05), inset 0 -1px 0 rgba(0, 229, 255, 0.05);
+}
+
+/* Sidebar links */
+.sidebar-content a {
+	color: #c5ddd0;
+	transition: color 0.2s ease, background 0.2s ease;
+	border-radius: 6px;
+	padding: 0.5rem 1rem;
+	margin: 2px 0;
+}
+
+.sidebar-content a:hover {
+	color: #00e5ff;
+	background: rgba(0, 229, 255, 0.06);
+}
+
+/* ========================================
+   Main Content Area
+   ======================================== */
+
+/* Content wrapper */
+main {
+	background: transparent;
+}
+
+/* Page title - Starlight docs only */
+.sl-markdown-content h1,
+[data-pagefind-body] h1 {
+	font-family: 'JetBrains Mono', monospace !important;
+	font-weight: 700 !important;
+	font-size: 3rem !important;
+	letter-spacing: -0.035em;
+	color: #e0f2e9 !important;
+	margin-bottom: 1.75rem !important;
+	line-height: 1.05 !important;
+	text-shadow: 0 0 60px rgba(0, 229, 255, 0.1);
+}
+
+/* Section headings - Starlight docs only */
+.sl-markdown-content h2,
+[data-pagefind-body] h2 {
+	font-family: 'JetBrains Mono', monospace !important;
+	font-weight: 600 !important;
+	font-size: 1.75rem !important;
+	letter-spacing: -0.025em;
+	color: #e0f2e9 !important;
+	margin-top: 3.5rem !important;
+	padding-bottom: 0.875rem;
+	border-bottom: 1px solid rgba(0, 229, 255, 0.12);
+	position: relative;
+}
+
+.sl-markdown-content h2::before,
+[data-pagefind-body] h2::before {
+	content: '';
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	width: 60px;
+	height: 2px;
+	background: linear-gradient(90deg, var(--landing-accent, #00e5ff), transparent);
+}
+
+.sl-markdown-content h3,
+[data-pagefind-body] h3 {
+	font-family: 'JetBrains Mono', monospace !important;
+	font-weight: 600 !important;
+	font-size: 1.25rem !important;
+	color: #c5ddd0 !important;
+	margin-top: 2rem !important;
+}
+
+/* Body text - Starlight docs only */
+.sl-markdown-content p,
+.sl-markdown-content li,
+[data-pagefind-body] p,
+[data-pagefind-body] li {
+	color: #9bbfaa;
+	line-height: 1.75;
+}
+
+/* Links - Starlight docs only */
+.sl-markdown-content a:not(.site-title):not([aria-current]),
+[data-pagefind-body] a:not(.site-title):not([aria-current]) {
+	color: #00e5ff;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.sl-markdown-content a:not(.site-title):not([aria-current]):hover,
+[data-pagefind-body] a:not(.site-title):not([aria-current]):hover {
+	color: #00ff9f;
+	text-decoration: underline;
+}
+
+/* Strong text - Starlight docs only */
+.sl-markdown-content strong,
+.sl-markdown-content b,
+[data-pagefind-body] strong,
+[data-pagefind-body] b {
+	color: #e0f2e9;
+	font-weight: 600;
+}
+
+/* ========================================
+   Code Blocks
+   ======================================== */
+
+/* Code block container */
+.expressive-code,
+pre {
+	background: rgba(8, 12, 10, 0.97) !important;
+	border: 1px solid rgba(0, 229, 255, 0.12) !important;
+	border-radius: 14px !important;
+	box-shadow:
+		0 8px 32px rgba(0, 0, 0, 0.4),
+		0 2px 8px rgba(0, 0, 0, 0.2),
+		inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Code block header (with filename) */
+.expressive-code .frame {
+	background: transparent !important;
+}
+
+.expressive-code .frame.has-title .header {
+	background: rgba(0, 229, 255, 0.05) !important;
+	border-bottom: 1px solid rgba(0, 229, 255, 0.1) !important;
+	padding: 0.5rem 1rem;
+}
+
+/* Terminal-style dots */
+.expressive-code .frame.has-title .header::before {
+	content: '● ● ●';
+	font-size: 0.625rem;
+	letter-spacing: 4px;
+	margin-right: 1rem;
+	color: rgba(0, 229, 255, 0.4);
+}
+
+/* Inline code */
+code:not(pre code) {
+	background: rgba(0, 229, 255, 0.07) !important;
+	color: #00e5ff !important;
+	padding: 0.2em 0.55em;
+	border-radius: 5px;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.875em;
+	border: 1px solid rgba(0, 229, 255, 0.1);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   Table of Contents (Right Sidebar)
+   ======================================== */
+
+/* TOC header */
+starlight-toc h2 {
+	font-family: 'JetBrains Mono', monospace !important;
+	font-size: 0.75rem !important;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: #6b8f7a !important;
+	border-bottom: none !important;
+	margin-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+/* TOC links */
+starlight-toc a {
+	color: #6b8f7a !important;
+	font-size: 0.875rem;
+	transition: color 0.2s ease;
+}
+
+starlight-toc a:hover {
+	color: #00e5ff !important;
+}
+
+starlight-toc a[aria-current="true"] {
+	color: #00e5ff !important;
+	font-weight: 600;
+}
+
+/* ========================================
+   Lists
+   ======================================== */
+
+/* Unordered lists - Starlight docs only */
+.sl-markdown-content ul,
+[data-pagefind-body] ul {
+	list-style: none;
+	padding-left: 1.5rem;
+}
+
+.sl-markdown-content ul > li,
+[data-pagefind-body] ul > li {
+	position: relative;
+	padding-left: 0.5rem;
+}
+
+.sl-markdown-content ul > li::before,
+[data-pagefind-body] ul > li::before {
+	content: '▸';
+	position: absolute;
+	left: -1rem;
+	color: #00e5ff;
+	font-size: 0.75rem;
+}
+
+/* ========================================
+   Cards & Callouts
+   ======================================== */
+
+/* Starlight aside/callout boxes */
+.starlight-aside {
+	background: rgba(0, 229, 255, 0.04) !important;
+	border: 1px solid rgba(0, 229, 255, 0.12) !important;
+	border-radius: 14px !important;
+	padding: 1.5rem !important;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.starlight-aside--tip {
+	border-left: 3px solid #00ff9f !important;
+}
+
+.starlight-aside--note {
+	border-left: 3px solid #00e5ff !important;
+}
+
+.starlight-aside--caution {
+	border-left: 3px solid #ffc864 !important;
+	background: rgba(255, 200, 100, 0.05) !important;
+}
+
+.starlight-aside--danger {
+	border-left: 3px solid #ff6b6b !important;
+	background: rgba(255, 107, 107, 0.05) !important;
+}
+
+/* ========================================
+   Buttons & Interactive Elements
+   ======================================== */
+
+/* Link buttons */
+.sl-link-button {
+	font-family: 'JetBrains Mono', monospace !important;
+	font-weight: 600 !important;
+	border-radius: 8px !important;
+	transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.sl-link-button:hover {
+	transform: translateY(-2px);
+}
+
+/* Primary variant */
+.sl-link-button.sl-link-button--primary {
+	background: linear-gradient(135deg, #00e5ff, #00ff9f) !important;
+	color: #0a0f0d !important;
+	box-shadow: 0 2px 12px rgba(0, 229, 255, 0.3);
+}
+
+.sl-link-button.sl-link-button--primary:hover {
+	box-shadow: 0 6px 24px rgba(0, 229, 255, 0.4);
+}
+
+/* Secondary variant */
+.sl-link-button.sl-link-button--secondary {
+	background: rgba(0, 229, 255, 0.08) !important;
+	border: 1px solid rgba(0, 229, 255, 0.3) !important;
+	color: #e0f2e9 !important;
+}
+
+.sl-link-button.sl-link-button--secondary:hover {
+	background: rgba(0, 229, 255, 0.15) !important;
+	border-color: #00e5ff !important;
+}
+
+/* ========================================
+   Mobile Responsive
+   ======================================== */
+
+@media (max-width: 72rem) {
+	/* Mobile menu button */
+	.sl-menu-button {
+		color: #00e5ff !important;
+	}
+
+	/* Mobile sidebar */
+	.sidebar-pane {
+		background: rgba(10, 15, 13, 0.98) !important;
+		backdrop-filter: blur(12px);
+	}
+}
+
+/* ========================================
+   Theme Toggle Override
+   ======================================== */
+
+/* Hide light mode option or style the toggle */
+starlight-theme-select select {
+	background: rgba(0, 229, 255, 0.06) !important;
+	border: 1px solid rgba(0, 229, 255, 0.15) !important;
+	border-radius: 6px !important;
+	color: #c5ddd0 !important;
+}
+
+/* ========================================
+   Scrollbar Styling
+   ======================================== */
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(0, 229, 255, 0.2);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(0, 229, 255, 0.4);
+}
+
+/* ========================================
+   Selection Highlight
+   ======================================== */
+
+::selection {
+	background: rgba(0, 229, 255, 0.3);
+	color: #e0f2e9;
+}
+
+/* ========================================
+   Enhanced Visual Polish (Iteration 2)
+   ======================================== */
+
+/* Subtle tech grid for docs pages */
+html:has([data-pagefind-body])::before,
+html:has(.sidebar)::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image:
+		linear-gradient(rgba(0, 229, 255, 0.015) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(0, 229, 255, 0.015) 1px, transparent 1px);
+	background-size: 80px 80px;
+	pointer-events: none;
+	z-index: -1;
+	mask-image: radial-gradient(ellipse 60% 60% at 50% 30%, black 10%, transparent 70%);
+	-webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 30%, black 10%, transparent 70%);
+}
+
+/* Enhanced page title with glow */
+.sl-markdown-content h1::after,
+[data-pagefind-body] h1::after {
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 100px;
+	height: 3px;
+	background: linear-gradient(90deg, #00e5ff, #00ff9f, transparent);
+	border-radius: 2px;
+	box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+}
+
+.sl-markdown-content h1,
+[data-pagefind-body] h1 {
+	position: relative;
+	padding-bottom: 1rem;
+}
+
+/* Animated underline on h2 hover */
+.sl-markdown-content h2::after,
+[data-pagefind-body] h2::after {
+	content: '';
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: linear-gradient(90deg, rgba(0, 229, 255, 0.4), rgba(0, 255, 159, 0.2), transparent);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.4s ease;
+}
+
+.sl-markdown-content h2:hover::after,
+[data-pagefind-body] h2:hover::after {
+	transform: scaleX(1);
+}
+
+/* Enhanced code block with corner accents */
+.expressive-code {
+	position: relative;
+}
+
+.expressive-code::before,
+.expressive-code::after {
+	content: '';
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border: 2px solid rgba(0, 229, 255, 0.2);
+	pointer-events: none;
+}
+
+.expressive-code::before {
+	top: -2px;
+	left: -2px;
+	border-right: none;
+	border-bottom: none;
+	border-radius: 14px 0 0 0;
+}
+
+.expressive-code::after {
+	bottom: -2px;
+	right: -2px;
+	border-left: none;
+	border-top: none;
+	border-radius: 0 0 14px 0;
+}
+
+/* Sidebar active item with animated glow */
+[aria-current="page"]::before,
+[aria-current="true"]::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 3px;
+	background: linear-gradient(180deg, #00e5ff, #00ff9f);
+	animation: sidebarGlow 2s ease-in-out infinite;
+}
+
+@keyframes sidebarGlow {
+	0%, 100% {
+		box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+	}
+	50% {
+		box-shadow: 0 0 15px rgba(0, 255, 159, 0.8);
+	}
+}
+
+/* Enhanced list items with hover effect */
+.sl-markdown-content ul > li,
+[data-pagefind-body] ul > li {
+	transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.sl-markdown-content ul > li:hover,
+[data-pagefind-body] ul > li:hover {
+	transform: translateX(4px);
+	color: #c5ddd0;
+}
+
+.sl-markdown-content ul > li:hover::before,
+[data-pagefind-body] ul > li:hover::before {
+	color: #00ff9f;
+	transform: scale(1.2);
+}
+
+/* Inline code hover glow */
+code:not(pre code):hover {
+	box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+	border-color: rgba(0, 229, 255, 0.3);
+}
+
+/* Content area subtle border highlight */
+.content-panel {
+	position: relative;
+}
+
+.content-panel::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1px;
+	height: 100%;
+	background: linear-gradient(
+		180deg,
+		transparent,
+		rgba(0, 229, 255, 0.1) 20%,
+		rgba(0, 229, 255, 0.1) 80%,
+		transparent
+	);
+}
+
+/* Search modal styling enhancement */
+.pagefind-ui__search-input {
+	background: rgba(0, 229, 255, 0.05) !important;
+	border: 1px solid rgba(0, 229, 255, 0.2) !important;
+}
+
+/* Smooth page load fade-in */
+main {
+	animation: pageLoad 0.4s ease-out;
+}
+
+@keyframes pageLoad {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ========================================
+   Pagination (Prev/Next links)
+   ======================================== */
+
+.pagination-links a {
+	background: rgba(0, 229, 255, 0.04) !important;
+	border: 1px solid rgba(0, 229, 255, 0.1) !important;
+	border-radius: 14px !important;
+	transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pagination-links a:hover {
+	background: rgba(0, 229, 255, 0.08) !important;
+	border-color: rgba(0, 229, 255, 0.25) !important;
+	transform: translateY(-3px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 229, 255, 0.05);
+}
+
+.pagination-links .link-title {
+	color: #e0f2e9 !important;
+	font-family: 'JetBrains Mono', monospace;
+	font-weight: 600;
+}
+
+/* ========================================
+   Social Icons
+   ======================================== */
+
+.social-icons a {
+	color: #6b8f7a !important;
+	transition: color 0.2s ease !important;
+}
+
+.social-icons a:hover {
+	color: #00e5ff !important;
+}
+
+/* ========================================
+   Iteration 3 - Enhanced Visual Polish
+   ======================================== */
+
+/* Sidebar hover micro-interactions */
+.sidebar-content a {
+	position: relative;
+	overflow: hidden;
+}
+
+.sidebar-content a::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(180deg, #00e5ff, #00ff9f);
+	transform: scaleY(0);
+	transform-origin: top;
+	transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sidebar-content a:hover::before {
+	transform: scaleY(1);
+}
+
+/* Enhanced code block interactions */
+.expressive-code {
+	transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.expressive-code:hover {
+	transform: translateY(-2px);
+	box-shadow:
+		0 12px 40px rgba(0, 0, 0, 0.5),
+		0 4px 12px rgba(0, 0, 0, 0.3),
+		0 0 0 1px rgba(0, 229, 255, 0.15),
+		inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Floating copy button enhancement */
+.expressive-code .copy {
+	transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease !important;
+}
+
+.expressive-code:hover .copy {
+	opacity: 1 !important;
+}
+
+.expressive-code .copy:hover {
+	transform: scale(1.1) !important;
+	background: rgba(0, 229, 255, 0.2) !important;
+}
+
+/* Content prose improvements */
+.sl-markdown-content {
+	position: relative;
+}
+
+/* Subtle left border accent on content */
+.sl-markdown-content > *:first-child::before {
+	content: '';
+	position: absolute;
+	left: -2rem;
+	top: 0;
+	width: 3px;
+	height: 60px;
+	background: linear-gradient(180deg, #00e5ff, transparent);
+	border-radius: 2px;
+}
+
+/* Enhanced paragraph focus on hover */
+.sl-markdown-content p {
+	transition: color 0.2s ease;
+	position: relative;
+}
+
+.sl-markdown-content p:hover {
+	color: #c5ddd0;
+}
+
+/* Inline code with better interaction */
+code:not(pre code) {
+	transition: all 0.2s ease;
+	cursor: default;
+}
+
+code:not(pre code):hover {
+	background: rgba(0, 229, 255, 0.12) !important;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(0, 229, 255, 0.2);
+}
+
+/* TOC enhanced active state */
+starlight-toc a[aria-current="true"]::before {
+	content: '';
+	position: absolute;
+	left: -12px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 6px;
+	height: 6px;
+	background: #00e5ff;
+	border-radius: 50%;
+	box-shadow: 0 0 8px #00e5ff;
+}
+
+starlight-toc a {
+	position: relative;
+	transition: color 0.2s ease, transform 0.2s ease !important;
+}
+
+starlight-toc a:hover {
+	transform: translateX(4px);
+}
+
+/* Pagination links with icon animation */
+.pagination-links a svg {
+	transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.pagination-links a:hover svg {
+	transform: translateX(4px);
+}
+
+.pagination-links a.link-prev:hover svg {
+	transform: translateX(-4px);
+}
+
+/* Search input enhanced styling */
+site-search input,
+.pagefind-ui__search-input {
+	transition: all 0.2s ease !important;
+}
+
+site-search input:focus,
+.pagefind-ui__search-input:focus {
+	box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.3), 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+	border-color: rgba(0, 229, 255, 0.5) !important;
+}
+
+/* Header logo pulse on hover */
+.site-title {
+	transition: filter 0.3s ease !important;
+}
+
+.site-title:hover {
+	filter: brightness(1.2) drop-shadow(0 0 8px rgba(0, 229, 255, 0.5));
+}
+
+/* Subtle breathing animation for active elements */
+@keyframes subtleBreath {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.85;
+	}
+}
+
+[aria-current="page"],
+[aria-current="true"] {
+	animation: subtleBreath 4s ease-in-out infinite;
+}
+
+/* Enhanced blockquote styling */
+blockquote {
+	position: relative;
+	padding-left: 1.5rem;
+	border-left: 3px solid #00e5ff;
+	margin: 2rem 0;
+	font-style: italic;
+	color: #9bbfaa;
+}
+
+blockquote::before {
+	content: '"';
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	font-size: 3rem;
+	color: rgba(0, 229, 255, 0.15);
+	font-family: Georgia, serif;
+	line-height: 1;
+}
+
+/* Table styling for docs */
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin: 1.5rem 0;
+	background: rgba(0, 229, 255, 0.02);
+	border: 1px solid rgba(0, 229, 255, 0.1);
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+th {
+	background: rgba(0, 229, 255, 0.08);
+	color: #e0f2e9;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.875rem;
+	text-align: left;
+	padding: 1rem;
+	border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+}
+
+td {
+	padding: 0.875rem 1rem;
+	color: #9bbfaa;
+	border-bottom: 1px solid rgba(0, 229, 255, 0.05);
+}
+
+tr:last-child td {
+	border-bottom: none;
+}
+
+tr:hover td {
+	background: rgba(0, 229, 255, 0.03);
+	color: #c5ddd0;
+}
+
+/* Horizontal rule styling */
+hr {
+	border: none;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.3), transparent);
+	margin: 3rem 0;
+}
+
+/* Enhanced focus states for accessibility */
+a:focus-visible,
+button:focus-visible {
+	outline: 2px solid #00e5ff;
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+/* Mobile sidebar slide-in animation */
+@media (max-width: 72rem) {
+	.sidebar-pane {
+		animation: slideIn 0.3s ease-out;
+	}
+
+	@keyframes slideIn {
+		from {
+			transform: translateX(-100%);
+			opacity: 0;
+		}
+		to {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
 }

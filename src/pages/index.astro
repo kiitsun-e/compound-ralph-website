@@ -1,7 +1,7 @@
 ---
 import '../styles/custom.css';
 
-const title = 'Ralph Borg';
+const title = 'Compound Ralph';
 const description = 'Autonomous feature implementation combining rich planning with self-correcting code generation.';
 ---
 
@@ -18,11 +18,15 @@ const description = 'Autonomous feature implementation combining rich planning w
 	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body class="landing">
+	<!-- Scanning line effect -->
+	<div class="scan-line" aria-hidden="true"></div>
+	<!-- Data stream particles -->
+	<div class="data-stream" aria-hidden="true"></div>
 	<main class="landing-main">
 		<section class="hero">
 			<div class="hero-content">
 				<h1 class="hero-title">
-					<span class="hero-name">Ralph Borg</span>
+					<span class="hero-name">Compound Ralph</span>
 				</h1>
 				<p class="hero-tagline">
 					Fire-and-forget feature implementation.<br />
@@ -31,7 +35,7 @@ const description = 'Autonomous feature implementation combining rich planning w
 
 				<div class="hero-buttons">
 					<a href="/getting-started" class="btn btn-primary">Get Started</a>
-					<a href="https://github.com/yourusername/ralph-borg" class="btn btn-secondary" target="_blank" rel="noopener">
+					<a href="https://github.com/yourusername/compound-ralph" class="btn btn-secondary" target="_blank" rel="noopener">
 						GitHub
 					</a>
 				</div>
@@ -46,16 +50,28 @@ const description = 'Autonomous feature implementation combining rich planning w
 					<div class="terminal-body">
 						<div class="terminal-line">
 							<span class="terminal-prompt">$</span>
-							<span class="terminal-cmd">borg implement</span>
+							<span class="terminal-cmd">cr implement</span>
 							<span class="terminal-cursor"></span>
 						</div>
 					</div>
 				</div>
-				<div class="hero-glyph">
-					<span class="glyph-bracket">[</span>
-					<span class="glyph-symbol">⟳</span>
-					<span class="glyph-bracket">]</span>
-					<span class="glyph-status"></span>
+				<div class="hero-glyph-container">
+					<div class="hero-glyph">
+						<span class="glyph-bracket">[</span>
+						<span class="glyph-symbol">⟳</span>
+						<span class="glyph-bracket">]</span>
+						<span class="glyph-status"></span>
+					</div>
+					<div class="glyph-ring glyph-ring-inner"></div>
+					<div class="glyph-ring glyph-ring-outer"></div>
+					<div class="glyph-particles">
+						<span class="particle"></span>
+						<span class="particle"></span>
+						<span class="particle"></span>
+						<span class="particle"></span>
+						<span class="particle"></span>
+						<span class="particle"></span>
+					</div>
 				</div>
 				<div class="hero-orbit"></div>
 			</div>
@@ -63,20 +79,62 @@ const description = 'Autonomous feature implementation combining rich planning w
 
 		<section class="features">
 			<div class="feature feature-primary">
+				<div class="feature-border"></div>
+				<div class="feature-icon">
+					<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M16 2L2 9L16 16L30 9L16 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+						<path d="M2 23L16 30L30 23" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+						<path d="M2 16L16 23L30 16" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+					</svg>
+				</div>
 				<span class="feature-number">01</span>
 				<h3 class="feature-title">Rich Planning</h3>
 				<p class="feature-desc">Human-guided specs with parallel research agents. Every feature starts with deep understanding.</p>
+				<div class="feature-glow"></div>
 			</div>
 			<div class="feature feature-secondary">
+				<div class="feature-border"></div>
+				<div class="feature-icon">
+					<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/>
+						<path d="M16 8V16L22 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
 				<span class="feature-number">02</span>
 				<h3 class="feature-title">Autonomous Building</h3>
 				<p class="feature-desc">The Ralph Loop executes one task per iteration with continuous backpressure for self-correction.</p>
+				<div class="feature-glow"></div>
 			</div>
 			<div class="feature feature-tertiary">
+				<div class="feature-border"></div>
+				<div class="feature-icon">
+					<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M6 12L16 4L26 12V28H6V12Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+						<path d="M12 28V18H20V28" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+						<circle cx="16" cy="11" r="2" fill="currentColor"/>
+					</svg>
+				</div>
 				<span class="feature-number">03</span>
 				<h3 class="feature-title">Compounding Learnings</h3>
 				<p class="feature-desc">Context persists across iterations. Patterns and fixes accumulate, making each run smarter.</p>
+				<div class="feature-glow"></div>
 			</div>
+		</section>
+
+		<!-- Decorative code snippets floating -->
+		<div class="floating-code" aria-hidden="true">
+			<div class="code-snippet code-1">const ralph = new Compound();</div>
+			<div class="code-snippet code-2">await feature.ship();</div>
+			<div class="code-snippet code-3">loop.iterate();</div>
+		</div>
+
+		<!-- Bold statement section -->
+		<section class="statement">
+			<div class="statement-line"></div>
+			<blockquote class="statement-quote">
+				"Ship features, not prompts."
+			</blockquote>
+			<div class="statement-line"></div>
 		</section>
 	</main>
 </body>
@@ -124,6 +182,32 @@ const description = 'Autonomous feature implementation combining rich planning w
 		}
 	}
 
+	@keyframes scanline {
+		0% {
+			transform: translateY(-100vh);
+			opacity: 0;
+		}
+		10% {
+			opacity: 1;
+		}
+		90% {
+			opacity: 1;
+		}
+		100% {
+			transform: translateY(100vh);
+			opacity: 0;
+		}
+	}
+
+	@keyframes dataStream {
+		0% {
+			background-position: 0% 0%;
+		}
+		100% {
+			background-position: 0% 100%;
+		}
+	}
+
 	/* Landing page specific styles */
 	.landing {
 		margin: 0;
@@ -150,6 +234,25 @@ const description = 'Autonomous feature implementation combining rich planning w
 		color: var(--landing-text, #e0f2e9);
 		font-family: 'Outfit', sans-serif;
 		position: relative;
+		overflow-x: hidden;
+	}
+
+	/* Tech grid pattern overlay */
+	.landing::after {
+		content: '';
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image:
+			linear-gradient(rgba(0, 229, 255, 0.02) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(0, 229, 255, 0.02) 1px, transparent 1px);
+		background-size: 60px 60px;
+		pointer-events: none;
+		z-index: 0;
+		mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%);
+		-webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%);
 	}
 
 	/* Subtle noise texture overlay for depth */
@@ -164,6 +267,48 @@ const description = 'Autonomous feature implementation combining rich planning w
 		opacity: 0.025;
 		pointer-events: none;
 		z-index: 0;
+	}
+
+	/* Scanning line effect */
+	.scan-line {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 4px;
+		background: linear-gradient(
+			90deg,
+			transparent,
+			rgba(0, 229, 255, 0.3),
+			rgba(0, 255, 159, 0.5),
+			rgba(0, 229, 255, 0.3),
+			transparent
+		);
+		box-shadow: 0 0 20px rgba(0, 229, 255, 0.5), 0 0 40px rgba(0, 255, 159, 0.3);
+		animation: scanline 8s ease-in-out infinite;
+		pointer-events: none;
+		z-index: 100;
+	}
+
+	/* Data stream effect - vertical lines */
+	.data-stream {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: repeating-linear-gradient(
+			0deg,
+			transparent,
+			transparent 98%,
+			rgba(0, 229, 255, 0.03) 98%,
+			rgba(0, 229, 255, 0.03) 100%
+		);
+		background-size: 100% 200px;
+		animation: dataStream 20s linear infinite;
+		pointer-events: none;
+		z-index: 0;
+		opacity: 0.5;
 	}
 
 	.landing-main {
@@ -190,13 +335,53 @@ const description = 'Autonomous feature implementation combining rich planning w
 
 	.hero-title {
 		margin: 0 0 1.75rem 0;
-		font-size: 4rem;
+		font-size: 4.5rem;
 		font-weight: 700;
 		font-family: 'JetBrains Mono', monospace;
-		letter-spacing: -0.03em;
-		line-height: 1.05;
+		letter-spacing: -0.04em;
+		line-height: 1;
 		opacity: 0;
 		animation: fadeInUp 0.6s ease-out forwards;
+		text-shadow:
+			0 0 80px rgba(0, 229, 255, 0.15),
+			0 0 120px rgba(0, 255, 159, 0.1);
+		position: relative;
+	}
+
+	/* Glitch flicker effect */
+	.hero-title::before {
+		content: 'Compound Ralph';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, var(--landing-accent, #00e5ff), var(--landing-accent-green, #00ff9f), var(--landing-accent, #00e5ff));
+		background-size: 200% 200%;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		animation: gradientShift 8s ease infinite, glitchFlicker 6s ease-in-out infinite;
+		clip-path: inset(0 0 0 0);
+	}
+
+	@keyframes glitchFlicker {
+		0%, 97%, 100% {
+			clip-path: inset(0 0 0 0);
+			transform: translateX(0);
+		}
+		97.5% {
+			clip-path: inset(0 0 50% 0);
+			transform: translateX(-2px);
+		}
+		98% {
+			clip-path: inset(50% 0 0 0);
+			transform: translateX(2px);
+		}
+		98.5% {
+			clip-path: inset(0 0 0 0);
+			transform: translateX(0);
+		}
 	}
 
 	.hero-name {
@@ -241,6 +426,15 @@ const description = 'Autonomous feature implementation combining rich planning w
 		animation-delay: 0.2s;
 	}
 
+	.hero-glyph-container {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 220px;
+		height: 220px;
+	}
+
 	.hero-glyph {
 		font-family: 'JetBrains Mono', monospace;
 		font-size: 4rem;
@@ -249,7 +443,7 @@ const description = 'Autonomous feature implementation combining rich planning w
 		align-items: center;
 		gap: 0.25rem;
 		position: relative;
-		z-index: 1;
+		z-index: 3;
 	}
 
 	.glyph-bracket {
@@ -262,6 +456,128 @@ const description = 'Autonomous feature implementation combining rich planning w
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
+		animation: symbolPulse 3s ease-in-out infinite;
+	}
+
+	@keyframes symbolPulse {
+		0%, 100% { filter: brightness(1); }
+		50% { filter: brightness(1.3) drop-shadow(0 0 10px rgba(0, 229, 255, 0.6)); }
+	}
+
+	/* Inner glowing ring */
+	.glyph-ring {
+		position: absolute;
+		border-radius: 50%;
+		border: 2px solid transparent;
+	}
+
+	.glyph-ring-inner {
+		width: 140px;
+		height: 140px;
+		border-color: rgba(0, 229, 255, 0.3);
+		background: radial-gradient(circle at center, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
+		animation: ringPulse 4s ease-in-out infinite;
+	}
+
+	.glyph-ring-outer {
+		width: 190px;
+		height: 190px;
+		border-style: dashed;
+		border-color: rgba(0, 255, 159, 0.2);
+		animation: orbitSpin 20s linear infinite reverse;
+	}
+
+	@keyframes ringPulse {
+		0%, 100% {
+			transform: scale(1);
+			opacity: 1;
+		}
+		50% {
+			transform: scale(1.05);
+			opacity: 0.7;
+		}
+	}
+
+	/* Floating particles */
+	.glyph-particles {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+
+	.particle {
+		position: absolute;
+		width: 4px;
+		height: 4px;
+		background: var(--landing-accent, #00e5ff);
+		border-radius: 50%;
+		box-shadow: 0 0 8px var(--landing-accent, #00e5ff);
+	}
+
+	.particle:nth-child(1) {
+		top: 10%;
+		left: 50%;
+		animation: float 6s ease-in-out infinite;
+	}
+
+	.particle:nth-child(2) {
+		top: 30%;
+		right: 5%;
+		width: 3px;
+		height: 3px;
+		background: var(--landing-accent-green, #00ff9f);
+		box-shadow: 0 0 8px var(--landing-accent-green, #00ff9f);
+		animation: float 5s ease-in-out infinite 0.5s;
+	}
+
+	.particle:nth-child(3) {
+		bottom: 15%;
+		right: 15%;
+		animation: float 7s ease-in-out infinite 1s;
+	}
+
+	.particle:nth-child(4) {
+		bottom: 25%;
+		left: 10%;
+		width: 3px;
+		height: 3px;
+		background: var(--landing-accent-green, #00ff9f);
+		box-shadow: 0 0 8px var(--landing-accent-green, #00ff9f);
+		animation: float 5.5s ease-in-out infinite 1.5s;
+	}
+
+	.particle:nth-child(5) {
+		top: 40%;
+		left: 0%;
+		animation: float 6.5s ease-in-out infinite 2s;
+	}
+
+	.particle:nth-child(6) {
+		top: 60%;
+		right: 0%;
+		width: 2px;
+		height: 2px;
+		animation: float 5s ease-in-out infinite 2.5s;
+	}
+
+	@keyframes float {
+		0%, 100% {
+			transform: translateY(0) translateX(0);
+			opacity: 0.4;
+		}
+		25% {
+			transform: translateY(-10px) translateX(5px);
+			opacity: 1;
+		}
+		50% {
+			transform: translateY(-5px) translateX(-5px);
+			opacity: 0.6;
+		}
+		75% {
+			transform: translateY(-15px) translateX(3px);
+			opacity: 0.9;
+		}
 	}
 
 	.hero-orbit {
@@ -373,19 +689,22 @@ const description = 'Autonomous feature implementation combining rich planning w
 
 	/* Buttons */
 	.btn {
-		display: inline-block;
-		padding: 0.875rem 1.75rem;
-		font-size: 1rem;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 1rem 2rem;
+		font-size: 0.9375rem;
 		font-weight: 600;
 		font-family: 'JetBrains Mono', monospace;
 		text-decoration: none;
-		border-radius: 8px;
+		border-radius: 10px;
 		position: relative;
 		cursor: pointer;
-		transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-					box-shadow 0.2s ease,
-					background 0.2s ease,
-					border-color 0.2s ease;
+		letter-spacing: -0.01em;
+		transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+					box-shadow 0.25s ease,
+					background 0.25s ease,
+					border-color 0.25s ease;
 	}
 
 	.btn:hover {
@@ -407,9 +726,34 @@ const description = 'Autonomous feature implementation combining rich planning w
 		color: var(--landing-bg, #0a0f0d);
 		border: none;
 		box-shadow:
-			0 2px 8px rgba(0, 229, 255, 0.3),
-			inset 0 1px 0 rgba(255, 255, 255, 0.3);
+			0 4px 16px rgba(0, 229, 255, 0.35),
+			0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+			inset 0 2px 0 rgba(255, 255, 255, 0.25);
 		overflow: hidden;
+		text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+		position: relative;
+	}
+
+	/* Pulsing ring effect on primary button */
+	.btn-primary::after {
+		content: '';
+		position: absolute;
+		inset: -4px;
+		border: 2px solid rgba(0, 229, 255, 0.4);
+		border-radius: 14px;
+		opacity: 0;
+		animation: btnPulse 3s ease-in-out infinite;
+	}
+
+	@keyframes btnPulse {
+		0%, 100% {
+			opacity: 0;
+			transform: scale(1);
+		}
+		50% {
+			opacity: 1;
+			transform: scale(1.02);
+		}
 	}
 
 	/* Shine sweep effect */
@@ -431,9 +775,11 @@ const description = 'Autonomous feature implementation combining rich planning w
 
 	.btn-primary:hover {
 		box-shadow:
-			0 6px 24px rgba(0, 229, 255, 0.5),
-			0 0 40px rgba(0, 255, 159, 0.2),
-			inset 0 1px 0 rgba(255, 255, 255, 0.4);
+			0 8px 32px rgba(0, 229, 255, 0.55),
+			0 0 60px rgba(0, 255, 159, 0.25),
+			0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+			inset 0 2px 0 rgba(255, 255, 255, 0.3);
+		filter: brightness(1.05);
 	}
 
 	.btn-primary:hover::before {
@@ -447,21 +793,23 @@ const description = 'Autonomous feature implementation combining rich planning w
 			inset 0 2px 4px rgba(0, 0, 0, 0.1);
 	}
 
-	/* Secondary button - subtle fill with stronger border */
+	/* Secondary button - glass morphism style */
 	.btn-secondary {
-		background: rgba(0, 229, 255, 0.08);
+		background: rgba(0, 229, 255, 0.06);
 		color: var(--landing-text, #e0f2e9);
-		border: 1.5px solid rgba(0, 229, 255, 0.4);
+		border: 1.5px solid rgba(0, 229, 255, 0.35);
 		box-shadow:
-			0 2px 8px rgba(0, 0, 0, 0.2),
-			inset 0 1px 0 rgba(255, 255, 255, 0.04);
+			0 4px 16px rgba(0, 0, 0, 0.25),
+			inset 0 1px 0 rgba(255, 255, 255, 0.05);
+		backdrop-filter: blur(8px);
 	}
 
 	.btn-secondary:hover {
-		background: rgba(0, 229, 255, 0.15);
-		border-color: var(--landing-accent, #00e5ff);
+		background: rgba(0, 229, 255, 0.12);
+		border-color: rgba(0, 229, 255, 0.6);
 		box-shadow:
-			0 6px 20px rgba(0, 229, 255, 0.25),
+			0 8px 28px rgba(0, 229, 255, 0.2),
+			0 0 0 1px rgba(0, 229, 255, 0.1),
 			inset 0 1px 0 rgba(255, 255, 255, 0.08);
 	}
 
@@ -479,21 +827,60 @@ const description = 'Autonomous feature implementation combining rich planning w
 	}
 
 	.feature {
-		padding: 1.5rem;
-		border-radius: 8px;
-		background: linear-gradient(
-			135deg,
-			rgba(0, 229, 255, 0.06) 0%,
-			rgba(0, 255, 159, 0.03) 100%
-		);
-		border: 1px solid rgba(0, 229, 255, 0.15);
-		box-shadow:
-			0 4px 24px rgba(0, 0, 0, 0.25),
-			inset 0 1px 0 rgba(255, 255, 255, 0.04);
+		padding: 2.25rem;
+		border-radius: 20px;
+		background:
+			linear-gradient(
+				160deg,
+				rgba(10, 15, 13, 0.97) 0%,
+				rgba(12, 20, 16, 0.95) 50%,
+				rgba(8, 14, 11, 0.97) 100%
+			);
+		border: 1px solid rgba(0, 229, 255, 0.1);
 		position: relative;
-		transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+		transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+					box-shadow 0.35s ease,
+					border-color 0.35s ease;
 		opacity: 0;
 		animation: fadeInUp 0.6s ease-out forwards;
+		overflow: hidden;
+		box-shadow:
+			0 4px 24px rgba(0, 0, 0, 0.35),
+			0 1px 3px rgba(0, 0, 0, 0.2);
+	}
+
+	/* Decorative corner accent */
+	.feature::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 60px;
+		height: 60px;
+		background: linear-gradient(
+			135deg,
+			rgba(0, 229, 255, 0.15) 0%,
+			transparent 60%
+		);
+		border-radius: 16px 0 0 0;
+		opacity: 0.8;
+		transition: opacity 0.3s ease;
+	}
+
+	/* Subtle bottom glow */
+	.feature::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 10%;
+		right: 10%;
+		height: 1px;
+		background: linear-gradient(
+			90deg,
+			transparent,
+			rgba(0, 229, 255, 0.3),
+			transparent
+		);
 	}
 
 	.feature-primary {
@@ -509,71 +896,192 @@ const description = 'Autonomous feature implementation combining rich planning w
 	}
 
 	.feature:hover {
-		transform: translateY(-3px);
-		border-color: rgba(0, 229, 255, 0.3);
+		transform: translateY(-8px) scale(1.015);
+		border-color: rgba(0, 229, 255, 0.4);
 		box-shadow:
-			0 8px 32px rgba(0, 0, 0, 0.35),
-			0 0 20px rgba(0, 229, 255, 0.1),
-			inset 0 1px 0 rgba(255, 255, 255, 0.06);
+			0 24px 64px rgba(0, 0, 0, 0.55),
+			0 0 50px rgba(0, 229, 255, 0.1),
+			0 0 100px rgba(0, 229, 255, 0.05),
+			inset 0 1px 0 rgba(255, 255, 255, 0.08);
+	}
+
+	.feature:hover::before {
+		opacity: 1;
+	}
+
+	/* Animated border gradient on hover */
+	.feature-border {
+		position: absolute;
+		inset: 0;
+		border-radius: 20px;
+		padding: 1px;
+		background: linear-gradient(var(--angle, 0deg), transparent 40%, rgba(0, 229, 255, 0.5) 50%, transparent 60%);
+		-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.feature:hover .feature-border {
+		opacity: 1;
+		animation: borderRotate 4s linear infinite;
+	}
+
+	@keyframes borderRotate {
+		from { --angle: 0deg; }
+		to { --angle: 360deg; }
+	}
+
+	@property --angle {
+		syntax: '<angle>';
+		initial-value: 0deg;
+		inherits: false;
 	}
 
 	.feature-number {
 		font-family: 'JetBrains Mono', monospace;
-		font-size: 0.75rem;
+		font-size: 3rem;
+		font-weight: 700;
 		color: var(--landing-accent, #00e5ff);
-		opacity: 0.5;
+		opacity: 0.07;
 		position: absolute;
-		top: 1rem;
+		top: 0.5rem;
 		right: 1rem;
+		line-height: 1;
+		transition: opacity 0.3s ease, transform 0.3s ease;
+	}
+
+	.feature:hover .feature-number {
+		opacity: 0.12;
+		transform: scale(1.05);
 	}
 
 	.feature-title {
-		margin: 0 0 0.875rem 0;
-		font-size: 1.375rem;
+		margin: 0 0 1rem 0;
+		font-size: 1.3rem;
 		font-weight: 600;
 		font-family: 'JetBrains Mono', monospace;
-		letter-spacing: -0.01em;
+		letter-spacing: -0.02em;
 		line-height: 1.2;
-		color: var(--landing-accent, #00e5ff);
+		color: var(--landing-text, #e0f2e9);
+		position: relative;
+		transition: color 0.3s ease;
+	}
+
+	/* Accent line before title */
+	.feature-title::before {
+		content: '';
+		position: absolute;
+		left: -2rem;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 4px;
+		height: 20px;
+		background: linear-gradient(
+			180deg,
+			var(--landing-accent, #00e5ff),
+			var(--landing-accent-green, #00ff9f)
+		);
+		border-radius: 2px;
 	}
 
 	.feature-desc {
 		margin: 0;
-		font-size: 1rem;
-		line-height: 1.65;
-		color: rgba(224, 242, 233, 0.85);
+		font-size: 0.9375rem;
+		line-height: 1.75;
+		color: rgba(224, 242, 233, 0.65);
+		transition: color 0.3s ease;
 	}
 
-	/* Primary feature - larger, more emphasis */
+	.feature:hover .feature-desc {
+		color: rgba(224, 242, 233, 0.8);
+	}
+
+	/* Primary feature - dramatic emphasis */
 	.feature-primary {
 		border-color: rgba(0, 229, 255, 0.25);
+		background:
+			linear-gradient(
+				145deg,
+				rgba(0, 229, 255, 0.08) 0%,
+				rgba(10, 15, 13, 0.98) 40%,
+				rgba(0, 255, 159, 0.04) 100%
+			);
+		box-shadow:
+			0 8px 40px rgba(0, 0, 0, 0.4),
+			0 0 1px rgba(0, 229, 255, 0.3),
+			inset 0 1px 0 rgba(255, 255, 255, 0.04);
+	}
+
+	.feature-primary::before {
+		width: 100px;
+		height: 100px;
 		background: linear-gradient(
 			135deg,
-			rgba(0, 229, 255, 0.1) 0%,
-			rgba(0, 255, 159, 0.05) 100%
+			rgba(0, 229, 255, 0.2) 0%,
+			transparent 60%
 		);
-		box-shadow:
-			0 6px 32px rgba(0, 0, 0, 0.3),
-			0 0 1px rgba(0, 229, 255, 0.3),
-			inset 0 1px 0 rgba(255, 255, 255, 0.06);
 	}
 
 	.feature-primary:hover {
-		border-color: rgba(0, 229, 255, 0.4);
+		border-color: rgba(0, 229, 255, 0.45);
 		box-shadow:
-			0 12px 48px rgba(0, 0, 0, 0.4),
-			0 0 30px rgba(0, 229, 255, 0.15),
-			inset 0 1px 0 rgba(255, 255, 255, 0.08);
+			0 25px 70px rgba(0, 0, 0, 0.5),
+			0 0 50px rgba(0, 229, 255, 0.12),
+			inset 0 1px 0 rgba(255, 255, 255, 0.06);
+	}
+
+	.feature-primary .feature-number {
+		font-size: 4rem;
+		opacity: 0.06;
 	}
 
 	.feature-primary .feature-title {
-		font-size: 1.5rem;
+		font-size: 1.625rem;
 		line-height: 1.15;
+		color: var(--landing-accent, #00e5ff);
+	}
+
+	.feature-primary .feature-desc {
+		font-size: 1.0625rem;
+		color: rgba(224, 242, 233, 0.8);
+	}
+
+	/* Secondary feature - subtle warm accent */
+	.feature-secondary::before {
+		background: linear-gradient(
+			135deg,
+			rgba(0, 255, 159, 0.15) 0%,
+			transparent 60%
+		);
+	}
+
+	.feature-secondary .feature-title::before {
+		background: var(--landing-accent-green, #00ff9f);
 	}
 
 	/* Tertiary feature - offset positioning */
 	.feature-tertiary {
 		margin-left: 0;
+	}
+
+	.feature-tertiary::before {
+		background: linear-gradient(
+			135deg,
+			rgba(255, 200, 100, 0.1) 0%,
+			transparent 60%
+		);
+	}
+
+	.feature-tertiary .feature-title::before {
+		background: linear-gradient(
+			180deg,
+			#ffc864,
+			#ff9f40
+		);
 	}
 
 	/* Responsive - desktop asymmetric layout */
@@ -590,8 +1098,8 @@ const description = 'Autonomous feature implementation combining rich planning w
 		}
 
 		.hero-title {
-			font-size: 5.5rem;
-			letter-spacing: -0.04em;
+			font-size: 6rem;
+			letter-spacing: -0.045em;
 		}
 
 		.hero-tagline {
@@ -602,8 +1110,23 @@ const description = 'Autonomous feature implementation combining rich planning w
 			min-height: 280px;
 		}
 
+		.hero-glyph-container {
+			width: 280px;
+			height: 280px;
+		}
+
 		.hero-glyph {
 			font-size: 6rem;
+		}
+
+		.glyph-ring-inner {
+			width: 170px;
+			height: 170px;
+		}
+
+		.glyph-ring-outer {
+			width: 240px;
+			height: 240px;
 		}
 
 		.hero-orbit {
@@ -624,15 +1147,29 @@ const description = 'Autonomous feature implementation combining rich planning w
 		.features {
 			grid-template-columns: 1.3fr 1fr;
 			grid-template-rows: auto auto;
-			gap: 1.5rem;
+			gap: 1.75rem;
+		}
+
+		.feature {
+			padding: 2.5rem;
+		}
+
+		.feature-title::before {
+			left: -2.5rem;
 		}
 
 		.feature-primary {
 			grid-row: span 2;
-			padding: 2rem;
+			padding: 3rem;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
+		}
+
+		.feature-primary .feature-title::before {
+			left: -3rem;
+			height: 28px;
+			width: 5px;
 		}
 
 		.feature-primary .feature-desc {
@@ -640,15 +1177,15 @@ const description = 'Autonomous feature implementation combining rich planning w
 		}
 
 		.feature-primary .feature-title {
-			font-size: 1.625rem;
+			font-size: 1.75rem;
 		}
 
 		.feature-secondary {
-			padding: 1.5rem;
+			padding: 2rem;
 		}
 
 		.feature-tertiary {
-			padding: 1.5rem;
+			padding: 2rem;
 			margin-left: 1rem;
 		}
 	}
@@ -664,16 +1201,303 @@ const description = 'Autonomous feature implementation combining rich planning w
 		}
 
 		.hero-title {
-			font-size: 6.5rem;
-			letter-spacing: -0.045em;
+			font-size: 7rem;
+			letter-spacing: -0.05em;
 		}
 
 		.features {
 			grid-template-columns: 1.4fr 0.9fr;
+			gap: 2rem;
+		}
+
+		.feature-primary {
+			padding: 3.5rem;
 		}
 
 		.feature-tertiary {
 			margin-left: 2rem;
+		}
+	}
+
+	/* Feature icons - enhanced with glow background */
+	.feature-icon {
+		width: 56px;
+		height: 56px;
+		margin-bottom: 1.5rem;
+		color: var(--landing-accent, #00e5ff);
+		opacity: 1;
+		transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease, filter 0.3s ease;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 2;
+	}
+
+	/* Glowing backdrop behind icon */
+	.feature-icon::before {
+		content: '';
+		position: absolute;
+		inset: -8px;
+		background: radial-gradient(circle at center, rgba(0, 229, 255, 0.15) 0%, transparent 70%);
+		border-radius: 50%;
+		z-index: -1;
+		opacity: 0.6;
+		transition: opacity 0.3s ease, transform 0.3s ease;
+	}
+
+	.feature-icon svg {
+		width: 100%;
+		height: 100%;
+		filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));
+	}
+
+	.feature:hover .feature-icon {
+		transform: scale(1.15) rotate(-5deg);
+		color: var(--landing-accent-green, #00ff9f);
+		filter: brightness(1.2);
+	}
+
+	.feature:hover .feature-icon::before {
+		opacity: 1;
+		transform: scale(1.2);
+	}
+
+	.feature:hover .feature-icon svg {
+		filter: drop-shadow(0 0 15px rgba(0, 255, 159, 0.6));
+	}
+
+	.feature-primary .feature-icon {
+		width: 56px;
+		height: 56px;
+	}
+
+	.feature-secondary .feature-icon {
+		color: var(--landing-accent-green, #00ff9f);
+	}
+
+	.feature-tertiary .feature-icon {
+		color: #ffc864;
+	}
+
+	/* Feature glow effect on hover */
+	.feature-glow {
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 80%;
+		height: 100px;
+		background: radial-gradient(
+			ellipse at bottom,
+			rgba(0, 229, 255, 0.15) 0%,
+			transparent 70%
+		);
+		opacity: 0;
+		transition: opacity 0.4s ease;
+		pointer-events: none;
+	}
+
+	.feature:hover .feature-glow {
+		opacity: 1;
+	}
+
+	.feature-secondary .feature-glow {
+		background: radial-gradient(
+			ellipse at bottom,
+			rgba(0, 255, 159, 0.15) 0%,
+			transparent 70%
+		);
+	}
+
+	.feature-tertiary .feature-glow {
+		background: radial-gradient(
+			ellipse at bottom,
+			rgba(255, 200, 100, 0.15) 0%,
+			transparent 70%
+		);
+	}
+
+	/* Floating code snippets */
+	.floating-code {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		overflow: hidden;
+		z-index: 0;
+	}
+
+	.code-snippet {
+		position: absolute;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.75rem;
+		color: rgba(0, 229, 255, 0.15);
+		white-space: nowrap;
+		animation: floatCode 15s ease-in-out infinite;
+	}
+
+	.code-1 {
+		top: 15%;
+		right: 5%;
+		animation-delay: 0s;
+	}
+
+	.code-2 {
+		top: 45%;
+		left: 3%;
+		animation-delay: 3s;
+		color: rgba(0, 255, 159, 0.12);
+	}
+
+	.code-3 {
+		bottom: 25%;
+		right: 8%;
+		animation-delay: 6s;
+	}
+
+	@keyframes floatCode {
+		0%, 100% {
+			transform: translateY(0) translateX(0);
+			opacity: 0.4;
+		}
+		25% {
+			transform: translateY(-20px) translateX(10px);
+			opacity: 0.8;
+		}
+		50% {
+			transform: translateY(-10px) translateX(-5px);
+			opacity: 0.5;
+		}
+		75% {
+			transform: translateY(-30px) translateX(5px);
+			opacity: 0.7;
+		}
+	}
+
+	/* Bold statement section */
+	.statement {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 2rem;
+		margin-top: 5rem;
+		padding: 4rem 0;
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out forwards;
+		animation-delay: 0.8s;
+		position: relative;
+	}
+
+	/* Dramatic background glow for statement */
+	.statement::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 500px;
+		height: 150px;
+		background: radial-gradient(
+			ellipse at center,
+			rgba(0, 229, 255, 0.08) 0%,
+			transparent 70%
+		);
+		pointer-events: none;
+	}
+
+	.statement-line {
+		flex: 1;
+		max-width: 140px;
+		height: 2px;
+		background: linear-gradient(
+			90deg,
+			transparent,
+			rgba(0, 229, 255, 0.5),
+			var(--landing-accent, #00e5ff)
+		);
+		border-radius: 2px;
+		box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+		position: relative;
+	}
+
+	.statement-line::after {
+		content: '';
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 8px;
+		height: 8px;
+		background: var(--landing-accent, #00e5ff);
+		border-radius: 50%;
+		box-shadow: 0 0 12px var(--landing-accent, #00e5ff);
+	}
+
+	.statement-line:last-child {
+		background: linear-gradient(
+			90deg,
+			var(--landing-accent, #00e5ff),
+			rgba(0, 229, 255, 0.5),
+			transparent
+		);
+	}
+
+	.statement-line:last-child::after {
+		right: auto;
+		left: 0;
+	}
+
+	.statement-quote {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 1.875rem;
+		font-weight: 700;
+		color: var(--landing-text, #e0f2e9);
+		margin: 0;
+		text-align: center;
+		letter-spacing: -0.025em;
+		text-shadow:
+			0 0 50px rgba(0, 229, 255, 0.5),
+			0 0 100px rgba(0, 229, 255, 0.25);
+		position: relative;
+		z-index: 1;
+		background: linear-gradient(180deg, #fff 30%, rgba(224, 242, 233, 0.85) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (min-width: 768px) {
+		.statement {
+			margin-top: 6rem;
+			padding: 4rem 0;
+			gap: 3rem;
+		}
+
+		.statement-line {
+			max-width: 200px;
+		}
+
+		.statement-quote {
+			font-size: 2.25rem;
+		}
+
+		.feature-icon {
+			width: 52px;
+			height: 52px;
+		}
+
+		.feature-primary .feature-icon {
+			width: 64px;
+			height: 64px;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.statement-quote {
+			font-size: 2.75rem;
 		}
 	}
 
