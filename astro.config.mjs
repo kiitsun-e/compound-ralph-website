@@ -9,7 +9,7 @@ export default defineConfig({
 		starlight({
 			title: 'Compound Ralph',
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/yourusername/compound-ralph' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/kiitsun-e/compound-ralph' },
 			],
 			customCss: ['./src/styles/custom.css'],
 			sidebar: [

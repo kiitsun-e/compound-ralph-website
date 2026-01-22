@@ -1,6 +1,6 @@
 ---
 title: Ralph Loop
-description: The autonomous implementation cycle that powers ralph-borg
+description: The autonomous implementation cycle that powers Compound Ralph
 ---
 
 import { Aside, Steps, Card, CardGrid } from '@astrojs/starlight/components';
@@ -29,8 +29,8 @@ Every iteration follows these phases in order:
 
 **Understand the world before acting.**
 
-- Read `.borg/project.json` for discovered commands
-- Read `.borg/learnings.json` for insights from previous iterations
+- Read `.cr/project.json` for discovered commands
+- Read `.cr/learnings.json` for insights from previous iterations
 - Detect project type (Node, Ruby, Python, Go, etc.)
 - Check for Docker, databases, environment files
 - Perform gap analysis: what does SPEC require vs. what exists?
@@ -140,7 +140,7 @@ This phase catches issues that unit tests miss.
 
 1. Move task to "Completed" with details
 2. Update Notes section with learnings
-3. Append to `.borg/learnings.json`
+3. Append to `.cr/learnings.json`
 4. Increment `iteration_count` in frontmatter
 5. Add entry to Iteration Log
 6. Commit changes
@@ -182,9 +182,9 @@ The loop maintains state through these files:
 | File | Purpose |
 |------|---------|
 | `SPEC.md` | Tasks, requirements, iteration log |
-| `.borg/project.json` | Discovered commands and config |
-| `.borg/learnings.json` | Accumulated learnings |
-| `.borg/context.yaml` | Error fixes, patterns, context |
+| `.cr/project.json` | Discovered commands and config |
+| `.cr/learnings.json` | Accumulated learnings |
+| `.cr/context.yaml` | Error fixes, patterns, context |
 | Git commits | Code changes and history |
 
 ## Related

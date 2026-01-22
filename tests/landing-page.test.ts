@@ -10,8 +10,8 @@ describe("Landing Page", () => {
 		expect(content).toBeTruthy();
 	});
 
-	test("has hero title with Ralph Borg", () => {
-		expect(content).toContain("Ralph Borg");
+	test("has hero title with Compound Ralph", () => {
+		expect(content).toContain("Compound Ralph");
 	});
 
 	test("has hero tagline about fire-and-forget", () => {

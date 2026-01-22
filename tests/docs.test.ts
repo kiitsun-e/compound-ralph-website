@@ -56,10 +56,10 @@ describe("Getting Started Guide", () => {
   test("includes first feature walkthrough", () => {
     const content = readDoc("getting-started.mdx");
     expect(content).toContain("## Your First Feature");
-    expect(content).toContain("borg init");
-    expect(content).toContain("borg plan");
-    expect(content).toContain("borg spec");
-    expect(content).toContain("borg implement");
+    expect(content).toContain("cr init");
+    expect(content).toContain("cr plan");
+    expect(content).toContain("cr spec");
+    expect(content).toContain("cr implement");
   });
 
   test("uses Starlight components", () => {
@@ -88,7 +88,7 @@ describe("Command: plan", () => {
   test("has valid frontmatter with title and description", () => {
     const content = readDoc(commandPath);
     const frontmatter = extractFrontmatter(content);
-    expect(frontmatter.title).toBe("borg plan");
+    expect(frontmatter.title).toBe("cr plan");
     expect(frontmatter.description).toBeDefined();
   });
 
@@ -96,7 +96,7 @@ describe("Command: plan", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Usage");
     expect(content).toContain("```bash");
-    expect(content).toContain("borg plan");
+    expect(content).toContain("cr plan");
   });
 
   test("includes arguments table", () => {
@@ -116,14 +116,14 @@ describe("Command: plan", () => {
   test("includes examples section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Examples");
-    expect(content).toContain("borg plan");
+    expect(content).toContain("cr plan");
   });
 
   test("includes what happens next section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("What Happens Next");
-    expect(content).toContain("borg spec");
-    expect(content).toContain("borg implement");
+    expect(content).toContain("cr spec");
+    expect(content).toContain("cr implement");
   });
 
   test("includes related commands section", () => {
@@ -145,7 +145,7 @@ describe("Command: spec", () => {
   test("has valid frontmatter with title and description", () => {
     const content = readDoc(commandPath);
     const frontmatter = extractFrontmatter(content);
-    expect(frontmatter.title).toBe("borg spec");
+    expect(frontmatter.title).toBe("cr spec");
     expect(frontmatter.description).toBeDefined();
   });
 
@@ -153,7 +153,7 @@ describe("Command: spec", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Usage");
     expect(content).toContain("```bash");
-    expect(content).toContain("borg spec");
+    expect(content).toContain("cr spec");
   });
 
   test("includes arguments table", () => {
@@ -182,7 +182,7 @@ describe("Command: spec", () => {
   test("includes examples section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Examples");
-    expect(content).toContain("borg spec plans/");
+    expect(content).toContain("cr spec plans/");
   });
 
   test("includes related commands section", () => {
@@ -204,7 +204,7 @@ describe("Command: implement", () => {
   test("has valid frontmatter with title and description", () => {
     const content = readDoc(commandPath);
     const frontmatter = extractFrontmatter(content);
-    expect(frontmatter.title).toBe("borg implement");
+    expect(frontmatter.title).toBe("cr implement");
     expect(frontmatter.description).toBeDefined();
   });
 
@@ -212,7 +212,7 @@ describe("Command: implement", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Usage");
     expect(content).toContain("```bash");
-    expect(content).toContain("borg implement");
+    expect(content).toContain("cr implement");
   });
 
   test("includes arguments table", () => {
@@ -238,7 +238,7 @@ describe("Command: implement", () => {
   test("includes examples section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Examples");
-    expect(content).toContain("borg implement specs/");
+    expect(content).toContain("cr implement specs/");
   });
 
   test("includes related commands section", () => {
@@ -261,7 +261,7 @@ describe("Command: review", () => {
   test("has valid frontmatter with title and description", () => {
     const content = readDoc(commandPath);
     const frontmatter = extractFrontmatter(content);
-    expect(frontmatter.title).toBe("borg review");
+    expect(frontmatter.title).toBe("cr review");
     expect(frontmatter.description).toBeDefined();
   });
 
@@ -269,7 +269,7 @@ describe("Command: review", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Usage");
     expect(content).toContain("```bash");
-    expect(content).toContain("borg review");
+    expect(content).toContain("cr review");
   });
 
   test("includes options table", () => {
@@ -301,7 +301,7 @@ describe("Command: review", () => {
   test("includes examples section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Examples");
-    expect(content).toContain("borg review specs/");
+    expect(content).toContain("cr review specs/");
     expect(content).toContain("--design");
   });
 
@@ -325,7 +325,7 @@ describe("Command: init", () => {
   test("has valid frontmatter with title and description", () => {
     const content = readDoc(commandPath);
     const frontmatter = extractFrontmatter(content);
-    expect(frontmatter.title).toBe("borg init");
+    expect(frontmatter.title).toBe("cr init");
     expect(frontmatter.description).toBeDefined();
   });
 
@@ -333,7 +333,7 @@ describe("Command: init", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Usage");
     expect(content).toContain("```bash");
-    expect(content).toContain("borg init");
+    expect(content).toContain("cr init");
   });
 
   test("includes arguments table", () => {
@@ -363,7 +363,7 @@ describe("Command: init", () => {
   test("includes examples section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Examples");
-    expect(content).toContain("borg init");
+    expect(content).toContain("cr init");
   });
 
   test("includes related commands section", () => {
@@ -384,7 +384,7 @@ describe("Command: design", () => {
   test("has valid frontmatter with title and description", () => {
     const content = readDoc(commandPath);
     const frontmatter = extractFrontmatter(content);
-    expect(frontmatter.title).toBe("borg design");
+    expect(frontmatter.title).toBe("cr design");
     expect(frontmatter.description).toBeDefined();
   });
 
@@ -392,7 +392,7 @@ describe("Command: design", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Usage");
     expect(content).toContain("```bash");
-    expect(content).toContain("borg design");
+    expect(content).toContain("cr design");
   });
 
   test("includes arguments table with url and iterations", () => {
@@ -400,7 +400,7 @@ describe("Command: design", () => {
     expect(content).toContain("## Arguments");
     expect(content).toContain("| Argument |");
     expect(content).toContain("`url`");
-    expect(content).toContain("`iterations`");
+    expect(content).toContain("`--n`");
   });
 
   test("explains what it does including screenshot and analyze steps", () => {
@@ -422,7 +422,7 @@ describe("Command: design", () => {
   test("includes examples section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Examples");
-    expect(content).toContain("borg design");
+    expect(content).toContain("cr design");
     expect(content).toContain("localhost");
   });
 
@@ -446,7 +446,7 @@ describe("Command: status", () => {
   test("has valid frontmatter with title and description", () => {
     const content = readDoc(commandPath);
     const frontmatter = extractFrontmatter(content);
-    expect(frontmatter.title).toBe("borg status");
+    expect(frontmatter.title).toBe("cr status");
     expect(frontmatter.description).toBeDefined();
   });
 
@@ -454,7 +454,7 @@ describe("Command: status", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Usage");
     expect(content).toContain("```bash");
-    expect(content).toContain("borg status");
+    expect(content).toContain("cr status");
   });
 
   test("explains what it shows with table", () => {
@@ -478,14 +478,14 @@ describe("Command: status", () => {
   test("includes output example", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Output Example");
-    expect(content).toContain("Ralph Borg Status");
+    expect(content).toContain("Compound Ralph Status");
   });
 
   test("includes examples section", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Examples");
-    expect(content).toContain("borg status");
-    expect(content).toContain("borg implement");
+    expect(content).toContain("cr status");
+    expect(content).toContain("cr implement");
   });
 
   test("includes related commands section", () => {
@@ -508,7 +508,7 @@ describe("Command: fix", () => {
   test("has valid frontmatter with title and description", () => {
     const content = readDoc(commandPath);
     const frontmatter = extractFrontmatter(content);
-    expect(frontmatter.title).toBe("borg fix");
+    expect(frontmatter.title).toBe("cr fix");
     expect(frontmatter.description).toBeDefined();
   });
 
@@ -516,7 +516,7 @@ describe("Command: fix", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Usage");
     expect(content).toContain("```bash");
-    expect(content).toContain("borg fix");
+    expect(content).toContain("cr fix");
   });
 
   test("includes arguments table with code and design options", () => {
@@ -547,10 +547,10 @@ describe("Command: fix", () => {
   test("includes examples section with complete workflow", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Examples");
-    expect(content).toContain("borg fix");
+    expect(content).toContain("cr fix");
     expect(content).toContain("Complete fix workflow");
-    expect(content).toContain("borg review");
-    expect(content).toContain("borg implement");
+    expect(content).toContain("cr review");
+    expect(content).toContain("cr implement");
   });
 
   test("includes related commands section", () => {
@@ -573,7 +573,7 @@ describe("Command: learnings", () => {
   test("has valid frontmatter with title and description", () => {
     const content = readDoc(commandPath);
     const frontmatter = extractFrontmatter(content);
-    expect(frontmatter.title).toBe("borg learnings");
+    expect(frontmatter.title).toBe("cr learnings");
     expect(frontmatter.description).toBeDefined();
   });
 
@@ -581,7 +581,7 @@ describe("Command: learnings", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Usage");
     expect(content).toContain("```bash");
-    expect(content).toContain("borg learnings");
+    expect(content).toContain("cr learnings");
   });
 
   test("includes arguments table with category and limit", () => {
@@ -606,16 +606,16 @@ describe("Command: learnings", () => {
   test("explains storage format with learnings.json", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Storage");
-    expect(content).toContain(".borg/learnings.json");
+    expect(content).toContain(".cr/learnings.json");
     expect(content).toContain('"learnings"');
   });
 
   test("includes examples section with filtering", () => {
     const content = readDoc(commandPath);
     expect(content).toContain("## Examples");
-    expect(content).toContain("borg learnings");
-    expect(content).toContain("borg learnings fix");
-    expect(content).toContain("borg learnings pattern");
+    expect(content).toContain("cr learnings");
+    expect(content).toContain("cr learnings fix");
+    expect(content).toContain("cr learnings pattern");
   });
 
   test("includes related commands section", () => {
@@ -751,8 +751,8 @@ describe("Concept: Ralph Loop", () => {
     const content = readDoc(conceptPath);
     expect(content).toContain("## State Files");
     expect(content).toContain("SPEC.md");
-    expect(content).toContain(".borg/project.json");
-    expect(content).toContain(".borg/learnings.json");
+    expect(content).toContain(".cr/project.json");
+    expect(content).toContain(".cr/learnings.json");
     expect(content).toContain("Git commits");
   });
 

@@ -1,49 +1,45 @@
-# Starlight Starter Kit: Basics
+# Compound Ralph Documentation
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+Documentation website for [Compound Ralph](https://github.com/kiitsun-e/compound-ralph) — an autonomous feature implementation system.
 
-```
-bun create astro@latest -- --template starlight
-```
+## What is Compound Ralph?
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+Compound Ralph combines human-guided planning with autonomous code generation. You describe features, it builds them — with continuous backpressure (tests, lint, types) for self-correction.
 
 ```
-.
-├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+cr plan "add user authentication"  # Rich, interactive planning
+cr spec plans/add-user-auth.md     # Convert to implementation spec
+cr implement                        # Fire and forget
 ```
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+## Running Locally
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+```bash
+bun install
+bun dev
+```
 
-Static assets, like favicons, can be placed in the `public/` directory.
+Open [localhost:4321](http://localhost:4321).
 
-## 🧞 Commands
+## Project Structure
 
-All commands are run from the root of the project, from a terminal:
+```
+src/content/docs/
+├── index.mdx              # Docs home
+├── getting-started.mdx    # Installation & first feature
+├── commands/              # CLI reference (init, plan, spec, implement, etc.)
+└── concepts/              # Core concepts (backpressure, ralph-loop)
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+## Building
 
-## 👀 Want to learn more?
+```bash
+bun build      # Output to ./dist/
+bun preview    # Preview production build
+```
 
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+## Stack
+
+- [Astro](https://astro.build) + [Starlight](https://starlight.astro.build)
+- Custom dark terminal theme
+- Bun for tooling
