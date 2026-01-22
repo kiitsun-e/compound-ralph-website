@@ -4,7 +4,6 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "serve dist -l tcp://0.0.0.0:$PORT",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -12,7 +11,6 @@
   "dependencies": {
     "@astrojs/starlight": "^0.37.3",
     "astro": "^5.6.1",
-    "serve": "^14.2.4",
     "sharp": "^0.34.2"
   },
   "devDependencies": {
